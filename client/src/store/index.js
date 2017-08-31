@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from 'reducers';
+import rootReducer from './reducers';
 
 // If router gets implemented, create and export history here
 
@@ -13,7 +13,7 @@ const middleware = [
 ];
 
 // Hook up Redux DevTools
-const devToolsExtension = windows.devToolsExtension;
+const devToolsExtension = window.devToolsExtension;
 
 if (typeof devToolsExtension === 'function') {
   enhancers.push(devToolsExtension());
