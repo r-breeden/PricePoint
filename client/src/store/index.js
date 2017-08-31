@@ -13,7 +13,6 @@ const middleware = [
 ];
 
 // Hook up Redux DevTools
-
 const devToolsExtension = windows.devToolsExtension;
 
 if (typeof devToolsExtension === 'function') {
