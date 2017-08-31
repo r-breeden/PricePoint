@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import rootReducer from 'reducers';
 
 // If router gets implemented, create and export history here
 
@@ -25,7 +26,7 @@ const composedEnhancers = compose(
 );
 
 const store = createStore(
-  {}, // TODO: Add root reducer
+  rootReducer,
   initialState,
   composedEnhancers
 );
