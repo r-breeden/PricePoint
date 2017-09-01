@@ -4,7 +4,7 @@
   "scripts": {
     "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
     "start": "nodemon server",
-    "test": "NODE_ENV=test grunt test",
+    "test": "mocha -R spec server/test/**/*.js",
     "build": "webpack --watch"
   },
   "author": "Hack Reactor",
@@ -46,7 +46,6 @@
     "chai": "^3.5.0",
     "grunt": "~0.4.5",
     "grunt-eslint": "^19.0.0",
-    "grunt-mocha-test": "^0.13.2",
     "mocha": "^3.2.0",
     "node-mocks-http": "^1.6.1",
     "supertest": "^3.0.0",

@@ -17,6 +17,7 @@ env:
 
 before_script:
   - psql -c 'create database price_point_test;' -U postgres
+  - knex migrate:latest --env NODE_ENV
 
 script:
   - yarn test
