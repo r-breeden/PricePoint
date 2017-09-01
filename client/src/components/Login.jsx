@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap'; 
-import {  } from 'react-bootstrap';    
+import { Glyphicon, Form, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';    
 
 
 const Login = () => {
@@ -11,10 +11,42 @@ const Login = () => {
         <Row>
           <Col sm={6} smOffset={3}>
             <h1>
-              <Glyphicon glyph="log-in"></Glyphicon>
-              Login
+              <span>
+                <Glyphicon glyph="log-in" bsSize="small"></Glyphicon> Login
+              </span>
             </h1>
+            {/* some conditional rendering logic:
+            if (message.length) { %>
+            <div class="alert alert-danger"><%= message %></div>
+            <% } */}
+            <Form>
+              <FormGroup controlId="formBasicText">
+                <ControlLabel>
+                  Email
+                </ControlLabel>
+                <FormControl
+                  type="text"
+                  value=""
+                  onChange=""
+                />
+                <FormControl.Feedback />
+              </FormGroup>
+              <FormGroup controlId="formBasicText">
+                <ControlLabel>
+                  Password
+                </ControlLabel>
+                <FormControl
+                  type="text"
+                  value=""
+                  onChange=""
+                />
+                <FormControl.Feedback />
+              </FormGroup>            
+              <Button bsSize="large" bsStyle="warning">Login</Button>
+            </Form>
           </Col>
+          
+
         </Row>
       </Grid>
     </div>
@@ -22,31 +54,7 @@ const Login = () => {
 };
 
 export default Login; 
-// 
-// 
-// 
-//     <div class="col-sm-6 col-sm-offset-3">
-// 
-//         <h1><span class="fa fa-sign-in"></span> Login</h1>
-// 
-//         <% if (message.length) { %>
-//         <div class="alert alert-danger"><%= message %></div>
-//         <% } %>
-// 
-//         <!-- LOGIN FORM -->
-//         <form action="/login" method="post">
-//             <div class="form-group">
-//                 <label>Email</label>
-//                 <input type="text" class="form-control" name="email">
-//             </div>
-//             <div class="form-group">
-//                 <label>Password</label>
-//                 <input type="password" class="form-control" name="password">
-//             </div>
-// 
-//             <button type="submit" class="btn btn-warning btn-lg">Login</button>
-//         </form>
-// 
+
 //         <hr>
 //         <div>
 //             Or login with any of the following services:<br />
