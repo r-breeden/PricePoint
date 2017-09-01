@@ -21,6 +21,10 @@
     }
   },
 
+  "redis": {
+    "connection": {}
+  },
+
   "passport": {
     "Google": {
       "clientID": "DO NOT FILL ME IN",
