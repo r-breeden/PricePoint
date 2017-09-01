@@ -5,11 +5,11 @@ import { Thumbnail, Table } from 'react-bootstrap';
 
 //temporary styling blocks
 const lower = {
-  backgroundColor: 'rgba(27, 135, 27, 0.61)'
+  color: 'rgba(27, 135, 27, 0.61)'
 };
 
 const higher = {
-  backgroundColor: 'rgba(242, 17, 17, 0.61)'
+  color: 'rgba(242, 17, 17, 0.61)'
 };
 
 const Search = () => {
