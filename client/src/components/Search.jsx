@@ -5,18 +5,22 @@ import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 
 const Search = () => {
   return (
-    <Form inline>
-      <FormGroup>
-        <FormControl
-          type="text"
-          placeholder="Search for an item"
-        />
-      </FormGroup>
-      {' '}
-      <Button>
-        Submit
-      </Button>
-    </Form>
+    <Row>
+      <Col md={12}>
+        <Form inline>
+          <FormGroup>
+            <FormControl
+              type="text"
+              placeholder="Search for an item"
+            />
+          </FormGroup>
+          {' '}
+          <Button>
+            Submit
+          </Button>
+        </Form>
+      </Col>
+    </Row>
   );
 };
   

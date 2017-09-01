@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap'; 
-import { Navbar, Button, Glyphicon, Thumbnail } from 'react-bootstrap'; 
+import { Navbar, Button, Glyphicon } from 'react-bootstrap'; 
 import { Provider } from 'react-redux';
 import store from './store';
 import Search from './components/Search.jsx'; 
+import Results from './components/Results.jsx';
 
 const App = (
   <div className="price-point-app">
@@ -26,26 +27,8 @@ const App = (
           </Navbar>
         </Col>
       </Row>
-      <Row>
-        <Col xs={12}>
-          <Search>
-          </Search>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={6} md={3}>
-          <Thumbnail href="#" alt="171x180" src="http://www.gujaratheritagetourism.com/wp-content/uploads/2017/04/dummy-img.jpg" />
-          <Thumbnail href="#" alt="171x180" src="http://www.gujaratheritagetourism.com/wp-content/uploads/2017/04/dummy-img.jpg" />
-        </Col>
-        <Col xs={6} md={3}>
-          <Thumbnail href="#" alt="171x180" src="http://www.gujaratheritagetourism.com/wp-content/uploads/2017/04/dummy-img.jpg" />
-          <Thumbnail href="#" alt="171x180" src="http://www.gujaratheritagetourism.com/wp-content/uploads/2017/04/dummy-img.jpg" />
-        </Col>
-        <Col xs={6} md={3}>
-          <Thumbnail href="#" alt="171x180" src="http://www.gujaratheritagetourism.com/wp-content/uploads/2017/04/dummy-img.jpg" />
-          <Thumbnail href="#" alt="171x180" src="http://www.gujaratheritagetourism.com/wp-content/uploads/2017/04/dummy-img.jpg" />
-        </Col>
-      </Row>
+      <Search></Search>
+      <Results></Results>
     </Grid>
   </div>
 );
