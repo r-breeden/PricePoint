@@ -38,13 +38,13 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return Promise.all([
+    knex.schema.dropTable('followed_products'),
+    knex.schema.dropTable('prices'),
+    knex.schema.dropTable('product_url'),
+    knex.schema.dropTable('products'),
+    knex.schema.dropTable('vendors'),
     knex.schema.table('profiles', (table) => {
       table.dropColumn('photo_path');
     }),
-    knex.schema.dropTable('vendors'),
-    knex.schema.dropTable('products'),
-    knex.schema.dropTable('product_url'),
-    knex.schema.dropTable('prices'),
-    knex.schema.dropTable('followed_products')
   ]);
 };
