@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap'; 
-import { Glyphicon, Form, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';    
+import { Glyphicon, Form, FormGroup, ControlLabel, FormControl, Button, PageHeader } from 'react-bootstrap';    
 
 const fblogo = {
   width: '29px', 
@@ -61,9 +61,9 @@ const Login = () => {
               <Button bsSize="large" bsStyle="warning">Login</Button>
             </Form>
             <div>
+              <PageHeader></PageHeader>
+              Or login with any of the following services:
               <br/>
-              Or login with any of the following services: 
-              <br/><br/>
               <a href="/auth/facebook">
                 <img style={fblogo} src="/assets/fb-logo.png"/>
               </a>
@@ -74,6 +74,16 @@ const Login = () => {
                 <img style={twitlogo} src="/assets/twitter-logo.png"/>
               </a>
             </div>
+            <PageHeader></PageHeader>
+            <div>
+              <p>
+                Need to sign up for an account? 
+                <a href="/signup"> Signup</a>
+              </p>
+              <p>
+                <a href="/">home</a>
+              </p>
+            </div>
           </Col>
         </Row>
       </Grid>
@@ -82,11 +92,3 @@ const Login = () => {
 };
 
 export default Login; 
-
-
-//         <p>Need to sign up for an account? <a href="/signup">Signup</a></p>
-//         <p><a href="/">home</a></p>
-// 
-//     </div>
-// 
-// <% include foot.ejs%>
