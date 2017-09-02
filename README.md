@@ -56,7 +56,7 @@ yarn global add grunt-cli knex eslint
 
 ## App Configuration
 
-Override settings `config/default.json` in any environment by making a copy of `config/ENV.example.json` and naming it `config/ENV.json` and setting the appropriate variable. 
+development.json X Override settings `config/default.json` in any environment by making a copy of `config/ENV.example.json` and naming it `config/ENV.json` and setting the appropriate variable. 
 
 For environments that require use of environment variables, you can supply variables as defined in `config/custom-environment-variables.json`.
 
