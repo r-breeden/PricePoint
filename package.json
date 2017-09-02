@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "scripts": {
     "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
+    "heroku-postbuild": "npm run build:prod && npm run migrate",
     "start": "nodemon server",
     "test": "mocha -R spec server/test/**/*.js",
-    "build": "webpack --watch"
+    "build": "webpack --watch",
+    "build:prod": "webpack -p",
+    "migrate": "knex migrate:latest --env NODE_ENV",
+    "rollback": "knex migrate:rollback --env NODE_ENV",
+    "lint": "eslint client/**/*.js db/**/*.js server/**/*.js"
   },
   "author": "Hack Reactor",
   "license": "MIT",
