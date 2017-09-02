@@ -1,9 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap'; 
-import { } from 'react-bootstrap';    
+import { Glyphicon, Form, FormGroup, ControlLabel, FormControl, Button, PageHeader } from 'react-bootstrap';    
 
-
+const fblogo = {
+  width: '29px', 
+  height: '29px', 
+  marginRight: '15px'
+};
+const googlogo = {
+  width: '29px', 
+  height: '29px', 
+  marginLeft: '15px', 
+  marginRight: '15px'
+};
+const twitlogo = {
+  width: '48px', 
+  height: '48px', 
+  marginLeft: '15px'
+};
 const Signup = () => {
   return (
     <div>
@@ -12,7 +27,7 @@ const Signup = () => {
           <Col sm={6} smOffset={3}>
             <h1>
               <span>
-                <Glyphicon glyph="log-in" bsSize="small"></Glyphicon> Login
+                <Glyphicon glyph="log-in" bsSize="small"></Glyphicon> Signup
               </span>
             </h1>
             {/* some conditional rendering logic:
@@ -62,7 +77,7 @@ const Signup = () => {
             <div>
               <p>
                 Already have an account?
-                <a href="/signup"> Login</a>
+                <a href="/login"> Login</a>
               </p>
               <p>
                 Or go <a href="/">home</a>
