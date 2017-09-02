@@ -2,6 +2,7 @@ const db = require('../');
 
 const Price = db.Model.extend({
   tableName: 'prices',
+  hasTimestamp: true,
   products: function() {
     return this.belongsTo('Product');
   },

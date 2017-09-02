@@ -4,8 +4,8 @@ const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
 
 const Auth = db.Model.extend({
   tableName: 'auths',
-  user: function() {
-    return this.belongsTo('User');
+  profiles: function() {
+    return this.belongsTo('Profile');
   },
 
   initialize: function() {
