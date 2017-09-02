@@ -1,7 +1,7 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-const amazonAuth = require('../../config/development.json').amazon;
+const amazonAuth = require('config').amazon;
 let amazon = require('amazon-product-api');
 let helper = require('../helpers/helpers.js');
 
