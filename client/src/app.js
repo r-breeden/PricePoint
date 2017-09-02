@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store';
+import { ConnectedRouter } from 'react-router-redux';
+import store, { history } from './store';
 import Index from './Index.jsx'; 
 import Search from './components/Search.jsx'; 
 import Login from './components/Login.jsx'; 
@@ -27,9 +28,9 @@ const App = () => {
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <ConnectedRouter history={history}>
       <App />
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );
