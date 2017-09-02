@@ -42,9 +42,32 @@ const Signup = () => {
                 />
                 <FormControl.Feedback />
               </FormGroup>            
-              <Button bsSize="large" bsStyle="warning">Login</Button>
+              <Button bsSize="large" bsStyle="warning">Signup</Button>
             </Form>
-            
+            <div>
+              <PageHeader></PageHeader>
+              Or signup with any of the following services:
+              <br/>
+              <a href="/auth/facebook">
+                <img style={fblogo} src="/assets/fb-logo.png"/>
+              </a>
+              <a href="/auth/google">
+                <img style={googlogo} src="/assets/google-logo.png"/>
+              </a>
+              <a href="/auth/twitter">
+                <img style={twitlogo} src="/assets/twitter-logo.png"/>
+              </a>
+            </div>
+            <PageHeader></PageHeader>
+            <div>
+              <p>
+                Already have an account?
+                <a href="/signup"> Login</a>
+              </p>
+              <p>
+                Or go <a href="/">home</a>
+              </p>
+            </div>
           </Col>
         </Row>
       </Grid>
@@ -53,34 +76,3 @@ const Signup = () => {
 };
 
 export default Signup; 
-
-// 
-//         <!-- LOGIN FORM -->
-//         <form action="/signup" method="post">
-//             <div class="form-group">
-//                 <label>Email</label>
-//                 <input type="text" class="form-control" name="email">
-//             </div>
-//             <div class="form-group">
-//                 <label>Password</label>
-//                 <input type="password" class="form-control" name="password">
-//             </div>
-// 
-//             <button type="submit" class="btn btn-warning btn-lg">Signup</button>
-//         </form>
-// 
-//         <hr>
-//         <div>
-//             Or signup with any of the following services:<br />
-//             <a style="margin-right:15px" href="/auth/facebook"><img src="/assets/fb-logo.png" /></a>
-//             <a style="margin-left:15px;margin-right:15px" href="/auth/google"><img style="width:29px" src="/assets/google-logo.png" /></a>
-//             <a style="margin-left:15px" href="/auth/twitter"><img style="width:48px" src="/assets/twitter-logo.png" /></a>
-//         </div>
-//         <hr>
-// 
-//         <p>Already have an account? <a href="/login">Login</a></p>
-//         <p>Or go <a href="/">home</a>.</p>
-// 
-//     </div>
-// 
-// <% include foot.ejs%>
