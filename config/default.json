@@ -21,9 +21,27 @@
     }
   },
 
+  "redis": {
+    "connection": {}
+  },
+
   "passport": {
-    "Google": {},
-    "Facebook": {},
-    "Twitter": {}
+    "Google": {
+      "clientID": "DO NOT FILL ME IN",
+      "clientSecret": "DO NOT FILL ME IN",
+      "callbackURL": "DO NOT FILL ME IN"
+    },
+
+    "Facebook": {
+      "clientID": "DO NOT FILL ME IN",
+      "clientSecret": "DO NOT FILL ME IN",
+      "callbackURL": "DO NOT FILL ME IN"
+    },
+
+    "Twitter": {
+      "consumerKey": "DO NOT FILL ME IN",
+      "consumerSecret": "DO NOT FILL ME IN",
+      "callbackURL": "DO NOT FILL ME IN"
+    }
   }
 }
