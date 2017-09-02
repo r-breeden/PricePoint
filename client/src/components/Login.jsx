@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap'; 
-import { Glyphicon, Form, FormGroup, ControlLabel, FormControl, Button, PageHeader } from 'react-bootstrap';    
+import { Glyphicon, Form, FormGroup, ControlLabel, FormControl, Button, PageHeader } from 'react-bootstrap'; 
+import { Link } from 'react-router-dom';    
 
 const fblogo = {
   width: '29px', 
@@ -78,10 +79,10 @@ const Login = () => {
             <div>
               <p>
                 Need to sign up for an account? 
-                <a href="/signup"> Signup</a>
+                <Link to="/signup"> Signup</Link>
               </p>
               <p>
-                <a href="/">home</a>
+                <Link to="/">home</Link>
               </p>
             </div>
           </Col>
