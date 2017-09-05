@@ -29,6 +29,7 @@
     "express": "^4.15.2",
     "express-session": "^1.15.1",
     "grunt-pg": "https://github.com/watsoncj/grunt-pg.git",
+    "history": "^4.7.2",
     "knex": "^0.12.9",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
@@ -42,6 +43,7 @@
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-router-redux": "next",
     "redis": "^2.7.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
