@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login /> renders 1`] = `
+<div>
+  <Grid
+    bsClass="container"
+    componentClass="div"
+    fluid={false}
+  >
+    <Row
+      bsClass="row"
+      componentClass="div"
+    >
+      <Col
+        bsClass="col"
+        componentClass="div"
+        sm={6}
+        smOffset={3}
+      >
+        <h1>
+          <span>
+            <Glyphicon
+              bsClass="glyphicon"
+              bsSize="small"
+              glyph="log-in"
+            />
+             Login
+          </span>
+        </h1>
+        <Form
+          bsClass="form"
+          componentClass="form"
+          horizontal={false}
+          inline={false}
+        >
+          <FormGroup
+            bsClass="form-group"
+            controlId="formBasicText"
+          >
+            <ControlLabel
+              bsClass="control-label"
+              srOnly={false}
+            >
+              Email
+            </ControlLabel>
+            <FormControl
+              bsClass="form-control"
+              componentClass="input"
+              onChange=""
+              type="text"
+              value=""
+            />
+            <FormControlFeedback
+              bsClass="form-control-feedback"
+              bsRole="feedback"
+            />
+          </FormGroup>
+          <FormGroup
+            bsClass="form-group"
+            controlId="formBasicText"
+          >
+            <ControlLabel
+              bsClass="control-label"
+              srOnly={false}
+            >
+              Password
+            </ControlLabel>
+            <FormControl
+              bsClass="form-control"
+              componentClass="input"
+              onChange=""
+              type="text"
+              value=""
+            />
+            <FormControlFeedback
+              bsClass="form-control-feedback"
+              bsRole="feedback"
+            />
+          </FormGroup>
+          <Button
+            active={false}
+            block={false}
+            bsClass="btn"
+            bsSize="large"
+            bsStyle="warning"
+            disabled={false}
+          >
+            Login
+          </Button>
+        </Form>
+        <div>
+          <PageHeader
+            bsClass="page-header"
+          />
+          Or login with any of the following services:
+          <br />
+          <a
+            href="/auth/facebook"
+          >
+            <img
+              src="/assets/fb-logo.png"
+              style={
+                Object {
+                  "height": "29px",
+                  "marginRight": "15px",
+                  "width": "29px",
+                }
+              }
+            />
+          </a>
+          <a
+            href="/auth/google"
+          >
+            <img
+              src="/assets/google-logo.png"
+              style={
+                Object {
+                  "height": "29px",
+                  "marginLeft": "15px",
+                  "marginRight": "15px",
+                  "width": "29px",
+                }
+              }
+            />
+          </a>
+          <a
+            href="/auth/twitter"
+          >
+            <img
+              src="/assets/twitter-logo.png"
+              style={
+                Object {
+                  "height": "48px",
+                  "marginLeft": "15px",
+                  "width": "48px",
+                }
+              }
+            />
+          </a>
+        </div>
+        <PageHeader
+          bsClass="page-header"
+        />
+        <div>
+          <p>
+            Need to sign up for an account?
+            <Link
+              replace={false}
+              to="/signup"
+            >
+               Signup
+            </Link>
+          </p>
+          <p>
+            <Link
+              replace={false}
+              to="/"
+            >
+              home
+            </Link>
+          </p>
+        </div>
+      </Col>
+    </Row>
+  </Grid>
+</div>
+`;
