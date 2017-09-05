@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap'; 
 import { Thumbnail, Button } from 'react-bootstrap'; 
-
+import { Link } from 'react-router-dom';    
 
 const Search = () => {
   return (

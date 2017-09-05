@@ -2,7 +2,6 @@
   "name": "course.thesis",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
     "heroku-postbuild": "npm run build:prod && npm run migrate",
     "start": "nodemon server",
     "test": "mocha -R spec server/test/**/*.js",
@@ -15,7 +14,6 @@
   "author": "Hack Reactor",
   "license": "MIT",
   "dependencies": {
-
     "amazon-product-api": "^0.4.4",
     "babel-core": "^6.24.1",
     "bcrypt-nodejs": "^0.0.3",
@@ -30,6 +28,7 @@
     "express": "^4.15.2",
     "express-session": "^1.15.1",
     "grunt-pg": "https://github.com/watsoncj/grunt-pg.git",
+    "history": "^4.7.2",
     "knex": "^0.12.9",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
@@ -42,6 +41,8 @@
     "react-bootstrap": "^0.31.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "next",
     "redis": "^2.7.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"

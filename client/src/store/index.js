@@ -1,15 +1,18 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
 import thunk from 'redux-thunk';
+
 import rootReducer from './reducers';
 
-// If router gets implemented, create and export history here
+export const history = createHistory();
 
 // If preloaded state comes from the server, inject it here
 const initialState = {};
 const enhancers = [];
 const middleware = [
   thunk,
-  // routerMiddleware goes here
+  routerMiddleware(history),
 ];
 
 // Hook up Redux DevTools
