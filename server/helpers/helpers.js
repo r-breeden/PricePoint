@@ -1,22 +1,22 @@
-var ignoreTypeError = function (cb){
-  try{
+var ignoreTypeError = function (cb) {
+  try {
     cb();
-  } catch(e) {
+  } catch (e) {
     if (e instanceof TypeError) {
       console.log('ignored error: ', e);
     } else {
       throw e;
     }
   }
-}
+};
 
 var normalizeAmazon = function (obj) {
   var normalized = {};
 
   normalized.ASIN = '';
-  ignoreTypeError( () => {normalized.ASIN = obj.ASIN[0]});
+  ignoreTypeError( () => { normalized.ASIN = obj.ASIN[0]; });
 
-  normalized.dimensions = [['',''],['',''],['','']];
+  normalized.dimensions = [['' ,''],['' ,''],['' ,'']];
   ignoreTypeError( () => {
     var height = [];
     //add height
@@ -31,10 +31,10 @@ var normalizeAmazon = function (obj) {
 
     var dimensions = [height, width, length];
     normalized.dimensions = dimensions;
-  })
+  });
   
   normalized.title = '';
-  ignoreTypeError( () => {normalized.title = obj.ItemAttributes[0].Title[0]; });
+  ignoreTypeError( () => { normalized.title = obj.ItemAttributes[0].Title[0]; });
 
   normalized.itemURL = '';
   ignoreTypeError( () => { normalized.itemURL = obj.DetailPageURL[0]; });
@@ -55,6 +55,6 @@ var normalizeAmazon = function (obj) {
   ignoreTypeError( () => { normalized.brand = obj.ItemAttributes[0].Brand[0]; });
 
   return normalized;
-}
+};
 
 module.exports = normalizeAmazon;
