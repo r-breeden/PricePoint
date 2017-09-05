@@ -10,13 +10,13 @@ describe('Authentication', () => {
     return object;
   };
 
-  beforeEach(function (done) {
-    dbUtils.rollbackMigrate(done);
+  beforeEach(function () {
+    return dbUtils.rollbackMigrate();
   });
 
   // Resets database back to original settings
-  afterEach(function (done) {
-    dbUtils.rollback(done);
+  afterEach(function () {
+    return dbUtils.rollback();
   });
 
   describe('Passport local-login strategy', () => {
