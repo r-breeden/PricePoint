@@ -1,6 +1,8 @@
-# Project Name
+# PricePoint
 
-The project description
+[![Build Status](https://travis-ci.org/ChoreographingQuokka/PricePoint.svg?branch=master)](https://travis-ci.org/ChoreographingQuokka/PricePoint)
+
+A price comparison application in which users can submit an item of interest to track across various online vendors and can show basic historical price fluctuations since the item has initially been queried. Users can signup and login to see their saved list of items that they have searched to track.
 
 ## Team
 
@@ -17,7 +19,7 @@ View the project roadmap [here](LINK_TO_DOC)
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
-# Table of Contents
+## Table of Contents
 
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
@@ -40,7 +42,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ### Installing System Dependencies
 
-```
+```bash
 brew install yarn
 brew install redis
 brew install postgresql
@@ -50,24 +52,24 @@ Yarn is a replacement for npm. It's faster and *guarantees* consistency -- as yo
 
 ### Install Project Dependencies
 
-```
+```bash
 yarn global add grunt-cli knex eslint
 ```
 
 ## App Configuration
 
-Override settings `config/default.json` in any environment by making a copy of `config/ENV.example.json` and naming it `config/ENV.json` and setting the appropriate variable. 
+Override settings `config/default.json` in any environment by making a copy of `config/ENV.example.json` and naming it `config/ENV.json` and setting the appropriate variable.
 
 For environments that require use of environment variables, you can supply variables as defined in `config/custom-environment-variables.json`.
 
-See https://www.npmjs.com/package/config
-And https://github.com/lorenwest/node-config/wiki/Environment-Variables#custom-environment-variables
+See [config package](https://www.npmjs.com/package/config)
+And [custom environment variables](https://github.com/lorenwest/node-config/wiki/Environment-Variables#custom-environment-variables)
 
 ## Database Initialization
 
 IMPORTANT: ensure `postgres` is running before performing these steps.
 
-### Database Creation:
+### Database Creation
 
 Use grunt to create a new database for your development and test environments:
 
@@ -102,5 +104,3 @@ To run server: `yarn run start`
 To run tests: `yarn run test`
 
 To run your redis server for the session store `redis-server`
-
-
