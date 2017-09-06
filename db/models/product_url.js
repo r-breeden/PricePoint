@@ -1,13 +1,7 @@
 const db = require('../');
 
-const Product_url = db.Model.extend({
-  tableName: 'product_url',
-  products: function() {
-    return this.belongsTo('Product');
-  },
-  vendors: function() {
-    return this.belongsTo('Vendor');
-  }
+const ProductUrl = db.Model.extend({
+  tableName: 'product_urls',
 });
 
-module.exports = db.model('Product_url', Product_url);
+module.exports = db.model('ProductUrl', ProductUrl);
