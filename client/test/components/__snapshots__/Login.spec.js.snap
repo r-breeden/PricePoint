@@ -7,6 +7,7 @@ exports[`<Login /> renders 1`] = `
     componentClass="div"
     fluid={false}
   >
+    <Header />
     <Row
       bsClass="row"
       componentClass="div"
