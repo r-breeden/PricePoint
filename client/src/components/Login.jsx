@@ -1,23 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Grid, Row, Col } from 'react-bootstrap'; 
-import { Glyphicon, Form, FormGroup, ControlLabel, FormControl, Button, PageHeader } from 'react-bootstrap'; 
-import { Link } from 'react-router-dom';    
+import { Grid, Row, Col } from 'react-bootstrap';
+import { Glyphicon, Form, FormGroup, ControlLabel, FormControl, Button, PageHeader } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Header from './Header.jsx';
 
 const fblogo = {
-  width: '29px', 
-  height: '29px', 
+  width: '29px',
+  height: '29px',
   marginRight: '15px'
 };
 const googlogo = {
-  width: '29px', 
-  height: '29px', 
-  marginLeft: '15px', 
+  width: '29px',
+  height: '29px',
+  marginLeft: '15px',
   marginRight: '15px'
 };
 const twitlogo = {
-  width: '48px', 
-  height: '48px', 
+  width: '48px',
+  height: '48px',
   marginLeft: '15px'
 };
 
@@ -25,6 +26,7 @@ const Login = () => {
   return (
     <div>
       <Grid>
+        <Header></Header>
         <Row>
           <Col sm={6} smOffset={3}>
             <h1>
@@ -58,7 +60,7 @@ const Login = () => {
                   onChange=""
                 />
                 <FormControl.Feedback />
-              </FormGroup>            
+              </FormGroup>
               <Button bsSize="large" bsStyle="warning">Login</Button>
             </Form>
             <div>
@@ -78,7 +80,7 @@ const Login = () => {
             <PageHeader></PageHeader>
             <div>
               <p>
-                Need to sign up for an account? 
+                Need to sign up for an account?
                 <Link to="/signup"> Signup</Link>
               </p>
               <p>
@@ -92,4 +94,4 @@ const Login = () => {
   );
 };
 
-export default Login; 
+export default Login;
