@@ -15,7 +15,7 @@ const Search = (props) => {
         {props.results.map((el, i) => {
           return (
             <Col xs={12} md={6} lg={4}>
-              <Thumbnail responsive src={`${el.imageURL}`} alt="242x200">
+              <Thumbnail src={`${el.imageURL}`} alt="242x200">
                 <Link to='/product'>
                   <h3>{el.title}</h3>
                 </Link>
