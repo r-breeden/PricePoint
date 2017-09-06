@@ -46,7 +46,6 @@ describe('Product model', () => {
     }).fetch({
       withRelated: [{
         'prices': q => q.columns([
-          // 'vendors.id',
           'vendors.name',
           'prices.price',
           'prices.created_at as timestamp'
@@ -60,13 +59,11 @@ describe('Product model', () => {
         var price1 = product.related('prices').at(0);
         var price2 = product.related('prices').at(1);
 
-        // expect(price1.get('id')).toBe(2);
         expect(price1.get('name')).toBe('Amazon');
-        expect(price1.get('price')).toBe(9999.99);
+        expect(price1.get('price')).toBe(1234.56);
 
-        // expect(price2.get('id')).toBe(1);
         expect(price2.get('name')).toBe('Amazon');
-        expect(price2.get('price')).toBe(1234.56);
+        expect(price2.get('price')).toBe(9999.99);
 
         expect(price1.get('timestamp').getTime())
           .toBeGreaterThan(price2.get('timestamp').getTime());

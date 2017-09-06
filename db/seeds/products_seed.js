@@ -44,7 +44,6 @@ exports.seed = function(knex, Promise) {
         vendor_id: vendorId,
         product_id: productId,
         price: 1234.56,
-        created_at: Date.now() - 2000
       }).save();
     })
     .catch(err => {
