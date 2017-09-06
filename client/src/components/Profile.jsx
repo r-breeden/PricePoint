@@ -15,6 +15,7 @@ const Profile = () => {
         </Col>
         <Col xs={6} md={9}>
           <h2>Username</h2>
+          <a href='/logout'>Log out</a> | <Link to='/'>Home</Link>
         </Col>
       </Row>
       <Row>
