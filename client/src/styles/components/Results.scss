@@ -1,4 +1,7 @@
-img {
-  width: 244px;
-  height: 200px; 
+.thumbnail>img {
+  max-height: 200px;
+}
+.thumbnail {
+  height: 500px;
+  margin-top: 10px; 
 }
