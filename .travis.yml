@@ -20,4 +20,5 @@ before_script:
   - yarn run migrate
 
 script:
+  - yarn run lint
   - yarn test

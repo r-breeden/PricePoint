@@ -6,12 +6,12 @@ exports.up = function(knex, Promise) {
     }),
     knex.schema.createTableIfNotExists('vendors', function(table) {
       table.increments('id').unsigned().primary();
-      table.string('name',100).notNullable();
+      table.string('name', 100).notNullable();
       table.string('url', 100).notNullable();
     }),
     knex.schema.createTableIfNotExists('products', function(table) {
       table.increments('id').unsigned().primary();
-      table.string('name',100).notNullable();
+      table.string('name', 100).notNullable();
       table.string('upc', 100).notNullable();
       table.string('description', 255).notNullable();
     }),
@@ -25,7 +25,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').unsigned().primary();
       table.integer('vender_id').references('vendors.id').onDelete('CASCADE');
       table.integer('product_id').references('products.id').onDelete('CASCADE');
-      table.decimal('price', 15,2).notNullable();
+      table.decimal('price', 15, 2).notNullable();
       table.date('data');
     }),
     knex.schema.createTableIfNotExists('followed_products', function(table) {
