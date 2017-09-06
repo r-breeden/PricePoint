@@ -14,9 +14,6 @@ exports.seed = function(knex, Promise) {
         url: 'https://www.amazon.com/'
       }).save();
     })
-    .error(err => {
-      console.log(err);
-    })
     .then(vendor => {
       vendorId = vendor.get('id');
 
@@ -25,9 +22,6 @@ exports.seed = function(knex, Promise) {
         upc: 'abc123',
         description: 'Test Product Please Ignore',
       }).save();
-    })
-    .error(err => {
-      console.log(err);
     })
     .then(product => {
       productId = product.get('id');
@@ -38,23 +32,20 @@ exports.seed = function(knex, Promise) {
         url: 'https://www.amazon.com/foo'
       }).save();
     })
-    .error(err => {
-      console.log(err);
-    })
-    .then(productUrl => {
-      console.log(productUrl.toJSON());
-
+    .then(() => {
       return models.Price.forge({
         vendor_id: vendorId,
         product_id: productId,
-        price: 9999.99
+        price: 9999.99,
       }).save();
     })
-    .error(err => {
-      console.log(err);
-    })
-    .then(price => {
-      console.log(price.toJSON());
+    .then(() => {
+      return models.Price.forge({
+        vendor_id: vendorId,
+        product_id: productId,
+        price: 1234.56,
+        created_at: Date.now() - 2000
+      }).save();
     })
     .catch(err => {
       console.log(err);

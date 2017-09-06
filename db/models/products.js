@@ -8,11 +8,13 @@ const Product = db.Model.extend({
   },
 
   prices: function() {
-    return this.belongsToMany('Vendor', 'prices').withPivot(['price', 'created_at']);
+    return this.belongsToMany('Vendor')
+      .through('Price');
   },
 
   vendors: function() {
-    return this.belongsToMany('Vendor').through('ProductUrl');
+    return this.belongsToMany('Vendor')
+      .through('ProductUrl');
   },
 });
 
