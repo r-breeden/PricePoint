@@ -3,76 +3,42 @@ import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Thumbnail, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Search = () => {
+const Search = (props) => {
+  console.log(props.results[0].title);
+
   return (
     <div>
       <Row>
-        <Col xs={6} md={4}>
-          <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
-            <Link to='/product'><h3>Title</h3></Link>
-            <p>Description</p>
-            <p>
-              <Button bsStyle="primary">$$</Button>&nbsp;
-              <Button bsStyle="default">$$</Button>
-            </p>
-          </Thumbnail>
-        </Col>
-        <Col xs={6} md={4}>
-          <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
-            <Link to='/product'><h3>Title</h3></Link>
-            <p>Description</p>
-            <p>
-              <Button bsStyle="primary">$$</Button>&nbsp;
-              <Button bsStyle="default">$$</Button>
-            </p>
-          </Thumbnail>
-        </Col>
-        <Col xs={6} md={4}>
-          <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
-            <Link to='/product'><h3>Title</h3></Link>
-            <p>Description</p>
-            <p>
-              <Button bsStyle="primary">$$</Button>&nbsp;
-              <Button bsStyle="default">$$</Button>
-            </p>
-          </Thumbnail>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={6} md={4}>
-          <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
-            <h3>Title</h3>
-            <p>Description</p>
-            <p>
-              <Button bsStyle="primary">$$</Button>&nbsp;
-              <Button bsStyle="default">$$</Button>
-            </p>
-          </Thumbnail>
-        </Col>
-        <Col xs={6} md={4}>
-          <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
-            <Link to='/product'><h3>Title</h3></Link>
-            <p>Description</p>
-            <p>
-              <Button bsStyle="primary">$$</Button>&nbsp;
-              <Button bsStyle="default">$$</Button>
-            </p>
-          </Thumbnail>
-        </Col>
-        <Col xs={6} md={4}>
-          <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
-            <Link to='/product'><h3>Title</h3></Link>
-            <p>Description</p>
-            <p>
-              <Button bsStyle="primary">$$</Button>&nbsp;
-              <Button bsStyle="default">$$</Button>
-            </p>
-          </Thumbnail>
-        </Col>
+        {props.results.map((el, i) => {
+          return (
+            <Col xs={12} md={6} lg={4}>
+
+              <Thumbnail responsive src={`${el.imageURL}`} alt="242x200">
+
+                <Link to='/product'>
+                  <h3>{el.title}</h3>
+                </Link>
+                <p>{el.description}</p>
+                <p>
+                  <Button bsStyle="primary">Track</Button>&nbsp;
+                  <Button bsStyle="default">Favorite</Button>
+                </p>
+              </Thumbnail>
+            </Col>
+          );
+        })}
       </Row>
     </div>
   );
+
+};
+const mapStateToProps = (state) => {
+  return {
+    'results': state.results
+  };
 };
 
-export default Search;
+export const UnwrappedSearch = Search;
+export default connect(mapStateToProps)(Search);
