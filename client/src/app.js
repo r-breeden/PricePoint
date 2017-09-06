@@ -4,11 +4,13 @@ import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from './store';
-import Index from './Index.jsx'; 
-import Search from './components/Search.jsx'; 
-import Login from './components/Login.jsx'; 
-import Signup from './components/Signup.jsx'; 
+import Index from './Index.jsx';
+import Search from './components/Search.jsx';
+import Login from './components/Login.jsx';
+import Signup from './components/Signup.jsx';
 import Results from './components/Results.jsx';
+import Profile from './components/Profile.jsx';
+import Product from './components/Product.jsx';
 
 
 const App = () => {
@@ -20,11 +22,12 @@ const App = () => {
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
         <Route path='/results' component={Results} />
-        
+        <Route path='/profile' component={Profile} />
+        <Route path='/product' component={Product} />
       </Switch>
     </div>
-  ); 
-}; 
+  );
+};
 
 ReactDOM.render(
   <Provider store={store}>
@@ -34,5 +37,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-
-
