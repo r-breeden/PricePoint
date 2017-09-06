@@ -25,7 +25,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').unsigned().primary();
       table.integer('vendor_id').references('vendors.id').onDelete('CASCADE');
       table.integer('product_id').references('products.id').onDelete('CASCADE');
-      table.decimal('price', 14, 2).notNullable();
+      table.decimal('price', 15, 2).notNullable();
       table.timestamps();
     }),
     knex.schema.createTableIfNotExists('followed_products', function(table) {
