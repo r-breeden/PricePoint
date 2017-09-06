@@ -16,7 +16,7 @@ var normalizeAmazon = function (obj) {
   normalized.ASIN = '';
   ignoreTypeError( () => { normalized.ASIN = obj.ASIN[0]; });
 
-  normalized.dimensions = [['' ,''],['' ,''],['' ,'']];
+  normalized.dimensions = [['', ''], ['', ''], ['', '']];
   ignoreTypeError( () => {
     var height = [];
     //add height
