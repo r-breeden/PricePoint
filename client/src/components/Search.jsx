@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Grid, Row, Col } from 'react-bootstrap'; 
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap'; 
+import { Grid, Row, Col } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 
 const Search = () => {
   return (
@@ -23,6 +23,6 @@ const Search = () => {
     </Row>
   );
 };
-  
 
-export default Search; 
+
+export default Search;
