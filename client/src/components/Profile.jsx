@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
-import { Thumbnail, Table, Checkbox} from 'react-bootstrap';
+import { Thumbnail, Table, Checkbox, Button } from 'react-bootstrap';
 import Header from './Header.jsx';
 import { Link } from 'react-router-dom';
 
