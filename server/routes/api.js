@@ -5,8 +5,6 @@ const config = require('config')['Amazon'];
 let amazon = require('amazon-product-api');
 let helper = require('../helper/helpers.js');
 
-//setup for amazon-product-api 
-//for use with amazon api query
 let client = amazon.createClient(config);
 
 router.route('/')
