@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Grid, Row, Col } from 'react-bootstrap'; 
-import { Thumbnail, Table } from 'react-bootstrap'; 
+import { Grid, Row, Col } from 'react-bootstrap';
+import { Thumbnail, Table } from 'react-bootstrap';
+import Header from './Header.jsx'; 
 
 //temporary styling blocks
 const lower = {
@@ -12,9 +13,10 @@ const higher = {
   color: 'rgba(242, 17, 17, 0.61)'
 };
 
-const Search = () => {
+const Product = () => {
   return (
     <div>
+      <Header></Header>
       <Row>
         <Col xs={6} md={3}>
           <Thumbnail href="#" alt="171x180" src="http://rougier.github.io/bootstrap-rst/171x180.png" />
@@ -63,4 +65,4 @@ const Search = () => {
 };
 
 
-export default Search; 
+export default Product;
