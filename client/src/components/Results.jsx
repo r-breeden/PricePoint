@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../styles/main.scss';
 
-const Search = (props) => {
+const Results = (props) => {
   console.log(props.results[0].title);
 
   return (
@@ -15,7 +15,7 @@ const Search = (props) => {
         {props.results.map((el, i) => {
           return (
             <Col xs={12} md={6} lg={4}>
-              <Thumbnail src={`${el.imageURL}`} alt="242x200">
+              <Thumbnail className="results-thumb" src={`${el.imageURL}`} alt="242x200">
                 <Link to='/product'>
                   <h3>{el.title}</h3>
                 </Link>
@@ -39,5 +39,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-export const UnwrappedSearch = Search;
-export default connect(mapStateToProps)(Search);
+export const UnwrappedSearch = Results;
+export default connect(mapStateToProps)(Results);
