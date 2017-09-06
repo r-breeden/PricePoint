@@ -1,10 +1,9 @@
+const config = require('config')['Amazon'];
 const amazon = require('amazon-product-api');
 const Promise = require('bluebird');
 const fs = require('fs');
 
-const client = amazon.createClient({
-
-});
+const client = amazon.createClient(config);
 
 var search = Promise.promisify(client.itemSearch);
 Promise.map([
