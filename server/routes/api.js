@@ -8,7 +8,7 @@ let helper = require('../helpers/helpers.js');
 //setup for amazon-product-api 
 //for use with amazon api query
 let client = amazon.createClient({
-  awsId: amazonAuth.awsid,
+  awsId: amazonAuth.awsId,
   awsSecret: amazonAuth.awsSecret,
   awsTag: amazonAuth.awsTag
 });
