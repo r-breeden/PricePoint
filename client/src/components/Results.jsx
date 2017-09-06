@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { Thumbnail, Button } from 'react-bootstrap';
+import { Thumbnail, Button, Glyphicon } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../styles/main.scss';
@@ -21,8 +21,8 @@ const Search = (props) => {
                 </Link>
                 <p>{el.description}</p>
                 <p>
-                  <Button bsStyle="primary">Track</Button>&nbsp;
-                  <Button bsStyle="default">Favorite</Button>
+                  <Button bsStyle="primary"><Glyphicon glyph="eye-open"/> Track</Button>&nbsp;
+                  <Button bsStyle="default"><Glyphicon glyph="heart"/> Favorite</Button>
                 </p>
               </Thumbnail>
             </Col>
