@@ -4,6 +4,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import { Thumbnail, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import '../styles/main.scss';
 
 const Search = (props) => {
   console.log(props.results[0].title);
@@ -14,9 +15,7 @@ const Search = (props) => {
         {props.results.map((el, i) => {
           return (
             <Col xs={12} md={6} lg={4}>
-
               <Thumbnail responsive src={`${el.imageURL}`} alt="242x200">
-
                 <Link to='/product'>
                   <h3>{el.title}</h3>
                 </Link>
