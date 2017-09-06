@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Grid, Row, Col } from 'react-bootstrap'; 
-import { Thumbnail, Button } from 'react-bootstrap'; 
-import { Link } from 'react-router-dom';    
+import { Grid, Row, Col } from 'react-bootstrap';
+import { Thumbnail, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Search = () => {
   return (
@@ -10,7 +10,7 @@ const Search = () => {
       <Row>
         <Col xs={6} md={4}>
           <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
-            <h3>Title</h3>
+            <Link to='/product'><h3>Title</h3></Link>
             <p>Description</p>
             <p>
               <Button bsStyle="primary">$$</Button>&nbsp;
@@ -20,7 +20,7 @@ const Search = () => {
         </Col>
         <Col xs={6} md={4}>
           <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
-            <h3>Title</h3>
+            <Link to='/product'><h3>Title</h3></Link>
             <p>Description</p>
             <p>
               <Button bsStyle="primary">$$</Button>&nbsp;
@@ -30,7 +30,7 @@ const Search = () => {
         </Col>
         <Col xs={6} md={4}>
           <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
-            <h3>Title</h3>
+            <Link to='/product'><h3>Title</h3></Link>
             <p>Description</p>
             <p>
               <Button bsStyle="primary">$$</Button>&nbsp;
@@ -52,7 +52,7 @@ const Search = () => {
         </Col>
         <Col xs={6} md={4}>
           <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
-            <h3>Title</h3>
+            <Link to='/product'><h3>Title</h3></Link>
             <p>Description</p>
             <p>
               <Button bsStyle="primary">$$</Button>&nbsp;
@@ -62,7 +62,7 @@ const Search = () => {
         </Col>
         <Col xs={6} md={4}>
           <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
-            <h3>Title</h3>
+            <Link to='/product'><h3>Title</h3></Link>
             <p>Description</p>
             <p>
               <Button bsStyle="primary">$$</Button>&nbsp;
@@ -75,4 +75,4 @@ const Search = () => {
   );
 };
 
-export default Search; 
+export default Search;
