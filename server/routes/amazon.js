@@ -6,7 +6,7 @@ const fs = require('fs');
 const client = amazon.createClient(config);
 
 var search = Promise.promisify(client.itemSearch);
-Promise.map([
+var items = [
   {
     Keywords: 'Nintendo Switch with Gray Joy-Con',
     idType: 'ASIN',
@@ -122,17 +122,18 @@ Promise.map([
     idType: 'ASIN',
     itemId: 'B01BH928LQ'
   }
-],
-item => search(item))
-  .then(results => {
-    var date = new Date().toISOString().slice(0, 10);
-    fs.writeFile(`../${date}-results.json`, JSON.stringify(results), (err) => {
-      if (err) {
-        throw err;
-      } else {
-        console.log('MEOW');
-      }
-    });
-  });
+];
+
+// Promise.map(items, item => search(item))
+//   .then(results => {
+//     var date = new Date().toISOString().slice(0, 10);
+//     fs.writeFile(`../${date}-results.json`, JSON.stringify(results), (err) => {
+//       if (err) {
+//         throw err;
+//       } else {
+//         console.log('MEOW');
+//       }
+//     });
+//   });
 
 module.exports = amazon;
