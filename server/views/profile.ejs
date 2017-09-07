@@ -13,11 +13,11 @@
             <div class="well">
                 <h3><span class="fa fa-user"></span> Local</h3>
 
-                <% if (user.email) { %>
+                <% if (state.user.email) { %>
                 <p>
-                    <strong>display name</strong>: <%= user.display %><br>
-                    <strong>id</strong>: <%= user.id %><br>
-                    <strong>email</strong>: <%= user.email %>
+                    <strong>display name</strong>: <%= state.user.display %><br>
+                    <strong>id</strong>: <%= state.user.id %><br>
+                    <strong>email</strong>: <%= state.user.email %>
                 </p>
 
                 <a href="/unlink/local" class="btn btn-default">Unlink</a>
