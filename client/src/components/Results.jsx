@@ -7,8 +7,6 @@ import { connect } from 'react-redux';
 import '../styles/main.scss';
 
 const Results = (props) => {
-  console.log(props.results[0].title);
-
   return (
     <div>
       <Row>
@@ -16,13 +14,13 @@ const Results = (props) => {
           return (
             <Col xs={12} md={6} lg={4}>
               <Thumbnail className="results-thumb" src={`${el.imageURL}`} alt="242x200">
-                <Link to='/product'>
+                <Link to={`/product/${el.upc}`}>
                   <h3>{el.title}</h3>
                 </Link>
                 <p>{el.description}</p>
                 <p>
                   <Button bsStyle="primary"><Glyphicon glyph="eye-open"/> Track</Button>&nbsp;
-                  <Button bsStyle="default"><Glyphicon glyph="heart"/> Favorite</Button>
+                  <Button bsStyle="default"> $$$$</Button>
                 </p>
               </Thumbnail>
             </Col>

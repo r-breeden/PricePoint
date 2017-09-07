@@ -8,7 +8,8 @@ import rootReducer from './reducers';
 export const history = createHistory();
 
 // If preloaded state comes from the server, inject it here
-const initialState = {};
+const initialState = window.__INITIAL_STATE__ || {};
+
 const enhancers = [];
 const middleware = [
   thunk,

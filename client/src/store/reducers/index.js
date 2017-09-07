@@ -6,6 +6,6 @@ import results from './results';
 
 export default combineReducers({
   router: routerReducer,
-  currentUser,
+  user: currentUser,
   results
 });
