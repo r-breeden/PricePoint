@@ -4,7 +4,7 @@ const dummyData = require('../../db/seeds/data/2017-09-04_amazon_data.json');
 
 const router = express.Router();
 
-router.route('/')
+router.route(['/', '/profile'])
   .get(middleware.auth.verify, (req, res) => {
     var state = {
       user: req.user, // get the user out of session and pass to template
@@ -14,25 +14,16 @@ router.route('/')
     res.render('index.ejs', { state });
   });
 
-router.route('/profile')
-  .get(middleware.auth.verify, (req, res) => {
-    var state = {
-      user: req.user // get the user out of session and pass to template
-    };
-
-    res.render('profile.ejs', { state });
-  });
-
 router.route('/login')
   .get((req, res) => {
     var state = {
       message: req.flash('loginMessage')
     };
 
-    res.render('login.ejs', { state });
+    res.render('index.ejs', { state });
   })
   .post(middleware.passport.authenticate('local-login', {
-    successRedirect: '/profile',
+    successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
   }));
@@ -43,10 +34,10 @@ router.route('/signup')
       message: req.flash('signupMessage')
     };
 
-    res.render('signup.ejs', { state });
+    res.render('index.ejs', { state });
   })
   .post(middleware.passport.authenticate('local-signup', {
-    successRedirect: '/profile',
+    successRedirect: '/',
     failureRedirect: '/signup',
     failureFlash: true
   }));
