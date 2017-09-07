@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Thumbnail, Table, Button } from 'react-bootstrap';
 import Header from './Header.jsx';
+import { connect } from 'react-redux';
+
 
 //temporary styling blocks
 const lower = {
@@ -13,51 +15,73 @@ const higher = {
   color: 'rgba(242, 17, 17, 0.61)'
 };
 
-const Product = () => {
+const Product = (props) => {
+  var productItem = [];
+
+  var getProductDataFromState = () => {
+    var UPC = window.location.href.slice(30);
+    //MVP
+    //After MVP this will need to change to a db call to get all data for a particular product
+    //or if no data in db, api calls to all stores
+    //this information should be stored in state as an array so that ProductTable may use it to populate the table
+    props.results.forEach ( (item) => {
+      if ( item.upc === UPC ) { 
+        productItem.push(item);
+      }
+    });
+    console.log(productItem);
+  };
+  getProductDataFromState();
+
+  let sendToProductPage = () => {
+    //MVP 
+    //Currently this opens up the amazon page
+    //In the future this needs to be linked to the lowest priced item
+    window.open(productItem[0].itemURL);
+  };
+   
   return (
-    <div>
+    <div className="productContainer">
       <Header></Header>
       <Row>
         <Col xs={6} md={3}>
-          <Thumbnail href="#" alt="171x180" src="http://rougier.github.io/bootstrap-rst/171x180.png" />
+          <Thumbnail className="productImage" href="#" alt="171x180" src={productItem[0].imageURL} />
         </Col>
         <Col xs={6} md={9}>
-          <h2>Title</h2>
-          <b>Description</b> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
+          <h2 className="title">{productItem[0].title}</h2>
+          <b className="descriptionTitle">DESCRIPTION: </b>
+          <b className="description">{productItem[0].description}</b>
         </Col>
-        <Button>LOW PRICE BUY NOW</Button>
+        <Button onClick={sendToProductPage}>BUY NOW</Button>
       </Row>
       <Row>
         <Table responsive striped bordered hover>
           <thead>
             <tr>
               <th>Date</th>
-              <th><a href='#'>Store 1</a></th>
-              <th><a href='#'>Store 1</a></th>
-              <th><a href='#'>Store 1</a></th>
+              <th><a href='#'>Amazon</a></th>
+              <th><a href='#'>Walmart</a></th>
+              <th><a href='#'>store 3</a></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>August 31, 2017</td>
-              <td style={lower}>$11.99</td>
-              <td style={higher}>$800.93</td>
-              <td>$233.00</td>
-
+              <td style={lower}>${productItem[0].price}</td>
+              <td style={higher}>$12.93</td>
+              <td style={higher}>unavailable</td>
             </tr>
             <tr>
               <td>August 30, 2017</td>
-              <td style={higher}>$12.99</td>
-              <td>$569.93</td>
-              <td style={lower}>$123.00</td>
-
+              <td style={lower}>$12.99</td>
+              <td style={higher}>13.99</td>
+              <td style={higher}>unavailable</td>
             </tr>
             <tr>
               <td>August 29, 2017</td>
-              <td>$12.00</td>
-              <td style={lower}>$449.93</td>
-              <td style={higher}>$533.00</td>
+              <td style={lower}>$12.00</td>
+              <td style={higher}>$14.99</td>
+              <td style={higher}>unavailable</td>
             </tr>
           </tbody>
         </Table>
@@ -66,5 +90,10 @@ const Product = () => {
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    'results': state.results
+  };
+};
 
-export default Product;
+export default connect(mapStateToProps)(Product);
