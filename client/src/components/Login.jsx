@@ -61,8 +61,4 @@ const Login = () => (
   </Grid>
 );
 
-const mapStateToProps = state => ({
-  message: state.message
-});
-
 export default Login;
