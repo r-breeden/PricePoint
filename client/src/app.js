@@ -23,7 +23,7 @@ const App = () => {
         <Route path='/signup' component={Signup} />
         <Route path='/results' component={Results} />
         <Route path='/profile' component={Profile} />
-        <Route path='/product' component={Product} />
+        <Route path='/product/:upc' component={Product} />
       </Switch>
     </div>
   );

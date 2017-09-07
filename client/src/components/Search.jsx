@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Grid, Row, Col } from 'react-bootstrap'; 
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap'; 
+import { Grid, Row, Col } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
+import '../styles/main.scss';
 
 const Search = () => {
   return (
@@ -15,14 +16,12 @@ const Search = () => {
             />
           </FormGroup>
           {' '}
-          <Button>
-            Submit
-          </Button>
+
         </Form>
       </Col>
     </Row>
   );
 };
-  
 
-export default Search; 
+
+export default Search;
