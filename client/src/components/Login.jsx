@@ -1,65 +1,80 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
-import {
-  Button, Glyphicon, PageHeader,
-  Form, FormGroup, ControlLabel, FormControl,
-} from 'react-bootstrap';
+import { Glyphicon, Form, FormGroup, ControlLabel, FormControl, Button, PageHeader } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Header from './Header.jsx';
+
+const fblogo = {
+  width: '29px',
+  height: '29px',
+  marginRight: '15px'
+};
+const googlogo = {
+  width: '29px',
+  height: '29px',
+  marginLeft: '15px',
+  marginRight: '15px'
+};
+const twitlogo = {
+  width: '48px',
+  height: '48px',
+  marginLeft: '15px'
+};
 
 const Login = () => {
   return (
     <div>
       <Grid>
+        <Header></Header>
         <Row>
           <Col sm={6} smOffset={3}>
             <h1>
               <span>
-                Login
+                <Glyphicon glyph="log-in" bsSize="small"></Glyphicon> Login
               </span>
             </h1>
             {/* some conditional rendering logic:
             if (message.length) { %>
             <div class="alert alert-danger"><%= message %></div>
             <% } */}
-            <Form action="/login" method="post">
-              <FormGroup>
+            <Form>
+              <FormGroup controlId="formBasicText">
                 <ControlLabel>
                   Email
                 </ControlLabel>
                 <FormControl
-                  className="signup-input"
                   type="text"
-                  name="email"
+                  value=""
+                  onChange=""
                 />
                 <FormControl.Feedback />
               </FormGroup>
-              <FormGroup>
+              <FormGroup controlId="formBasicText">
                 <ControlLabel>
                   Password
                 </ControlLabel>
                 <FormControl
-                  className="signup-input"
-                  type="password"
-                  name="password"
+                  type="text"
+                  value=""
+                  onChange=""
                 />
                 <FormControl.Feedback />
               </FormGroup>
-              <Button type="submit" bsSize="large" bsStyle="warning">Login</Button>
+              <Button bsSize="large" bsStyle="warning">Login</Button>
             </Form>
             <div>
               <PageHeader></PageHeader>
               Or login with any of the following services:
               <br/>
               <a href="/auth/facebook">
-                <img className="fblogo" src="/assets/facebook.svg"/>
+                <img style={fblogo} src="/assets/fb-logo.png"/>
               </a>
               <a href="/auth/google">
-                <img className="googlogo" src="/assets/google.svg"/>
+                <img style={googlogo} src="/assets/google-logo.png"/>
               </a>
               <a href="/auth/twitter">
-                <img className="twitlogo" src="/assets/twitter.svg"/>
+                <img style={twitlogo} src="/assets/twitter-logo.png"/>
               </a>
             </div>
             <PageHeader></PageHeader>
