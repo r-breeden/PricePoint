@@ -23,8 +23,8 @@ const Login = () => {
             if (message.length) { %>
             <div class="alert alert-danger"><%= message %></div>
             <% } */}
-            <Form>
-              <FormGroup controlId="formBasicText">
+            <Form action="/login" method="post">
+              <FormGroup>
                 <ControlLabel>
                   Email
                 </ControlLabel>
@@ -35,7 +35,7 @@ const Login = () => {
                 />
                 <FormControl.Feedback />
               </FormGroup>
-              <FormGroup controlId="formBasicText">
+              <FormGroup>
                 <ControlLabel>
                   Password
                 </ControlLabel>
@@ -46,7 +46,7 @@ const Login = () => {
                 />
                 <FormControl.Feedback />
               </FormGroup>
-              <Button bsSize="large" bsStyle="warning">Login</Button>
+              <Button type="submit" bsSize="large" bsStyle="warning">Login</Button>
             </Form>
             <div>
               <PageHeader></PageHeader>
