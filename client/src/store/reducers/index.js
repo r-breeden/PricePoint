@@ -7,12 +7,8 @@ import results from './results';
 
 export default combineReducers({
   router: routerReducer,
-<<<<<<< HEAD
   currentUser,
   newSearchedItems,
-=======
-  user: currentUser,
->>>>>>> master
   results
 
 });

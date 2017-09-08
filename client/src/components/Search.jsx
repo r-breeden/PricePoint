@@ -2,10 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
-<<<<<<< HEAD
-=======
 import '../styles/main.scss';
->>>>>>> master
 
 const Search = () => {
   return (
