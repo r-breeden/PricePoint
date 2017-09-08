@@ -45,8 +45,8 @@ const Profile = (props) => {
               {props.user.watchList.map((el, i) => {
                 return (
                   <tr>
-                    <td><Link to="/product">{el}</Link></td>
-                    <td>{'$$'}</td>
+                    <td><Link to="/product">{el.item}</Link></td>
+                    <td>{el.lowestPrice}</td>
                     <td><Checkbox></Checkbox></td>
                   </tr>
                 );
