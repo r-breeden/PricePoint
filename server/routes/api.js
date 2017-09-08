@@ -15,10 +15,10 @@ router.route('/search')
   .get((req, res) => {
     return amazon.search(req.query.q)
       .then(results => {
-        res.send(results);
+        res.send({results});
       })
       .catch(err => {
-        res.status(503).send(err);
+        res.sendStatus(503);
       });
   });
 
