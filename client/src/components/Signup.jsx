@@ -24,8 +24,8 @@ const Signup = () => {
             if (message.length) { %>
             <div class="alert alert-danger"><%= message %></div>
             <% } */}
-            <Form>
-              <FormGroup controlId="formBasicText">
+            <Form action="/signup" method="post">
+              <FormGroup>
                 <ControlLabel>
                   First Name
                 </ControlLabel>
@@ -36,7 +36,7 @@ const Signup = () => {
                 />
                 <FormControl.Feedback />
               </FormGroup>
-              <FormGroup controlId="formBasicText">
+              <FormGroup>
                 <ControlLabel>
                   Last Name
                 </ControlLabel>
@@ -47,7 +47,7 @@ const Signup = () => {
                 />
                 <FormControl.Feedback />
               </FormGroup>
-              <FormGroup controlId="formBasicText">
+              <FormGroup>
                 <ControlLabel>
                   Email
                 </ControlLabel>
@@ -58,7 +58,7 @@ const Signup = () => {
                 />
                 <FormControl.Feedback />
               </FormGroup>
-              <FormGroup controlId="formBasicText">
+              <FormGroup>
                 <ControlLabel>
                   Password
                 </ControlLabel>
@@ -69,20 +69,20 @@ const Signup = () => {
                 />
                 <FormControl.Feedback />
               </FormGroup>
-              <Button bsSize="large" bsStyle="warning">Signup</Button>
+              <Button type="submit" bsSize="large" bsStyle="warning">Signup</Button>
             </Form>
             <div>
               <PageHeader></PageHeader>
               Or signup with any of the following services:
               <br/>
               <a href="/auth/facebook">
-                <img className="logo" src="/assets/facebook.svg"/>
+                <img className="fblogo" src="/assets/facebook.svg"/>
               </a>
               <a href="/auth/google">
-                <img className="logo" src="/assets/google.svg"/>
+                <img className="googlogo" src="/assets/google.svg"/>
               </a>
               <a href="/auth/twitter">
-                <img className="logo" src="/assets/twitter.svg"/>
+                <img className="twitlogo" src="/assets/twitter.svg"/>
               </a>
             </div>
             <PageHeader></PageHeader>
