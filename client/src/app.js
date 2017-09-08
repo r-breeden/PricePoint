@@ -11,11 +11,12 @@ import Signup from './components/Signup.jsx';
 import Results from './components/Results.jsx';
 import Profile from './components/Profile.jsx';
 import Product from './components/Product.jsx';
-
+import Header from './components/Header.jsx';
 
 const App = () => {
   return (
     <div className="price-point-app">
+      <Header></Header>
       <Switch>
         <Route exact path='/' component={Index} />
         <Route path='/search' component={Search} />

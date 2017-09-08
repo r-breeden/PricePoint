@@ -1,0 +1,108 @@
+// E N T I R E  A P P //
+a:hover {
+  text-decoration: none;
+}
+
+// S E A R C H //
+.form-inline {
+  width: 100%;
+}
+.form-group {
+  width: 100%;
+}
+
+// P R O F I L E //
+.profileavi>img {
+  height: 150px;
+}
+
+// R E S U L T S //
+.results-thumb>img {
+  max-height: 200px;
+}
+.results-thumb {
+  height: 500px;
+  margin-top: 10px;
+}
+
+// H E A D E R //
+.logo {
+  height: 35px;
+}
+.brand-name {
+  font-size: 30px;
+  padding-right: 5px;
+}
+.blurb {
+  color: #077034;
+}
+.menu-items {
+  font-size: 14px;
+  padding-top: 10px;
+}
+.navbar-collapse {
+  background-color: #fff;
+}
+
+// S I G N  U P //
+.signup-input {
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  border-bottom: 1px #999 dashed;
+}
+.form-control:focus {
+  outline: none;
+  border: none;
+  border-bottom: 1px dashed #000;
+  box-shadow: none;
+}
+
+.btn-warning{
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  padding: 5px;
+  font-size: 14px;
+}
+.btn-warning:hover {
+  background-color: #999;
+  border: 1px solid #999;
+}
+.fblogo, .googlogo, .twitlogo {
+  width: 60px;
+  padding: 15px 15px 0px 0px;
+}
+
+// P R O D U C T //
+.productContainer {
+  margin-left: 0px;
+}
+
+.productImage>img {
+  height: 175px;
+}
+
+.productImage {
+  max-width: 175px;
+  min-width: 175px;
+}
+.title {
+  margin-top: 0px;
+  font-size: 2.2em;
+}
+
+.descriptionTitle {
+  font-size: 1.3em;
+  color: gray;
+}
+
+.description {
+  font-size: 1.2em;
+}
+.lower {
+  color: rgba(27, 135, 27, 0.61);
+}
+.higher {
+  color: rgba(242, 17, 17, 0.61);
+}
