@@ -16,7 +16,6 @@ const higher = {
 const Product = () => {
   return (
     <div>
-      <Header></Header>
       <Row>
         <Col xs={6} md={3}>
           <Thumbnail href="#" alt="171x180" src="http://rougier.github.io/bootstrap-rst/171x180.png" />
