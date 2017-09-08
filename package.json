@@ -2,7 +2,7 @@
   "name": "course.thesis",
   "version": "1.0.0",
   "scripts": {
-    "heroku-postbuild": "yarn run build:prod && yarn run migrate",
+    "heroku-postbuild": "npm run build:prod && npm run migrate",
     "start": "nodemon server",
     "test": "jest -i --forceExit",
     "build": "webpack --watch",
