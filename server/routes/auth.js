@@ -9,6 +9,8 @@ router.route(['/', '/profile'])
     var state = {
       user: req.user, // get the user out of session and pass to template
       results: dummyData,
+      query: '',
+      searching: false,
     };
 
     res.render('index.ejs', { state });
