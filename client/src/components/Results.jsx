@@ -21,7 +21,7 @@ const Results = (props) => {
                     <Button bsStyle="primary"><Glyphicon glyph="eye-open"/> Track</Button>&nbsp;
                     <Button bsStyle="default"> $$$$</Button>
                   </p>
-              </Thumbnail>
+                </Thumbnail>
               </Link>
             </Col>
           );
