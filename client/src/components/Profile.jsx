@@ -11,13 +11,12 @@ const Profile = (props) => {
   console.log(props);
   return (
     <Grid>
-      <Header></Header>
       <Row>
         <Col xs={6} md={3}>
-          <Thumbnail className="profileavi" href="#" alt="171x180" src={`${props.user.userphoto}`} />
+          {/* <Thumbnail className="profileavi" href="#" alt="171x180" src={`${props.user.userphoto}`} /> */}
         </Col>
         <Col xs={6} md={9}>
-          <h2>{props.user.username}</h2>
+          <h2>{props.user.email}</h2>
           <a href='/logout'>Log out</a> | <Link to='/'>Home</Link>
         </Col>
       </Row>
@@ -31,7 +30,7 @@ const Profile = (props) => {
             </tr>
           </thead>
           <tbody>
-            {props.user.followed.map((el, i) => {
+            {/* {props.user.followed.map((el, i) => {
               return (
                 <tr>
                   <td><Link to="/product">{el.item}</Link></td>
@@ -39,7 +38,7 @@ const Profile = (props) => {
                   <td><Checkbox checked="true"></Checkbox></td>
                 </tr>
               );
-            })}
+            })} */}
             <tr>
               <td></td>
               <td></td>
@@ -54,7 +53,7 @@ const Profile = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    'user': state.currentUser
+    'user': state.user
   };
 };
 
