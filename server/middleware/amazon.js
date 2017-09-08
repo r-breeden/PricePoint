@@ -2,7 +2,7 @@ const config = require('config')['Amazon'];
 const amazon = require('amazon-product-api');
 const Promise = require('bluebird');
 
-const client = Promise.promisifyAll(amazon.createClient(config));
+const client = amazon.createClient(config);
 
 var flattenXml = function(object) {
   if (Array.isArray(object)) {
@@ -22,6 +22,8 @@ var flattenXml = function(object) {
 
 const normalize = amazonItem => {
   var item = {};
+
+  amazonItem = flattenXml(amazonItem);
 
   if (amazonItem.ItemAttributes) {
     var attributes = amazonItem.ItemAttributes;
@@ -83,19 +85,11 @@ module.exports.search = function(query) {
     query = {keywords: query};
   }
 
-  return client.itemSearchAsync(query)
-    .map(flattenXml)
-    .map(normalize)
-    .tapCatch(err => {
-      console.log(err);
-    });
+  return client.itemSearch(query)
+    .then(results => results.map(normalize));
 };
 
 module.exports.lookup = function(item) {
-  return client.itemLookupAsync()
-    .map(flattenXml)
-    .map(normalize)
-    .tapCatch(err => {
-      console.log(err);
-    });
+  return client.itemLookup()
+    .then(results => results.map(normalize));
 };
