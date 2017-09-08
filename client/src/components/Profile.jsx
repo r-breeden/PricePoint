@@ -32,31 +32,35 @@ const Profile = (props) => {
         </Col>
       </Row>
       <Row>
-        <Table responsive striped condensed bordered hover>
-          <thead>
-            <tr>
-              <th>Followed Items</th>
-              <th>Current Lowest Price</th>
-              <th>Track</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.user.watchList.map((el, i) => {
-              return (
-                <tr>
-                  <td><Link to="/product">{el}</Link></td>
-                  <td>{'$$'}</td>
-                  <td><Checkbox checked="true"></Checkbox></td>
-                </tr>
-              );
-            })}
-            <tr>
-              <td></td>
-              <td></td>
-              <td><Button bsStyle="primary">Notify Me!</Button></td>
-            </tr>
-          </tbody>
-        </Table>
+        {props.user.watchList.length > 0 &&
+          <Table responsive striped condensed bordered hover>
+            <thead>
+              <tr>
+                <th>Followed Items</th>
+                <th>Current Lowest Price</th>
+                <th>Track</th>
+              </tr>
+            </thead>
+            <tbody>
+              {props.user.watchList.map((el, i) => {
+                return (
+                  <tr>
+                    <td><Link to="/product">{el}</Link></td>
+                    <td>{'$$'}</td>
+                    <td><Checkbox checked="true"></Checkbox></td>
+                  </tr>
+                );
+              })}
+              <tr>
+                <td></td>
+                <td></td>
+                <td><Button bsStyle="primary">Notify Me!</Button></td>
+              </tr>
+            </tbody>
+          </Table>
+        }
+
+
       </Row>
     </Grid>
   );
