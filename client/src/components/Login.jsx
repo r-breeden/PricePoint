@@ -68,13 +68,13 @@ const Login = () => {
               Or login with any of the following services:
               <br/>
               <a href="/auth/facebook">
-                <img style={fblogo} src="/assets/fb-logo.png"/>
+                <img className="socialIcons" src="/assets/facebook.svg"/>
               </a>
               <a href="/auth/google">
-                <img style={googlogo} src="/assets/google-logo.png"/>
+                <img className="socialIcons" src="/assets/google.svg"/>
               </a>
               <a href="/auth/twitter">
-                <img style={twitlogo} src="/assets/twitter-logo.png"/>
+                <img className="socialIcons" src="/assets/twitter.svg"/>
               </a>
             </div>
             <PageHeader></PageHeader>
