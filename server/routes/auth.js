@@ -11,7 +11,13 @@ router.route(['/', '/profile'])
       results: dummyData,
 
     };
-    state.user.watchList = ['Nintendo Switch Gaming Console with Gray Joy-Con', 'Intel CM8066201919901 OEM Core i7-6700K Skylake Processor 4.0 GHz 8.0GTs-8MB LGA 1151 CPU', 'Predator XB281HK 28" 3840x2160 LED Monitor', 'Samsung 65" Class 4K (2160P) Smart QLED TV', 'Viaboot Raspberry Pi 3 Complete Kit with Premium Black Case']; 
+    state.user.watchList = [
+      {item: 'Nintendo Switch Gaming Console with Gray Joy-Con', lowestPrice: '$1.00'},
+      {item: 'Intel CM8066201919901 OEM Core i7-6700K Skylake Processor 4.0 GHz 8.0GTs-8MB LGA 1151 CPU', lowestPrice: '$1.00'},
+      {item: 'Predator XB281HK 28" 3840x2160 LED Monitor', lowestPrice: '$1.00'},
+      {item: 'Samsung 65" Class 4K (2160P) Smart QLED TV', lowestPrice: '$1.00'},
+      {item: 'Viaboot Raspberry Pi 3 Complete Kit with Premium Black Case', lowestPrice: '$1.00'}
+    ];
     res.render('index.ejs', { state });
   });
 
