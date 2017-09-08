@@ -1,6 +1,5 @@
 const config = require('config')['Amazon'];
 const amazon = require('amazon-product-api');
-const Promise = require('bluebird');
 
 const client = amazon.createClient(config);
 
@@ -20,7 +19,7 @@ var flattenXml = function(object) {
   return object;
 };
 
-const normalize = amazonItem => {
+const normalizeItems = function(amazonItem) {
   var item = {};
 
   amazonItem = flattenXml(amazonItem);
@@ -55,6 +54,12 @@ const normalize = amazonItem => {
     } else {
       console.log('No brand');
     }
+
+    if (attributes.ListPrice) {
+      item.price = parseInt(attributes.ListPrice.Amount);
+    } else {
+      console.log('no list price');
+    }
   } else {
     console.log('No attributes');
   }
@@ -74,11 +79,13 @@ const normalize = amazonItem => {
   if (amazonItem.OfferSummary) {
     item.price = amazonItem.OfferSummary.LowestNewPrice.Amount;
   } else {
-    console.log('No price');
+    console.log('No lowest price');
   }
 
   return item;
 };
+
+var filterItems = item => !!item.upc && !!item.price;
 
 module.exports.search = function(query) {
   if (typeof query === 'string') {
@@ -86,10 +93,15 @@ module.exports.search = function(query) {
   }
 
   return client.itemSearch(query)
-    .then(results => results.map(normalize));
+    .then(results => results.map(normalizeItems).filter(filterItems));
 };
 
 module.exports.lookup = function(item) {
-  return client.itemLookup()
-    .then(results => results.map(normalize));
+  var query = {
+    idType: 'UPC',
+    itemId: item.upc,
+  };
+
+  return client.itemLookup(query)
+    .then(result => normalizeItems(result));
 };
