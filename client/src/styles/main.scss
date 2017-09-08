@@ -1,26 +1,16 @@
-/* ----------------------------------------------------------------------------
- * Mixins & Variables
- * ------------------------------------------------------------------------- */
+// M I X I N S & V A R I A B L E S //
 @import "/partials/mixins";
 @import "/partials/variables";
 
-/* ----------------------------------------------------------------------------
- * Normalize & Santize
- * ------------------------------------------------------------------------- */
+// N O R M A L I Z E & S A N I T I Z E //
 @import "/vendors/normalize";
 @import "/vendors/sanitize";
 
-/* ----------------------------------------------------------------------------
- * Structure
- * ------------------------------------------------------------------------- */
+// S T R U C T U R E //
 @import "/partials/structure";
 
-/* Base */
+// B A S E //
 @import "/partials/base";
 
-/* Components */
-@import "/components/Results";
-@import "components/Search";
-@import "/components/Profile"; 
-// @import "components/App";
-@import "components/Product"
+// C O M P O N E N T S //
+@import "/styles.scss";

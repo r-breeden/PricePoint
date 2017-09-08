@@ -5,16 +5,6 @@ import { Thumbnail, Table, Button } from 'react-bootstrap';
 import Header from './Header.jsx';
 import { connect } from 'react-redux';
 
-
-//temporary styling blocks
-const lower = {
-  color: 'rgba(27, 135, 27, 0.61)'
-};
-
-const higher = {
-  color: 'rgba(242, 17, 17, 0.61)'
-};
-
 const Product = (props) => {
   var productItem = [];
 
@@ -25,7 +15,7 @@ const Product = (props) => {
     //or if no data in db, api calls to all stores
     //this information should be stored in state as an array so that ProductTable may use it to populate the table
     props.results.forEach ( (item) => {
-      if ( item.upc === UPC ) { 
+      if ( item.upc === UPC ) {
         productItem.push(item);
       }
     });
@@ -34,15 +24,14 @@ const Product = (props) => {
   getProductDataFromState();
 
   let sendToProductPage = () => {
-    //MVP 
+    //MVP
     //Currently this opens up the amazon page
     //In the future this needs to be linked to the lowest priced item
     window.open(productItem[0].itemURL);
   };
-   
+
   return (
     <div className="productContainer">
-      <Header></Header>
       <Row>
         <Col xs={6} md={3}>
           <Thumbnail className="productImage" href="#" alt="171x180" src={productItem[0].imageURL} />
@@ -67,21 +56,21 @@ const Product = (props) => {
           <tbody>
             <tr>
               <td>August 31, 2017</td>
-              <td style={lower}>${productItem[0].price}</td>
-              <td style={higher}>$12.93</td>
-              <td style={higher}>unavailable</td>
+              <td className="lower">${productItem[0].price}</td>
+              <td className="higher">$12.93</td>
+              <td className="lower">unavailable</td>
             </tr>
             <tr>
               <td>August 30, 2017</td>
-              <td style={lower}>$12.99</td>
-              <td style={higher}>13.99</td>
-              <td style={higher}>unavailable</td>
+              <td className="lower">$12.99</td>
+              <td className="higher">13.99</td>
+              <td className="higher">unavailable</td>
             </tr>
             <tr>
               <td>August 29, 2017</td>
-              <td style={lower}>$12.00</td>
-              <td style={higher}>$14.99</td>
-              <td style={higher}>unavailable</td>
+              <td className="lower">$12.00</td>
+              <td className="higher">$14.99</td>
+              <td className="higher">unavailable</td>
             </tr>
           </tbody>
         </Table>
