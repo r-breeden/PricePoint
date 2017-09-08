@@ -4,9 +4,6 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import { Navbar, Button, Glyphicon } from 'react-bootstrap';
 import Search from './components/Search.jsx';
 import Results from './components/Results.jsx';
-import Login from './components/Login.jsx';
-import Header from './components/Header.jsx';
-import Profile from './components/Profile.jsx';
 
 const Index = () => {
   return (
