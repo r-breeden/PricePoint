@@ -45,10 +45,6 @@ a:hover {
 }
 
 // S I G N  U P //
-// .signup {
-//   width: 80%;
-//
-// }
 .signup-input {
   border: none;
   box-shadow: none;
@@ -76,4 +72,37 @@ a:hover {
 .fblogo, .googlogo, .twitlogo {
   width: 60px;
   padding: 15px 15px 0px 0px;
+}
+
+// P R O D U C T //
+.productContainer {
+  margin-left: 0px;
+}
+
+.productImage>img {
+  height: 175px;
+}
+
+.productImage {
+  max-width: 175px;
+  min-width: 175px;
+}
+.title {
+  margin-top: 0px;
+  font-size: 2.2em;
+}
+
+.descriptionTitle {
+  font-size: 1.3em;
+  color: gray;
+}
+
+.description {
+  font-size: 1.2em;
+}
+.lower {
+  color: rgba(27, 135, 27, 0.61);
+}
+.higher {
+  color: rgba(242, 17, 17, 0.61);
 }
