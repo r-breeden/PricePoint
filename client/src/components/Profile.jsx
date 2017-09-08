@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { Thumbnail, Table, Checkbox, Button } from 'react-bootstrap';
+import { Thumbnail, Table, Checkbox, Button, Alert } from 'react-bootstrap';
 import Header from './Header.jsx';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -47,7 +47,7 @@ const Profile = (props) => {
                   <tr>
                     <td><Link to="/product">{el}</Link></td>
                     <td>{'$$'}</td>
-                    <td><Checkbox checked="true"></Checkbox></td>
+                    <td><Checkbox></Checkbox></td>
                   </tr>
                 );
               })}
