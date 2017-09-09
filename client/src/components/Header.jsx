@@ -3,8 +3,37 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Navbar, Nav, NavItem, Button, Glyphicon } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-const Header = () => {
+const Header = (props) => {
+  const loggedIn = (
+    <Nav pullRight>
+      <NavItem className="menu-items" eventKey={1}>
+        <Link to="/profile">
+          <Glyphicon glyph="user"/> Profile
+        </Link>
+      </NavItem>
+      <NavItem className="menu-items" eventKey={2}>
+        <Link to="/logout">
+          <Glyphicon glyph="log-out"/> Log Out
+        </Link>
+      </NavItem>
+    </Nav>
+  );
+  const loggedOut = (
+    <Nav pullRight>
+      <NavItem className="menu-items" eventKey={1}>
+        <Link to="/login">
+          <Glyphicon glyph="log-in"/> Log In
+        </Link>
+      </NavItem>
+      <NavItem className="menu-items" eventKey={2}>
+        <Link to="/signup">
+          <Glyphicon glyph="user"/> Sign Up
+        </Link>
+      </NavItem>
+    </Nav>
+  );
   return (
     <Grid fluid>
       <Row>
@@ -21,18 +50,7 @@ const Header = () => {
             <Navbar.Collapse>
               <Nav>
               </Nav>
-              <Nav pullRight>
-                <NavItem className="menu-items" eventKey={1}>
-                  <Link to="/login">
-                    <Glyphicon glyph="log-in"/> Log In
-                  </Link>
-                </NavItem>
-                <NavItem className="menu-items" eventKey={2}>
-                  <Link to="/signup">
-                    <Glyphicon glyph="user"/> Sign Up
-                  </Link>
-                </NavItem>
-              </Nav>
+              {Object.keys(props.user).length === 0 ? loggedOut : loggedIn}
             </Navbar.Collapse>
           </Navbar>
         </Col>
@@ -40,5 +58,11 @@ const Header = () => {
     </Grid>
   );
 };
+const mapStateToProps = (state) => {
+  return{
+    'user': state.user
+  };
+};
 
-export default Header;
+export const UnwrappedHeader = Header;
+export default connect(mapStateToProps)(Header);
