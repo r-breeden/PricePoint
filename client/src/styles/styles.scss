@@ -2,7 +2,12 @@
 a:hover {
   text-decoration: none;
 }
-
+a:focus {
+  outline: none;
+}
+.btn:focus {
+  outline: none;
+}
 // S E A R C H //
 .form-inline {
   width: 100%;
