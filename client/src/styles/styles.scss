@@ -2,11 +2,11 @@
 a:hover {
   text-decoration: none;
 }
-td:hover {
-  cursor: pointer;
+a:focus {
+  outline: none;
 }
-tr:hover {
-  cursor: pointer;
+.btn:focus {
+  outline: none;
 }
 
 // S E A R C H //
@@ -49,6 +49,14 @@ tr:hover {
 .navbar-collapse {
   background-color: #fff;
 }
+.navbar-text{
+  padding-top: 10px; 
+}
+.navbar-default .navbar-link{
+
+  padding-right: 10px;
+  color: #444;
+}
 
 // S I G N  U P + L O G I N //
 .signup-input {
@@ -63,7 +71,6 @@ tr:hover {
   border-bottom: 1px dashed #000;
   box-shadow: none;
 }
-
 .btn-warning{
   background-color: #fff;
   color: #000;
