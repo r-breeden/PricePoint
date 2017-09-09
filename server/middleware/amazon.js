@@ -1,7 +1,6 @@
 const config = require('config')['Amazon'];
 const amazon = require('amazon-product-api');
 
-
 const client = amazon.createClient(config);
 
 var flattenXml = function(object) {

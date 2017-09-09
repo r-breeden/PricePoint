@@ -7,8 +7,6 @@ import { connect } from 'react-redux';
 import '../styles/main.scss';
 
 const Results = (props) => {
-  
-  console.log('what are the props passed? ', props);
   return (
     <div>
       <Row>

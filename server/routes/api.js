@@ -13,7 +13,6 @@ router.route('/')
 
 router.route('/search')
   .get((req, res) => {
-    console.log(req.query);
     return amazon.search(req.query.q)
       .then(results => {
         res.send({results});
