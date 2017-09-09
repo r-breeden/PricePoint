@@ -40,7 +40,7 @@ class Search extends React.Component {
             <input
               type="text"
               className="searchBar"
-              value={this.state.textbox}
+              value={this.state.value}
               onChange={this.handleChange}
               placeholder="Search for an item"
             />
