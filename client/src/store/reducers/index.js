@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import currentUser from './currentUser';
-import searchedItems from './searchedItems';
+import user from './currentUser';
+// import searchedItems from './searchedItems';
 import results from './results';
 
 export default combineReducers({
   router: routerReducer,
-  currentUser,
-  searchedItems,
+  user,
+  // searchedItems,
   results
 
 });
