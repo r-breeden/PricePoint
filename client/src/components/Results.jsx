@@ -10,7 +10,7 @@ const Results = (props) => {
   return (
     <div>
       <Row>
-        { props.results.map((el) => {
+        {props.results.map((el) => {
           return (
             <Col xs={12} md={6} lg={4}>
               <Thumbnail className="results-thumb" src={`${el.imageURL}`}>
