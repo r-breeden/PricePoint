@@ -8,5 +8,4 @@ export default combineReducers({
   router: routerReducer,
   user: currentUser,
   results
-
 });
