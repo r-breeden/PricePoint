@@ -9,6 +9,7 @@ router.route(['/', '/profile'])
     var state = {
       user: req.user, // get the user out of session and pass to template
       results: dummyData,
+      
     };
     state.user.watchList = [
       {item: 'Nintendo Switch Gaming Console with Gray Joy-Con', lowestPrice: '$1.00'},
