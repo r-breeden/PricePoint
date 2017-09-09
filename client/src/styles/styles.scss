@@ -8,6 +8,7 @@ a:focus {
 .btn:focus {
   outline: none;
 }
+
 // S E A R C H //
 .form-inline {
   width: 100%;
@@ -88,7 +89,8 @@ a:focus {
 
 // P R O D U C T //
 .productContainer {
-  margin-left: 0px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .productImage>img {

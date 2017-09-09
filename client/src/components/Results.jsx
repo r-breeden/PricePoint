@@ -13,17 +13,16 @@ const Results = (props) => {
         {props.results.map((el) => {
           return (
             <Col xs={12} md={6} lg={4}>
-              <Link to={`/product/${el.upc}`}>
-                <Thumbnail className="results-thumb" src={`${el.imageURL}`}>
+              <Thumbnail className="results-thumb" src={`${el.imageURL}`} alt="242x200">
+                <Link to={`/product/${el.upc}`}>
                   <h3>{el.title}</h3>
-                  </Link>
-                  <p>{el.description}</p>
-                  <p>
-                    <Button bsStyle="primary"><Glyphicon glyph="eye-open"/> Track</Button>&nbsp;
-                    <Button bsStyle="default"> $$$$</Button>
-                  </p>
-                </Thumbnail>
-              
+                </Link>
+                <p>{el.description}</p>
+                <p>
+                  <Button bsStyle="primary"><Glyphicon glyph="eye-open"/> Track</Button>&nbsp;
+                  <Button bsStyle="default"> $$$$</Button>
+                </p>
+              </Thumbnail>
             </Col>
           );
         })}
