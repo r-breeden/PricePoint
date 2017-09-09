@@ -48,6 +48,14 @@ a:focus {
 .navbar-collapse {
   background-color: #fff;
 }
+.navbar-text{
+  padding-top: 10px; 
+}
+.navbar-default .navbar-link{
+
+  padding-right: 10px;
+  color: #444;
+}
 
 // S I G N  U P + L O G I N //
 .signup-input {
@@ -62,7 +70,6 @@ a:focus {
   border-bottom: 1px dashed #000;
   box-shadow: none;
 }
-
 .btn-warning{
   background-color: #fff;
   color: #000;
