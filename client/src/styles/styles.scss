@@ -49,7 +49,7 @@ a:focus {
   background-color: #fff;
 }
 .navbar-text{
-  padding-top: 10px; 
+  padding-top: 10px;
 }
 .navbar-default .navbar-link{
 
@@ -88,27 +88,20 @@ a:focus {
 
 // P R O D U C T //
 .productContainer {
-  margin-left: 0px;
+  width: 80%;
+  margin: 0 auto;
 }
-
-.productImage>img {
-  height: 175px;
-}
-
 .productImage {
-  max-width: 175px;
   min-width: 175px;
 }
 .title {
   margin-top: 0px;
   font-size: 2.2em;
 }
-
 .descriptionTitle {
   font-size: 1.3em;
   color: gray;
 }
-
 .description {
   font-size: 1.2em;
 }
