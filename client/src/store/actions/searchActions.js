@@ -1,3 +1,4 @@
+const axios = require('axios');
 /*
  * action types
  */
@@ -8,14 +9,21 @@ const actions = {
   /*
  * action creators
  */
-  searchAmazon: function (query) {
-    return { type: SEARCH_AMAZON, query, searching: true };
+  queryAndResults: function (type, query, results) {
+    return { type, query, results, searching: true };
   },
-  searchWalmart: function (query) {
-    return { type: SEARCH_WALMART, query, searching: true };
-  },
-  searchStore: function (query) {
-    return { type: SEARCH_STORE3, query, searching: true };
+  searchAmazon: function(query) {
+    return function (dispatch) {
+      axios.get('api/search', {
+        params: {q: query}
+      })
+        .then((response) => {
+          dispatch(action.searchAmazon('SEARCH_AMAZON', query, response));
+          console.log(response);
+        })
+        .catch( error => console.log(error));
+    };
   }
+
 };
 export default actions;

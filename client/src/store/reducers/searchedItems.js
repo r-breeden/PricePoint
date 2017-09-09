@@ -1,18 +1,18 @@
-// work in progress
-// import axios from 'axios';
-// const searchNew = () => {
-//   const initialState = [];
-//   const action = {
-//     type: 'SEARCH_AMAZON',
-//
-//   }
-// }
-//
-// export default (state = initialState, action) => {
-//   switch (action.type) {
-//     case: 'SEARCH_AMAZON':
-//       axios.post()
-//   default:
-//     return state;
-//   }
-// };
+
+// searchAmazon: function (query) {
+//   return { type: SEARCH_AMAZON, query, searching: true };
+// },
+
+export default (state = [], action) => {
+  switch (action.type) {
+  case 'SEARCH_AMAZON':
+    console.log('Recieved Search amazon request in reducer');
+    return Object.assign({}, state, {
+      results: action.results,
+      query: action.query,
+      searching: false,
+    });
+  default:
+    return state;
+  }
+};

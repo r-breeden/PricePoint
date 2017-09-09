@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
-import { Field, reduxForm } from 'redux-form';
 import '../styles/main.scss';
 import actions from '../store/actions/searchActions.js';
 import store from '../store';
@@ -25,6 +25,7 @@ class Search extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     // creates an action SEARCH_AMAZON and displatching that action to the reducer
+    var query = this.state.value;
     store.dispatch(actions.searchAmazon(this.state.value));
     console.log('A name was submitted: ' + this.state.value);
   }
