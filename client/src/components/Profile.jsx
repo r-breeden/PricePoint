@@ -7,10 +7,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../styles/main.scss';
 
-
-
-
-
 const Profile = (props) => {
 
   const noavatar = (
@@ -45,8 +41,8 @@ const Profile = (props) => {
               {props.user.watchList.map((el, i) => {
                 return (
                   <tr>
-                    <td><Link to="/product">{el}</Link></td>
-                    <td>{'$$'}</td>
+                    <td><Link to="/product">{el.item}</Link></td>
+                    <td>{el.lowestPrice}</td>
                     <td><Checkbox></Checkbox></td>
                   </tr>
                 );

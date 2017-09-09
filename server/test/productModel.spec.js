@@ -60,10 +60,10 @@ describe('Product model', () => {
         var price2 = product.related('prices').at(1);
 
         expect(price1.get('name')).toBe('Amazon');
-        expect(parseFloat(price1.get('price'))).toBe(1234.56);
+        expect(price1.get('price')).toBe(123456);
 
         expect(price2.get('name')).toBe('Amazon');
-        expect(parseFloat(price2.get('price'))).toBe(9999.99);
+        expect(price2.get('price')).toBe(999999);
 
         expect(price1.get('timestamp').getTime())
           .toBeGreaterThan(price2.get('timestamp').getTime());

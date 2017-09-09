@@ -19,7 +19,6 @@ const Product = (props) => {
         productItem.push(item);
       }
     });
-    console.log(productItem);
   };
   getProductDataFromState();
 
@@ -34,7 +33,7 @@ const Product = (props) => {
     <div className="productContainer">
       <Row>
         <Col xs={6} md={3}>
-          <Thumbnail className="productImage" href="#" alt="171x180" src={productItem[0].imageURL} />
+          <Thumbnail className="productImage" href="#" src={productItem[0].imageURL} />
         </Col>
         <Col xs={6} md={9}>
           <h2 className="title">{productItem[0].title}</h2>
@@ -50,27 +49,33 @@ const Product = (props) => {
               <th>Date</th>
               <th><a href='#'>Amazon</a></th>
               <th><a href='#'>Walmart</a></th>
-              <th><a href='#'>store 3</a></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>August 31, 2017</td>
+              <td>September 10, 2017</td>
               <td className="lower">${productItem[0].price}</td>
               <td className="higher">$12.93</td>
-              <td className="lower">unavailable</td>
             </tr>
             <tr>
-              <td>August 30, 2017</td>
+              <td>September 09, 2017</td>
+              <td className="lower">${productItem[0].price}</td>
+              <td className="higher">$12.93</td>
+            </tr>
+            <tr>
+              <td>September 08, 2017</td>
+              <td className="lower">${productItem[0].price}</td>
+              <td className="higher">$12.93</td>
+            </tr>
+            <tr>
+              <td>September 07, 2017</td>
               <td className="lower">$12.99</td>
               <td className="higher">13.99</td>
-              <td className="higher">unavailable</td>
             </tr>
             <tr>
-              <td>August 29, 2017</td>
+              <td>September 06, 2017</td>
               <td className="lower">$12.00</td>
               <td className="higher">$14.99</td>
-              <td className="higher">unavailable</td>
             </tr>
           </tbody>
         </Table>

@@ -7,6 +7,12 @@
     "connection": "REDIS_URL"
   },
 
+  "Amazon": {
+    "awsId": "AWS_ID",
+    "awsSecret": "AWS_SECRET",
+    "awsTag": "AWS_TAG"
+  },
+
   "passport": {
     "Google": {
       "clientID": "GOOGLE_CLIENT_ID",

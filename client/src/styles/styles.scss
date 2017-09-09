@@ -2,6 +2,12 @@
 a:hover {
   text-decoration: none;
 }
+a:focus {
+  outline: none;
+}
+.btn:focus {
+  outline: none;
+}
 
 // S E A R C H //
 .form-inline {
@@ -43,6 +49,14 @@ a:hover {
 .navbar-collapse {
   background-color: #fff;
 }
+.navbar-text{
+  padding-top: 10px;
+}
+.navbar-default .navbar-link{
+
+  padding-right: 10px;
+  color: #444;
+}
 
 // S I G N  U P + L O G I N //
 .signup-input {
@@ -57,7 +71,6 @@ a:hover {
   border-bottom: 1px dashed #000;
   box-shadow: none;
 }
-
 .btn-warning{
   background-color: #fff;
   color: #000;
@@ -73,30 +86,22 @@ a:hover {
   width: 40px;
   padding: 15px 15px 0px 0px;
 }
-
 // P R O D U C T //
 .productContainer {
-  margin-left: 0px;
+  width: 80%;
+  margin: 0 auto;
 }
-
-.productImage>img {
-  height: 175px;
-}
-
 .productImage {
-  max-width: 175px;
   min-width: 175px;
 }
 .title {
   margin-top: 0px;
   font-size: 2.2em;
 }
-
 .descriptionTitle {
   font-size: 1.3em;
   color: gray;
 }
-
 .description {
   font-size: 1.2em;
 }
