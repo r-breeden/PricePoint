@@ -4,7 +4,8 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import {
   Button, Glyphicon, PageHeader,
   Form, FormGroup, ControlLabel, FormControl,
-} from 'react-bootstrap';import { Link } from 'react-router-dom';
+} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Header from './Header.jsx';
 
 const Login = () => {
