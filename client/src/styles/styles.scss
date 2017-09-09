@@ -2,6 +2,12 @@
 a:hover {
   text-decoration: none;
 }
+td:hover {
+  cursor: pointer;
+}
+tr:hover {
+  cursor: pointer;
+}
 
 // S E A R C H //
 .form-inline {
@@ -76,7 +82,8 @@ a:hover {
 
 // P R O D U C T //
 .productContainer {
-  margin-left: 0px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .productImage>img {

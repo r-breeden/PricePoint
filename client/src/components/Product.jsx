@@ -56,7 +56,7 @@ const Product = (props) => {
           <tbody>
             <tr>
               <td>August 31, 2017</td>
-              <td className="lower">${productItem[0].price}</td>
+              <td className="lower" onClick={sendToProductPage}>${productItem[0].price}</td>
               <td className="higher">$12.93</td>
               <td className="lower">unavailable</td>
             </tr>
