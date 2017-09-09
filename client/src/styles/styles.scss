@@ -50,7 +50,7 @@ a:focus {
   background-color: #fff;
 }
 .navbar-text{
-  padding-top: 10px; 
+  padding-top: 10px;
 }
 .navbar-default .navbar-link{
 
@@ -86,31 +86,22 @@ a:focus {
   width: 40px;
   padding: 15px 15px 0px 0px;
 }
-
 // P R O D U C T //
 .productContainer {
-  margin-left: 50px;
-  margin-right: 50px;
+  width: 80%;
+  margin: 0 auto;
 }
-
-.productImage>img {
-  height: 175px;
-}
-
 .productImage {
-  max-width: 175px;
   min-width: 175px;
 }
 .title {
   margin-top: 0px;
   font-size: 2.2em;
 }
-
 .descriptionTitle {
   font-size: 1.3em;
   color: gray;
 }
-
 .description {
   font-size: 1.2em;
 }

@@ -86,13 +86,13 @@
       {"date": "September 06", "price": "599.99"},
       {"date": "September 07", "price": "645.86"},
       {"date": "September 08", "price": "645.86"},
-      {"date": "September 09", "price": "645.87"},
+      {"date": "September 09", "price": "645.87"}
     ],
     "walmart": [
       {"date": "September 06", "price": "599.99"},
       {"date": "September 07", "price": "599.99"},
       {"date": "September 08", "price": "599.99"},
-      {"date": "September 09", "price": "599.99"},
+      {"date": "September 09", "price": "599.99"}
     ]
   }
 },
@@ -103,24 +103,7 @@
   "description": "LGA 1151",
   "price": "299.99",
   "upc": "098378283484",
-  "brand": "Intel",
-  "prices": {
-    "amazon": [
-    {"date": "September 03", "price": "299.99"},
-    {"date": "September 04", "price": "299.99"},
-    {"date": "September 05", "price": "310.82"},
-    {"date": "September 06", "price": "310.82"},
-    {"date": "September 07", "price": "314.39"},
-    {"date": "September 08", "price": "315.00"},
-    {"date": "September 09", "price": "315.00"},
-        ],
-    "walmart": [
-    {"date": "September 06", "price": "390.96"},
-    {"date": "September 07", "price": "390.96"},
-    {"date": "September 08", "price": "390.96"},
-    {"date": "September 09", "price": "390.96"},
-        ]
-  }
+  "brand": "Intel"
 },
 {
   "title": "Philippine Brand Naturally Delicious Dried Mangoes Tree Ripened Value Bag 30 Ounces",
@@ -156,16 +139,15 @@
       {"date": "September 06", "price": "30.00"},
       {"date": "September 07", "price": "34.99"},
       {"date": "September 08", "price": "8.80"},
-      {"date": "September 09", "price": "34.99"},
+      {"date": "September 09", "price": "34.99"}
     ],
     "walmart": [
       {"date": "September 06", "price": "59.99"},
       {"date": "September 07", "price": "59.99"},
       {"date": "September 08", "price": "59.99"},
-      {"date": "September 09", "price": "59.99"},
+      {"date": "September 09", "price": "59.99"}
     ]
   }
-
 },
 {
   "title": "Kindle Paperwhite E-reader - Black, 6\" High-Resolution Display (300 ppi) with Built-in Light, Wi-Fi - Includes Special Offers",
@@ -255,5 +237,22 @@
   "description": "Introducing Nintendo Switch! In addition to providing single and multiplayer thrills at home, the Nintendo Switch system also enables gamers to play the same title wherever, whenever and with whomever they choose. The mobility of a handheld is now added to the power of a home gaming system to enable unprecedented new video game play styles.",
   "price": "188.00",
   "upc": "045496590086",
-  "brand": "Nintendo"
+  "brand": "Nintendo",
+  "prices": {
+    "amazon": [
+    {"date": "September 03", "price": "299.99"},
+    {"date": "September 04", "price": "299.99"},
+    {"date": "September 05", "price": "310.82"},
+    {"date": "September 06", "price": "310.82"},
+    {"date": "September 07", "price": "314.39"},
+    {"date": "September 08", "price": "315.00"},
+    {"date": "September 09", "price": "315.00"}
+      ],
+    "walmart": [
+    {"date": "September 06", "price": "390.96"},
+    {"date": "September 07", "price": "390.96"},
+    {"date": "September 08", "price": "390.96"},
+    {"date": "September 09", "price": "390.96"}
+    ]
+  }
 }]

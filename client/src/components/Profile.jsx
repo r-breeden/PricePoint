@@ -7,10 +7,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../styles/main.scss';
 
-
-
-
-
 const Profile = (props) => {
 
   const noavatar = (
