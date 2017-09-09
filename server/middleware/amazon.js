@@ -88,26 +88,73 @@ const normalizeItems = function(amazonItem) {
 
 var filterItems = item => !!item.upc && !!item.price;
 
-var storeItems = function(items, vendor) {
-  return Promise.all(items.map(item => {
-    return models.Product.where({ upc: item.upc }).fetch()
-      .then(product => {
-        if (product) {
-          return product;
-        } else {
-          product = {
-            name: item.name,
-            upc: item.upc,
-            description: item.description,
-          };
+var storeItems = function(items, vendorName) {
+  return createFetchVendor(vendorName)
+    .then(({id: vendorId}) => {
+      return Promise.all(items.map(item => storeItem(item, vendorId)));
+    });
+};
 
-          return models.Product.forge(product).save();
+var storeItem = function(item, vendorId) {
+  return models.Product.where({ upc: item.upc }).fetch()
+    .then(product => {
+      if (product) {
+        return product;
+      } else {
+        return createProduct(item, vendorId);
+      }
+    })
+    .then(product => {
+      models.Price.forge({
+        product_id: product.get('id'),
+        vendor_id: vendorId,
+        price: item.price,
+      }).save();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+var createProduct = function(item, vendorId) {
+  return models.Product.forge({
+    name: item.name,
+    upc: item.upc,
+    description: item.description,
+  }).save()
+    .then(product => {
+      models.ProductUrl.forge({
+        product_id: product.get('id'),
+        vendor_id: vendorId,
+        url: item.url,
+      }).save();
+
+      return product;
+    });
+};
+
+var createFetchVendor = function(vendorName) {
+  return models.Vendor.where({ name: vendorName }).fetch()
+    .then(vendor => {
+      if (vendor) {
+        return vendor;
+      } else {
+        vendor = {
+          name: vendorName
+        };
+
+        // TODO: This is jank
+        if (vendorName === 'Amazon') {
+          vendor.url = 'https://amazon.com';
+        } else if (vendorName === 'Walmart') {
+          vendor.url = 'https://walmart.com';
+        } else {
+          vendor.url = 'http://example.com';
         }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }));
+
+        return models.Vendor.forge(vendor).save();
+      }
+    });
 };
 
 module.exports.search = function(query) {
