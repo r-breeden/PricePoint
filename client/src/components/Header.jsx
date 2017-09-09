@@ -13,11 +13,11 @@ const Header = (props) => {
           <Glyphicon glyph="user"/> Profile
         </Link>
       </NavItem>
-      <NavItem className="menu-items" eventKey={2}>
-        <Link to="/logout">
+      <Navbar.Text>
+        <Navbar.Link href='/logout' className="menu-items logout">
           <Glyphicon glyph="log-out"/> Log Out
-        </Link>
-      </NavItem>
+        </Navbar.Link>
+      </Navbar.Text>
     </Nav>
   );
   const loggedOut = (
