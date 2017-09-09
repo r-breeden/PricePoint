@@ -16,13 +16,14 @@ const Results = (props) => {
               <Link to={`/product/${el.upc}`}>
                 <Thumbnail className="results-thumb" src={`${el.imageURL}`}>
                   <h3>{el.title}</h3>
+                  </Link>
                   <p>{el.description}</p>
                   <p>
                     <Button bsStyle="primary"><Glyphicon glyph="eye-open"/> Track</Button>&nbsp;
                     <Button bsStyle="default"> $$$$</Button>
                   </p>
                 </Thumbnail>
-              </Link>
+              
             </Col>
           );
         })}
