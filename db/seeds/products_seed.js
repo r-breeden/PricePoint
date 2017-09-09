@@ -36,14 +36,14 @@ exports.seed = function(knex, Promise) {
       return models.Price.forge({
         vendor_id: vendorId,
         product_id: productId,
-        price: 9999.99,
+        price: 999999,
       }).save();
     })
     .then(() => {
       return models.Price.forge({
         vendor_id: vendorId,
         product_id: productId,
-        price: 1234.56,
+        price: 123456,
       }).save();
     })
     .catch(err => {
