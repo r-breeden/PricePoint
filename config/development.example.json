@@ -4,7 +4,7 @@
       "database": "thesis_devel"
     }
   },
-
+  
   "passport": {
     "Google": {
       "clientID": "FILL_ME_IN",
