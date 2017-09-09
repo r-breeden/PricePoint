@@ -7,10 +7,12 @@ import { connect } from 'react-redux';
 import '../styles/main.scss';
 
 const Results = (props) => {
+  
+  console.log('what are the props passed? ', props);
   return (
     <div>
       <Row>
-        {props.results.map((el) => {
+        { props.results.map((el) => {
           return (
             <Col xs={12} md={6} lg={4}>
               <Link to={`/product/${el.upc}`}>

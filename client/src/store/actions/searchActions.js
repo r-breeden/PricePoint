@@ -18,7 +18,7 @@ const actions = {
         params: {q: query}
       })
         .then((response) => {
-          dispatch(action.searchAmazon('SEARCH_AMAZON', query, response));
+          dispatch(actions.queryAndResults('SEARCH_AMAZON', query, response));
           console.log(response);
         })
         .catch( error => console.log(error));
