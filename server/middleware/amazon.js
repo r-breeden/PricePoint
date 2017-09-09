@@ -1,5 +1,6 @@
 const config = require('config')['Amazon'];
 const amazon = require('amazon-product-api');
+const models = require('../../db/models');
 
 const client = amazon.createClient(config);
 
@@ -28,9 +29,9 @@ const normalizeItems = function(amazonItem) {
     var attributes = amazonItem.ItemAttributes;
 
     if (attributes.Title) {
-      item.title = attributes.Title;
+      item.name = attributes.Title;
     } else {
-      console.log('No title');
+      console.log('No name');
     }
 
     if (attributes.Feature) {
@@ -87,13 +88,41 @@ const normalizeItems = function(amazonItem) {
 
 var filterItems = item => !!item.upc && !!item.price;
 
+var storeItems = function(items, vendor) {
+  return Promise.all(items.map(item => {
+    return models.Product.where({ upc: item.upc }).fetch()
+      .then(product => {
+        if (product) {
+          return product;
+        } else {
+          product = {
+            name: item.name,
+            upc: item.upc,
+            description: item.description,
+          };
+
+          return models.Product.forge(product).save();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }));
+};
+
 module.exports.search = function(query) {
   if (typeof query === 'string') {
     query = {keywords: query};
   }
 
   return client.itemSearch(query)
-    .then(results => results.map(normalizeItems).filter(filterItems));
+    .then(items => items.map(normalizeItems).filter(filterItems))
+    .then(items => {
+      // Do this async for now
+      storeItems(items, 'Amazon');
+
+      return items;
+    });
 };
 
 module.exports.lookup = function(item) {
@@ -103,5 +132,5 @@ module.exports.lookup = function(item) {
   };
 
   return client.itemLookup(query)
-    .then(result => normalizeItems(result));
+    .then(item => normalizeItems(item));
 };
