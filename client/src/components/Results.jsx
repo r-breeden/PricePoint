@@ -14,7 +14,7 @@ const Results = (props) => {
           return (
             <Col xs={12} md={6} lg={4}>
               <Link to={`/product/${el.upc}`}>
-                <Thumbnail className="results-thumb" src={`${el.imageURL}`} alt="242x200">
+                <Thumbnail className="results-thumb" src={`${el.imageURL}`}>
                   <h3>{el.title}</h3>
                   <p>{el.description}</p>
                   <p>
