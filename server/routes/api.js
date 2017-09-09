@@ -18,8 +18,8 @@ router.route('/search')
         res.send({results});
       })
       .catch(err => {
+        console.log(err.Error);
         res.sendStatus(503);
       });
   });
-
 module.exports = router;
