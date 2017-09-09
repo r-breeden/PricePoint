@@ -34,17 +34,21 @@ class Search extends React.Component {
   }
   render() {
     return (
+
+
       <Row>
         <Col md={12}>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              className="searchBar"
-              value={this.state.value}
-              onChange={this.handleChange}
-              placeholder="Search for an item"
-            />
-          </form>
+          <Form onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <FormControl
+                type="text"
+                className="searchBar"
+                value={this.state.value}
+                onChange={this.handleChange}
+                placeholder="Search for an item"
+              />
+            </FormGroup>
+          </Form>
         </Col>
       </Row>
     );
