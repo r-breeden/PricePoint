@@ -89,7 +89,7 @@ const normalizeItems = function(amazonItem) {
 var filterItems = item => !!item.upc && !!item.price;
 
 var storeItems = function(items, vendorName) {
-  return createFetchVendor(vendorName)
+  return models.Vendor.findOrCreate(vendorName)
     .then(({id: vendorId}) => {
       return Promise.all(items.map(item => storeItem(item, vendorId)));
     });
@@ -130,30 +130,6 @@ var createProduct = function(item, vendorId) {
       }).save();
 
       return product;
-    });
-};
-
-var createFetchVendor = function(vendorName) {
-  return models.Vendor.where({ name: vendorName }).fetch()
-    .then(vendor => {
-      if (vendor) {
-        return vendor;
-      } else {
-        vendor = {
-          name: vendorName
-        };
-
-        // TODO: This is jank
-        if (vendorName === 'Amazon') {
-          vendor.url = 'https://amazon.com';
-        } else if (vendorName === 'Walmart') {
-          vendor.url = 'https://walmart.com';
-        } else {
-          vendor.url = 'http://example.com';
-        }
-
-        return models.Vendor.forge(vendor).save();
-      }
     });
 };
 
