@@ -113,6 +113,8 @@ var storeItem = function(item, vendorId) {
         vendor_id: vendorId,
         price: item.price,
       }).save();
+
+      return product;
     })
     .catch(err => {
       console.log(err);
@@ -124,6 +126,7 @@ var createProduct = function(item, vendorId) {
     name: item.name,
     upc: item.upc,
     description: item.description,
+    image_url: item.imageUrl,
   }).save()
     .then(product => {
       models.ProductUrl.forge({

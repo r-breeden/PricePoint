@@ -23,7 +23,7 @@ const Vendor = db.Model.extend({
             vendor.url = 'http://example.com';
           }
 
-          return models.Vendor.forge(vendor).save();
+          return this.forge(vendor).save();
         }
       });
   }
