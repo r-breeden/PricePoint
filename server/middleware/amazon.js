@@ -77,7 +77,10 @@ const normalizeItems = function(amazonItem) {
   }
 
   if (amazonItem.OfferSummary) {
-    item.price = amazonItem.OfferSummary.LowestNewPrice.Amount;
+    var lowestNewPrice = parseInt(amazonItem.OfferSummary.LowestNewPrice.Amount);
+    if (lowestNewPrice < item.price || !item.price) {
+      item.price = lowestNewPrice;
+    }
   } else {
     console.log('No lowest price');
   }
@@ -89,7 +92,10 @@ var filterItems = item => !!item.upc && !!item.price;
 
 module.exports.search = function(query) {
   if (typeof query === 'string') {
-    query = {keywords: query};
+    query = {
+      keywords: query,
+      responseGroup: 'ItemAttributes,Images,Offers'
+    };
   }
 
   return client.itemSearch(query)
