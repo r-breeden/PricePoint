@@ -143,7 +143,7 @@ module.exports.search = function(query) {
   if (typeof query === 'string') {
     query = {
       keywords: query,
-      responseGroup: 'ItemAttributes,Images,Offers'
+      responseGroup: 'ItemAttributes,Images,Offers',
     };
   }
 
@@ -161,6 +161,7 @@ module.exports.lookup = function(item) {
   var query = {
     idType: 'UPC',
     itemId: item.upc,
+    responseGroup: 'ItemAttributes,Images,Offers',
   };
 
   return client.itemLookup(query)
