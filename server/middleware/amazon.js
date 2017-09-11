@@ -2,6 +2,8 @@ const config = require('config')['Amazon'];
 const amazon = require('amazon-product-api');
 const models = require('../../db/models');
 
+global.Promise = require('bluebird');
+
 const client = amazon.createClient(config);
 
 var flattenXml = function(object) {
@@ -20,13 +22,13 @@ var flattenXml = function(object) {
   return object;
 };
 
-const normalizeItems = function(amazonItem) {
+const normalizeAmazonData = function(amazonData) {
   var item = {};
 
-  amazonItem = flattenXml(amazonItem);
+  amazonData = flattenXml(amazonData);
 
-  if (amazonItem.ItemAttributes) {
-    var attributes = amazonItem.ItemAttributes;
+  if (amazonData.ItemAttributes) {
+    var attributes = amazonData.ItemAttributes;
 
     if (attributes.Title) {
       item.name = attributes.Title;
@@ -65,20 +67,20 @@ const normalizeItems = function(amazonItem) {
     console.log('No attributes');
   }
 
-  if (amazonItem.DetailPageURL) {
-    item.url = amazonItem.DetailPageURL;
+  if (amazonData.DetailPageURL) {
+    item.url = amazonData.DetailPageURL;
   } else {
     console.log('No url');
   }
 
-  if (amazonItem.LargeImage) {
-    item.imageUrl = amazonItem.LargeImage.URL;
+  if (amazonData.LargeImage) {
+    item.imageURL = amazonData.LargeImage.URL;
   } else {
     console.log('No image url');
   }
 
-  if (amazonItem.OfferSummary) {
-    var lowestNewPrice = parseInt(amazonItem.OfferSummary.LowestNewPrice.Amount);
+  if (amazonData.OfferSummary) {
+    var lowestNewPrice = parseInt(amazonData.OfferSummary.LowestNewPrice.Amount);
     if (lowestNewPrice < item.price || !item.price) {
       item.price = lowestNewPrice;
     }
@@ -126,7 +128,7 @@ var createProduct = function(item, vendorId) {
     name: item.name,
     upc: item.upc,
     description: item.description,
-    image_url: item.imageUrl,
+    image_url: item.imageURL,
   }).save()
     .then(product => {
       models.ProductUrl.forge({
@@ -148,7 +150,8 @@ module.exports.search = function(query) {
   }
 
   return client.itemSearch(query)
-    .then(items => items.map(normalizeItems).filter(filterItems))
+    .map(normalizeAmazonData)
+    .filter(filterItems)
     .then(items => {
       // Do this async for now
       storeItems(items, 'Amazon');
@@ -165,5 +168,5 @@ module.exports.lookup = function(item) {
   };
 
   return client.itemLookup(query)
-    .then(item => normalizeItems(item));
+    .then(normalizeAmazonData);
 };
