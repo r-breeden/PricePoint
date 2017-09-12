@@ -67,7 +67,7 @@ const normalizeAmazonData = function(amazonData) {
   }
 
   if (amazonData.DetailPageURL) {
-    item.url = amazonData.DetailPageURL;
+    item.itemURL = amazonData.DetailPageURL;
   } else {
     console.log('No url');
   }

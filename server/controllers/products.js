@@ -4,7 +4,8 @@ module.exports.storeFromVendor = function(items, vendorName) {
   return models.Vendor.findOrCreate(vendorName)
     .then(({id: vendorId}) => {
       return Promise.all(items.map(item => storeItem(item, vendorId)));
-    });
+    })
+    .catch(err => console.log(err.message));
 };
 
 var storeItem = function(item, vendorId) {
@@ -24,9 +25,6 @@ var storeItem = function(item, vendorId) {
       }).save();
 
       return product;
-    })
-    .catch(err => {
-      console.log(err);
     });
 };
 
@@ -41,7 +39,7 @@ var createProduct = function(item, vendorId) {
       models.ProductUrl.forge({
         product_id: product.get('id'),
         vendor_id: vendorId,
-        url: item.url,
+        url: item.itemURL,
       }).save();
 
       return product;
