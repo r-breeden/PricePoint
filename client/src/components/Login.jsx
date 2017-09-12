@@ -58,9 +58,6 @@ const Login = () => {
               <a href="/auth/google">
                 <img className="socialIcons" src="/assets/google.svg"/>
               </a>
-              <a href="/auth/twitter">
-                <img className="socialIcons" src="/assets/twitter.svg"/>
-              </a>
             </div>
             <PageHeader></PageHeader>
             <div>
