@@ -1,8 +1,7 @@
 const config = require('config')['Amazon'];
 const amazon = require('amazon-product-api');
-const models = require('../../db/models');
 
-global.Promise = require('bluebird');
+const products = require('../controllers/products');
 
 const client = amazon.createClient(config);
 
@@ -93,54 +92,6 @@ const normalizeAmazonData = function(amazonData) {
 
 var filterItems = item => !!item.upc && !!item.price;
 
-var storeItems = function(items, vendorName) {
-  return models.Vendor.findOrCreate(vendorName)
-    .then(({id: vendorId}) => {
-      return Promise.all(items.map(item => storeItem(item, vendorId)));
-    });
-};
-
-var storeItem = function(item, vendorId) {
-  return models.Product.where({ upc: item.upc }).fetch()
-    .then(product => {
-      if (product) {
-        return product;
-      } else {
-        return createProduct(item, vendorId);
-      }
-    })
-    .then(product => {
-      models.Price.forge({
-        product_id: product.get('id'),
-        vendor_id: vendorId,
-        price: item.price,
-      }).save();
-
-      return product;
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
-
-var createProduct = function(item, vendorId) {
-  return models.Product.forge({
-    name: item.name,
-    upc: item.upc,
-    description: item.description,
-    image_url: item.imageURL,
-  }).save()
-    .then(product => {
-      models.ProductUrl.forge({
-        product_id: product.get('id'),
-        vendor_id: vendorId,
-        url: item.url,
-      }).save();
-
-      return product;
-    });
-};
-
 module.exports.search = function(query) {
   if (typeof query === 'string') {
     query = {
@@ -150,11 +101,10 @@ module.exports.search = function(query) {
   }
 
   return client.itemSearch(query)
-    .map(normalizeAmazonData)
-    .filter(filterItems)
+    .then(results => results.map(normalizeAmazonData).filter(filterItems))
     .then(items => {
       // Do this async for now
-      storeItems(items, 'Amazon');
+      products.storeFromVendor(items, 'Amazon');
 
       return items;
     });
