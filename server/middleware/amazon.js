@@ -102,11 +102,11 @@ module.exports.search = function(query) {
 
   return client.itemSearch(query)
     .then(results => results.map(normalizeAmazonData).filter(filterItems))
-    .then(items => {
+    .then(results => {
       // Do this async for now
-      products.storeFromVendor(items, 'Amazon');
+      products.storeFromVendor(results, 'Amazon');
 
-      return items;
+      return results;
     });
 };
 
