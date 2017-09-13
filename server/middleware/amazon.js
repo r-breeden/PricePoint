@@ -58,7 +58,7 @@ const normalizeAmazonData = function(amazonData) {
     }
 
     if (attributes.ListPrice) {
-      item.price = (attributes.ListPrice.FormattedPrice);
+      item.price = parseInt(attributes.ListPrice.Amount);
     } else {
       console.log('no list price');
     }
@@ -74,16 +74,8 @@ const normalizeAmazonData = function(amazonData) {
 
   if (amazonData.LargeImage) {
     item.imageURL = amazonData.LargeImage.URL;
-    console.log('No image url');
-  }
-
-  if (amazonData.OfferSummary) {
-    var lowestNewPrice = parseInt(amazonData.OfferSummary.LowestNewPrice.Amount);
-    if (lowestNewPrice < item.price || !item.price) {
-      item.price = lowestNewPrice;
-    }
   } else {
-    console.log('No lowest price');
+    console.log('No image url');
   }
 
   return item;
@@ -95,7 +87,7 @@ module.exports.search = function(query) {
   if (typeof query === 'string') {
     query = {
       keywords: query,
-      responseGroup: 'ItemAttributes,Images,Offers',
+      responseGroup: 'ItemAttributes,Images',
     };
   }
 
@@ -113,7 +105,7 @@ module.exports.lookup = function(item) {
   var query = {
     idType: 'UPC',
     itemId: item.upc,
-    responseGroup: 'ItemAttributes,Images,Offers',
+    responseGroup: 'ItemAttributes,Images',
   };
 
   return client.itemLookup(query)
