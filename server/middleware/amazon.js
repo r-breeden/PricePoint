@@ -58,7 +58,7 @@ const normalizeAmazonData = function(amazonData) {
     }
 
     if (attributes.ListPrice) {
-      item.price = (attributes.ListPrice.FormattedPrice);
+      item.price = parseInt(attributes.ListPrice.Amount);
     } else {
       console.log('no list price');
     }
