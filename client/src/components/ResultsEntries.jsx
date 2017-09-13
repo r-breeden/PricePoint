@@ -11,22 +11,22 @@ const ResultsEntries = (props) => {
     <Row>
       {props.results.map((el) => {
         return (
-            <Thumbnail className="results-thumb" src={`${el.imageURL}`}>
-              <Link to={`/product/${el.upc}`}>
-                <h3>{el.title}</h3>
-              </Link>
-              <p>{el.description}</p>
-              <p>
-                <Button bsStyle="primary"><Glyphicon glyph="eye-open"/> Track</Button>&nbsp;
-                <a target="_blank" href={`${el.itemURL}`}><Button bsStyle="default"> ${el.price / 100}</Button>
-                </a>
-              </p>
-            </Thumbnail>
+          <Thumbnail className="results-thumb" src={`${el.imageURL}`}>
+            <Link to={`/product/${el.upc}`}>
+              <h3>{el.title}</h3>
+            </Link>
+            <p>{el.description}</p>
+            <p>
+              <Button bsStyle="primary"><Glyphicon glyph="eye-open"/> Track</Button>&nbsp;
+              <a target="_blank" href={`${el.itemURL}`}><Button bsStyle="default"> ${el.price / 100}</Button>
+              </a>
+            </p>
+          </Thumbnail>
         );
       })}
-  </Row>
-  )
-}
+    </Row>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
