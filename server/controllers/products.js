@@ -1,5 +1,38 @@
 const models = require('../../db/models');
 
+const presentProduct = function(product) {
+  product = product.serialize({omitPivot: true});
+
+  var item = {
+    name: product.name,
+    description: product.description,
+    imageURL: product.image_url,
+    upc: product.upc,
+  };
+
+  item.vendors = {};
+
+  for (let i = 0; i < product.vendors.length; i++) {
+    let vendor = product.vendors[i];
+
+    item.vendors[vendor.name] = {
+      url: vendor.url,
+      prices: [],
+    };
+  }
+
+  for (let i = 0; i < product.prices.length; i++) {
+    let price = product.prices[i];
+
+    item.vendors[price.name].prices.push({
+      price: price.price / 100,
+      timestamp: price.created_at
+    });
+  }
+
+  return item;
+};
+
 module.exports.storeFromVendor = function(items, vendorName) {
   return models.Vendor.findOrCreate(vendorName)
     .then(({id: vendorId}) => {
@@ -18,13 +51,27 @@ var storeItem = function(item, vendorId) {
       }
     })
     .then(product => {
-      models.Price.forge({
+      return models.Price.forge({
         product_id: product.get('id'),
         vendor_id: vendorId,
         price: item.price,
-      }).save();
-
-      return product;
+      }).save()
+        .then(() => {
+          return product.fetch({
+            withRelated: [
+              { 'prices': q => q.columns([
+                'price',
+                'created_at',
+                'vendors.name'
+              ]).orderBy('created_at', 'DESC')},
+              { 'vendors': q => q.columns([
+                'product_urls.url',
+                'vendors.name'
+              ])}
+            ]
+          });
+        })
+        .then(presentProduct);
     });
 };
 
