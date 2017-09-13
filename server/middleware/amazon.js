@@ -58,7 +58,7 @@ const normalizeAmazonData = function(amazonData) {
     }
 
     if (attributes.ListPrice) {
-      item.price = parseInt(attributes.ListPrice.Amount);
+      item.price = (attributes.ListPrice.FormattedPrice);
     } else {
       console.log('no list price');
     }
@@ -74,7 +74,6 @@ const normalizeAmazonData = function(amazonData) {
 
   if (amazonData.LargeImage) {
     item.imageURL = amazonData.LargeImage.URL;
-  } else {
     console.log('No image url');
   }
 
