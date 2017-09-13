@@ -6,11 +6,13 @@ exports.up = function(knex, Promise) {
     }),
     knex.schema.alterTable('products', function(table) {
       table.string('upc', 12).unique().notNullable().alter();
+      table.string('name').alter();
       table.text('description').alter();
     }),
     knex.schema.renameTable('product_url', 'product_urls'),
     knex.schema.alterTable('product_urls', function(table) {
       table.renameColumn('vender_id', 'vendor_id');
+      table.string('url').notNullable().alter();
     }),
     knex.schema.alterTable('prices', function(table) {
       table.renameColumn('vender_id', 'vendor_id');
