@@ -1,32 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { Thumbnail, Table, Button } from 'react-bootstrap';
-import Header from './Header.jsx';
+import { Thumbnail, Button } from 'react-bootstrap';
+import ProductTable from './ProductTable.jsx';
 import { connect } from 'react-redux';
 import LineGraph from './LineGraph.jsx';
 
 const Product = (props) => {
   var productItem = [];
-
   var getProductDataFromState = () => {
     var UPC = window.location.href.slice(30);
-    //MVP
-    //After MVP this will need to change to a db call to get all data for a particular product
-    //or if no data in db, api calls to all stores
-    //this information should be stored in state as an array so that ProductTable may use it to populate the table
     props.results.forEach ( (item) => {
       if ( item.upc === UPC ) {
         productItem.push(item);
       }
     });
+
   };
   getProductDataFromState();
-
   let sendToProductPage = () => {
-    //MVP
-    //Currently this opens up the amazon page
-    //In the future this needs to be linked to the lowest priced item
     window.open(productItem[0].itemURL);
   };
 
@@ -43,48 +35,11 @@ const Product = (props) => {
         </Col>
         <Button onClick={sendToProductPage}>BUY NOW</Button>
       </Row>
-      <LineGraph product={productItem[0]}/>
-      <Row>
-        <Table responsive striped bordered hover>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th><a href='#'>Amazon</a></th>
-              <th><a href='#'>Walmart</a></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>September 10, 2017</td>
-              <td className="lower">${productItem[0].price}</td>
-              <td className="higher">$12.93</td>
-            </tr>
-            <tr>
-              <td>September 09, 2017</td>
-              <td className="lower">${productItem[0].price}</td>
-              <td className="higher">$12.93</td>
-            </tr>
-            <tr>
-              <td>September 08, 2017</td>
-              <td className="lower">${productItem[0].price}</td>
-              <td className="higher">$12.93</td>
-            </tr>
-            <tr>
-              <td>September 07, 2017</td>
-              <td className="lower">$12.99</td>
-              <td className="higher">13.99</td>
-            </tr>
-            <tr>
-              <td>September 06, 2017</td>
-              <td className="lower">$12.00</td>
-              <td className="higher">$14.99</td>
-            </tr>
-          </tbody>
-        </Table>
-      </Row>
+      <ProductTable></ProductTable>
     </div>
   );
 };
+
 
 const mapStateToProps = (state) => {
   return {

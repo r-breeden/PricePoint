@@ -24,7 +24,6 @@ class Search extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // creates an action SEARCH_AMAZON and displatching that action to the reducer
     var query = this.state.value;
     store.dispatch(actions.searchAmazon(this.state.value));
     console.log('A name was submitted: ' + this.state.value);
@@ -36,15 +35,17 @@ class Search extends React.Component {
     return (
       <Row>
         <Col md={12}>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              className="searchBar"
-              value={this.state.value}
-              onChange={this.handleChange}
-              placeholder="Search for an item"
-            />
-          </form>
+          <Form onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <FormControl
+                type="text"
+                className="searchBar"
+                value={this.state.value}
+                onChange={this.handleChange}
+                placeholder="Search for an item"
+              />
+            </FormGroup>
+          </Form>
         </Col>
       </Row>
     );

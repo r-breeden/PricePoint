@@ -9,6 +9,7 @@ router.route(['/', '/profile'])
     var state = {
       user: req.user, // get the user out of session and pass to template
       results: dummyData,
+
     };
     state.user.watchList = [
       {item: 'Nintendo Switch Gaming Console with Gray Joy-Con', lowestPrice: '$1.00'},
@@ -71,13 +72,6 @@ router.get('/auth/facebook/callback', middleware.passport.authenticate('facebook
   successRedirect: '/profile',
   failureRedirect: '/login',
   failureFlash: true
-}));
-
-router.get('/auth/twitter', middleware.passport.authenticate('twitter'));
-
-router.get('/auth/twitter/callback', middleware.passport.authenticate('twitter', {
-  successRedirect: '/profile',
-  failureRedirect: '/login'
 }));
 
 module.exports = router;

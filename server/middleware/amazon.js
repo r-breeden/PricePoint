@@ -1,6 +1,8 @@
 const config = require('config')['Amazon'];
 const amazon = require('amazon-product-api');
 
+const products = require('../controllers/products');
+
 const client = amazon.createClient(config);
 
 var flattenXml = function(object) {
@@ -19,18 +21,18 @@ var flattenXml = function(object) {
   return object;
 };
 
-const normalizeItems = function(amazonItem) {
+const normalizeAmazonData = function(amazonData) {
   var item = {};
 
-  amazonItem = flattenXml(amazonItem);
+  amazonData = flattenXml(amazonData);
 
-  if (amazonItem.ItemAttributes) {
-    var attributes = amazonItem.ItemAttributes;
+  if (amazonData.ItemAttributes) {
+    var attributes = amazonData.ItemAttributes;
 
     if (attributes.Title) {
-      item.title = attributes.Title;
+      item.name = attributes.Title;
     } else {
-      console.log('No title');
+      console.log('No name');
     }
 
     if (attributes.Feature) {
@@ -64,20 +66,22 @@ const normalizeItems = function(amazonItem) {
     console.log('No attributes');
   }
 
-  if (amazonItem.DetailPageURL) {
-    item.url = amazonItem.DetailPageURL;
+  if (amazonData.DetailPageURL) {
+    item.itemURL = amazonData.DetailPageURL;
   } else {
     console.log('No url');
   }
 
-  if (amazonItem.LargeImage) {
-    item.imageUrl = amazonItem.LargeImage.URL;
-  } else {
+  if (amazonData.LargeImage) {
+    item.imageURL = amazonData.LargeImage.URL;
     console.log('No image url');
   }
 
-  if (amazonItem.OfferSummary) {
-    item.price = amazonItem.OfferSummary.LowestNewPrice.Amount;
+  if (amazonData.OfferSummary) {
+    var lowestNewPrice = parseInt(amazonData.OfferSummary.LowestNewPrice.Amount);
+    if (lowestNewPrice < item.price || !item.price) {
+      item.price = lowestNewPrice;
+    }
   } else {
     console.log('No lowest price');
   }
@@ -89,19 +93,29 @@ var filterItems = item => !!item.upc && !!item.price;
 
 module.exports.search = function(query) {
   if (typeof query === 'string') {
-    query = {keywords: query};
+    query = {
+      keywords: query,
+      responseGroup: 'ItemAttributes,Images,Offers',
+    };
   }
 
   return client.itemSearch(query)
-    .then(results => results.map(normalizeItems).filter(filterItems));
+    .then(results => results.map(normalizeAmazonData).filter(filterItems))
+    .then(results => {
+      // Do this async for now
+      products.storeFromVendor(results, 'Amazon');
+
+      return results;
+    });
 };
 
 module.exports.lookup = function(item) {
   var query = {
     idType: 'UPC',
     itemId: item.upc,
+    responseGroup: 'ItemAttributes,Images,Offers',
   };
 
   return client.itemLookup(query)
-    .then(result => normalizeItems(result));
+    .then(normalizeAmazonData);
 };
