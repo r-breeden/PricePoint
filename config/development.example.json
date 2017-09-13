@@ -1,10 +1,21 @@
 {
+  "Amazon": {
+    "awsId": "DO NOT FILL ME IN",
+    "awsSecret": "DO NOT FILL ME IN",
+    "awsTag": "DO NOT FILL ME IN"
+  },
+  
   "knex": {
     "connection": {
       "database": "thesis_devel"
     }
   },
 
+  "Mailgun": {
+    "key": "DO NOT FILL ME IN",
+    "domain": "DO NOT FILL ME IN"
+  },
+  
   "passport": {
     "Google": {
       "clientID": "FILL_ME_IN",

@@ -1,4 +1,10 @@
 {
+  "Amazon": {
+    "awsId": "AWS_ID",
+    "awsSecret": "AWS_SECRET",
+    "awsTag": "AWS_TAG"
+  },
+
   "knex": {
     "connection": "DATABASE_URL"
   },
@@ -7,10 +13,9 @@
     "connection": "REDIS_URL"
   },
 
-  "Amazon": {
-    "awsId": "AWS_ID",
-    "awsSecret": "AWS_SECRET",
-    "awsTag": "AWS_TAG"
+  "Mailgun": {
+    "key": "DO NOT FILL ME IN",
+    "domain": "DO NOT FILL ME IN"
   },
 
   "passport": {
