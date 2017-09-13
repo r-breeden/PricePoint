@@ -9,42 +9,35 @@ exports.seed = function(knex, Promise) {
         throw vendor;
       }
 
-      return models.Vendor.forge({
-        name: 'Amazon',
-        url: 'https://www.amazon.com/'
-      }).save();
+      return Promise.all([
+        models.Vendor.forge({
+          name: 'Amazon',
+          url: 'https://www.amazon.com/'
+        }).save(),
+        models.Product.forge({
+          name: 'Test Product',
+          upc: 'abc123',
+          description: 'Test Product Please Ignore',
+        }).save(),
+      ]);
     })
-    .then(vendor => {
-      vendorId = vendor.get('id');
-
-      return models.Product.forge({
-        name: 'Test Product',
-        upc: 'abc123',
-        description: 'Test Product Please Ignore',
-      }).save();
-    })
-    .then(product => {
-      productId = product.get('id');
-
-      return models.ProductUrl.forge({
-        vendor_id: vendorId,
-        product_id: productId,
+    .spread((vendor, product) => {
+      models.ProductUrl.forge({
+        vendor_id: vendor.get('id'),
+        product_id: product.get('id'),
         url: 'https://www.amazon.com/foo'
       }).save();
-    })
-    .then(() => {
-      return models.Price.forge({
-        vendor_id: vendorId,
-        product_id: productId,
+
+      models.Price.forge({
+        vendor_id: vendor.get('id'),
+        product_id: product.get('id'),
         price: 999999,
-      }).save();
-    })
-    .then(() => {
-      return models.Price.forge({
-        vendor_id: vendorId,
-        product_id: productId,
-        price: 123456,
-      }).save();
+      }).save().delay(1)
+        .then(() => models.Price.forge({
+          vendor_id: vendor.get('id'),
+          product_id: product.get('id'),
+          price: 123456,
+        }).save());
     })
     .catch(err => {
       console.log(err);

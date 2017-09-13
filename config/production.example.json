@@ -1,4 +1,15 @@
 {
+  "Amazon": {
+    "awsId": "DO NOT FILL ME IN",
+    "awsSecret": "DO NOT FILL ME IN",
+    "awsTag": "DO NOT FILL ME IN"
+  },
+
+  "Mailgun": {
+    "key": "DO NOT FILL ME IN",
+    "domain": "DO NOT FILL ME IN"
+  },
+
   "knex": {
     "connection": {
       "database": "thesis_prod"
@@ -21,12 +32,6 @@
       "clientID": "FILL_ME_IN",
       "clientSecret": "FILL_ME_IN",
       "callbackURL": "http://FILL_ME_IN/auth/facebook/callback"
-    },
-
-    "Twitter": {
-      "consumerKey": "FILL_ME_IN",
-      "consumerSecret": "FILL_ME_IN",
-      "callbackURL": "http://FILL_ME_IN/auth/twitter/callback"
     }
   }
 }
