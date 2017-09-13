@@ -20,7 +20,7 @@ const Results = (props) => {
                 <p>{el.description}</p>
                 <p>
                   <Button bsStyle="primary"><Glyphicon glyph="eye-open"/> Track</Button>&nbsp;
-                  <a target="_blank" href={`${el.itemURL}`}><Button bsStyle="default"> {el.price}</Button>
+                  <a target="_blank" href={`${el.itemURL}`}><Button bsStyle="default"> ${el.price / 100}</Button>
                   </a>
                 </p>
               </Thumbnail>
