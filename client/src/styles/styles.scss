@@ -106,8 +106,14 @@ a:focus {
   font-size: 1.2em;
 }
 .lower {
-  color: rgba(27, 135, 27, 0.61);
+  color: #077034;
 }
 .higher {
-  color: rgba(242, 17, 17, 0.61);
+  color: #bf0c0c;
+}
+th {
+  font-size: 16px; 
+}
+td {
+  font-size: 14px;
 }
