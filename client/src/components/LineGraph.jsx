@@ -5,28 +5,6 @@ import { Thumbnail, Table, Button, ButtonToolbar } from 'react-bootstrap';
 import Header from './Header.jsx';
 import { connect } from 'react-redux';
 import {LineChart} from 'react-easy-chart';
-//
-// {
-//   "name": "Nerf N-Strike Elite Strongarm Blaster",
-//   "description": "Strongarm blaster holds 6 elite darts and fires darts up to 90 feet.\nSlam fire slide lets you rapid-fire all 6 included elite darts.\nRotating barrel flips open for easy loading.\nElite darts work with any elite blaster and most n-strike blasters (sold separately).\nBlaster colors may vary.\nIncludes blaster, 6 elite darts, and instructions.",
-//   "imageURL": "https://images-na.ssl-images-amazon.com/images/I/41S49cwqn8L.jpg",
-//   "upc": "630509260232",
-//   "vendors": {
-//     "Amazon": {
-//       "url": "https://www.amazon.com/Nerf-N-Strike-Elite-Strongarm-Blaster/dp/B00DW1JT5G?psc=1&SubscriptionId=AKIAJJEAIGPROK3CRXGA&tag=pricepoint03-20&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B00DW1JT5G",
-//       "prices": [
-//         {
-//           "price": 12.99,
-//           "timestamp": "2017-09-10T18:35:46.626Z"
-//         },
-//         {
-//           "price": 12.99,
-//           "timestamp": "2017-09-13T18:51:25.962Z"
-//         }
-//       ]
-//     }
-//   }
-// }
 
 const normalizeData = (name, vendorObj) => {
   var obj = {};
@@ -42,7 +20,6 @@ const normalizeData = (name, vendorObj) => {
   console.log();
   return obj;
 };
-
 
 class LineGraph extends React.Component {
   constructor(props) {
