@@ -51,12 +51,6 @@ const normalizeAmazonData = function(amazonData) {
       console.log('No upc');
     }
 
-    if (attributes.Brand) {
-      item.brand = attributes.Brand;
-    } else {
-      console.log('No brand');
-    }
-
     if (attributes.ListPrice) {
       item.price = parseInt(attributes.ListPrice.Amount);
     } else {

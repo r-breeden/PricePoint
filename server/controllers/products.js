@@ -1,4 +1,5 @@
 const models = require('../../db/models');
+const Promise = require('bluebird');
 
 const presentProduct = function(product) {
   product = product.serialize({omitPivot: true});
@@ -36,7 +37,7 @@ const presentProduct = function(product) {
 module.exports.storeFromVendor = function(items, vendorName) {
   return models.Vendor.findOrCreate(vendorName)
     .then(({id: vendorId}) => {
-      return Promise.all(items.map(item => storeItem(item, vendorId)));
+      return Promise.map(items, item => storeItem(item, vendorId));
     })
     .catch(err => console.log(err.message));
 };
