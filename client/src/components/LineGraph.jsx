@@ -17,7 +17,6 @@ const normalizeData = (name, vendorObj) => {
     dataPoint.y = vendorObj.prices[i].price;
     obj.data.push(dataPoint);
   }
-  console.log();
   return obj;
 };
 
@@ -66,7 +65,6 @@ class LineGraph extends React.Component {
       var obj = normalizeData(vendor, this.state.vendors[vendor]);
       obj.color = this.colors.pop();
       this.vendors.push(obj);
-      console.log(obj);
     }
     this.displayButtons = this.vendors.map( vendor => {
       return <Button
@@ -74,20 +72,16 @@ class LineGraph extends React.Component {
           backgroundColor: vendor.color, color: 'white'}}
         href={vendor.url}>
         {vendor.name}</Button>;
-
     });
-
   }
 
   mouseOverHandler(coordinates, e) {
-    console.log('show prices');
     this.setState({
       showPricesAt: true
     });
   }
 
   mouseOutHandler(e) {
-    console.log('remove them');
     this.setState({
       showPricesAt: false
     });
