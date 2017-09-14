@@ -26,7 +26,7 @@ const presentProduct = function(product) {
     let price = product.prices[i];
 
     item.vendors[price.name].prices.push({
-      price: price.price / 100,
+      price: price.price,
       timestamp: price.created_at
     });
   }
