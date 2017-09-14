@@ -15,32 +15,32 @@ let confirmationEmail = (username, userEmailAddress) => {
 //   username: ,
 //   userProfileURL: ,
 //   userEmail: ,
-//   productName: , 
-//   productURL: 
+//   productName: ,
+//   productURL:
 // };
 let priceReducedNotification = (info) => {
   //grab html template for price reduction email
   fs.readFile('./priceReducedEmailTemplate.html', 'utf-8', (err, htmlTemplate) => {
     if (err) { throw err; }
-    
-    //insert user data into email template 
+
+    //insert user data into email template
     htmlTemplate = htmlTemplate.replace('INSERT_USERNAME', info.username);
     htmlTemplate = htmlTemplate.replace('INSERT_PRODUCT_NAME', info.productName);
     htmlTemplate = htmlTemplate.replace('INSERT_PRODUCT_URL', info.productURL);
     htmlTemplate = htmlTemplate.replace('INSERT_USER_PROFILE_URL', info.userProfileURL);
     console.log(htmlTemplate);
-    
+
     //construction mailgun data obj
     let data = {
       from: 'Price Point <postmaster@sandbox72d67ff5bb6b4581aaab66a3aea35ef0.mailgun.org>',
-      to:`${info.userEmail}`,
+      to: `${info.userEmail}`,
       subject: `Recent price reduction: ${info.productName}`,
       html: htmlTemplate
-    }
+    };
 
     // //send the email
     mailgun.messages().send(data, function (error, response) {
-      if ( error ) { 
+      if ( error ) {
         console.log( 'mailgun error: email failure. ');
         console.log( error );
       }
@@ -48,5 +48,3 @@ let priceReducedNotification = (info) => {
     });
   });
 };
-
-

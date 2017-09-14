@@ -4,6 +4,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import { Thumbnail, Button } from 'react-bootstrap';
 import ProductTable from './ProductTable.jsx';
 import { connect } from 'react-redux';
+import LineGraph from './LineGraph.jsx';
 
 const Product = (props) => {
   var productItem = [];
@@ -34,6 +35,7 @@ const Product = (props) => {
         </Col>
         <Button onClick={sendToProductPage}>BUY NOW</Button>
       </Row>
+      <LineGraph />
       <ProductTable></ProductTable>
     </div>
   );
