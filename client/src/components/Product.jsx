@@ -35,6 +35,7 @@ const Product = (props) => {
         </Col>
         <Button onClick={sendToProductPage}>BUY NOW</Button>
       </Row>
+      <LineGraph />
       <ProductTable></ProductTable>
     </div>
   );

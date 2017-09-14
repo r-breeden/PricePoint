@@ -28,6 +28,21 @@ import {LineChart} from 'react-easy-chart';
 //   }
 // }
 
+const normalizeData = (name, vendorObj) => {
+  var obj = {};
+  obj.name = name;
+  obj.url = vendorObj.url;
+  obj.data = [];
+  for (var i = 0; i < vendorObj.prices.length; i++) {
+    let dataPoint = {};
+    dataPoint.x = vendorObj.prices[i].timestamp.slice(0, 19);
+    dataPoint.y = vendorObj.prices[i].price;
+    obj.data.push(dataPoint);
+  }
+  console.log();
+  return obj;
+};
+
 
 class LineGraph extends React.Component {
   constructor(props) {
@@ -35,74 +50,56 @@ class LineGraph extends React.Component {
     this.state = {
       showPricesAt: false,
       vendors: {
-        "Amazon": {
-          "url": "https://www.amazon.com/Nerf-N-Strike-Elite-Strongarm-Blaster/dp/B00DW1JT5G?psc=1&SubscriptionId=AKIAJJEAIGPROK3CRXGA&tag=pricepoint03-20&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B00DW1JT5G",
-          "prices": [
+        Amazon: {
+          url: "https://www.amazon.com/Nerf-N-Strike-Elite-Strongarm-Blaster/dp/B00DW1JT5G?psc=1&SubscriptionId=AKIAJJEAIGPROK3CRXGA&tag=pricepoint03-20&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B00DW1JT5G",
+          prices: [
             {
-              "price": 12.99,
-              "timestamp": "2017-09-10T18:35:46.626Z"
+              price: 12.99,
+              timestamp: "2017-09-05T18:35:46.626Z"
             },
             {
-              "price": 12.99,
-              "timestamp": "2017-09-13T18:51:25.962Z"
+              price: 11.99,
+              timestamp: "2017-09-08T18:35:46.626Z"
+            },
+            {
+              price: 10.99,
+              timestamp: "2017-09-10T18:35:46.626Z"
+            },
+            {
+              price: 15.99,
+              timestamp: "2017-09-11T18:35:46.626Z"
+            },
+            {
+              price: 19.99,
+              timestamp: "2017-09-13T18:35:46.626Z"
+            },
+            {
+              price: 13.99,
+              timestamp: "2017-09-16T18:51:25.962Z"
             }
           ]
         }
       }
-      // [
-      //         {
-      //           name: 'Amazon',
-      //           color: 'black',
-      //           logoUrl: 'https://vignette.wikia.nocookie.net/logopedia/images/1/19/Amazon-logo-png-transparent-white.png/revision/latest?cb=20140523171103',
-      //           productUrl: 'https://www.amazon.com/Kodak-Tri-x400-135-36-Black-White/dp/B004UT0T5S?SubscriptionId=AKIAJJEAIGPROK3CRXGA&tag=pricepoint03-20&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B004UT0T5S',
-      //           data: [
-      //               { x: '1-Jan-15', y: 20 },
-      //               { x: '1-Feb-15', y: 10 },
-      //               { x: '1-Mar-15', y: 33 },
-      //               { x: '1-Apr-15', y: 45 },
-      //               { x: '1-May-15', y: 15 }
-      //           ]
-      //         },
-      //         {
-      //           name: 'Walmart',
-      //           color: 'blue',
-      //           data: [
-      //             { x: '1-Jan-15', y: 10 },
-      //             { x: '1-Feb-15', y: 15 },
-      //             { x: '1-Mar-15', y: 13 },
-      //             { x: '1-Apr-15', y: 15 },
-      //             { x: '1-May-15', y: 10 }
-      //           ]
-      //         },
-      //         {
-      //           name: 'NewEgg',
-      //           color: 'red',
-      //           data: [
-      //             { x: '1-Jan-15', y: 15.99 },
-      //             { x: '1-Feb-15', y: 21.99 },
-      //             { x: '1-Mar-15', y: 50.00 },
-      //             { x: '1-Apr-15', y: 61.93 },
-      //             { x: '1-May-15', y: 8.76 }
-      //           ]
-      //         },
-      //         {
-      //           name: 'BestBuy',
-      //           color: 'yellow',
-      //           data: [
-      //             { x: '1-Jan-15', y: 9.99 },
-      //             { x: '1-Feb-15', y: 13.99 },
-      //             { x: '1-Mar-15', y: 11.11 },
-      //             { x: '1-Apr-15', y: 41.23 },
-      //             { x: '1-May-15', y: 8.76 }
-      //           ]
-      //         }
-      //       ]
     };
     this.mouseOverHandler = this.mouseOverHandler.bind(this);
     this.mouseOutHandler = this.mouseOutHandler.bind(this);
-    this.displayButtons = this.state.vendors.map(vendor => {
-      return <Button style={{backgroundSize: '100%', width: 72, backgroundImage: `url(${vendor.logoUrl})`, backgroundColor: vendor.color, color: 'white'}}></Button>;
+    this.vendors = [];
+    this.colors = ['blue', 'red', 'yellow', 'black'];
+    for(let vendor in this.state.vendors) {
+      var obj = normalizeData(vendor, this.state.vendors[vendor]);
+      obj.color = this.colors.pop();
+      this.vendors.push(obj);
+      console.log(obj);
+    }
+    this.displayButtons = this.vendors.map( vendor => {
+      return <Button
+        style={{backgroundSize: '100%', width: 72,
+          backgroundColor: vendor.color, color: 'white'}}
+        href={vendor.url}>
+        {vendor.name}</Button>;
+
     });
+
   }
 
   mouseOverHandler(coordinates, e) {
@@ -127,21 +124,23 @@ class LineGraph extends React.Component {
             {this.displayButtons}
           </ButtonToolbar>
         </div>
+
         <LineChart
           xType={'time'}
           axes
           axisLabels={{x: 'Date', y: 'Price' }}
           grid
+          datePattern={'%Y-%m-%dT%H:%M:%S'}
           verticalGrid
           mouseOverHandler={this.mouseOverHanderler}
           mouseOutHandler={this.mouseOutHandler}
           interpolate={'cardinal'}
-          lineColors={this.state.vendors.map(vendor => {
+          lineColors={this.vendors.map(vendor => {
             return vendor.color;
           })}
           width={750}
           height={250}
-          data={this.state.vendors.map(vendor => {
+          data={this.vendors.map(vendor => {
             return vendor.data;
           })}
         />
