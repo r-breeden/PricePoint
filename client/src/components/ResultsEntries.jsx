@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Row } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { Thumbnail, Button, Glyphicon } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../styles/main.scss';
 
-const ResultsEntries = (props) => {
-  return (
-    <Row>
-      {props.results.map((el) => {
-        return (
+const ResultsEntries = (props) => (
+  <Row>
+    {props.results.map((el) => {
+      return (
+        <Col xs={12} md={6} lg={4}>
           <Thumbnail className="results-thumb" src={`${el.imageURL}`}>
             <Link to={`/product/${el.upc}`}>
               <h3>{el.title}</h3>
@@ -22,11 +22,11 @@ const ResultsEntries = (props) => {
               </a>
             </p>
           </Thumbnail>
-        );
-      })}
-    </Row>
-  );
-};
+        </Col>
+      );
+    })}
+  </Row>
+);
 
 const mapStateToProps = (state) => {
   return {
