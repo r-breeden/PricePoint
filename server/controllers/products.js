@@ -63,25 +63,13 @@ var storeItem = function(item, vendorId) {
       }
     })
     .then(product => {
-      return Promise.all([
-        product.save('last_updated', new Date()),
-        models.Price.forge({
-          product_id: product.get('id'),
-          vendor_id: vendorId,
-          price: item.price,
-        }).save()
-      ]);
-    })
-    .spread(product => {
-      return product.fetch({
-        withRelated: [
-          { 'prices': q => q.orderBy('created_at', 'DESC') },
-          'prices.vendor',
-          'product_urls.vendor'
-        ]
-      });
-    })
-    .then(presentProduct);
+      return models.Price.forge({
+        product_id: product.get('id'),
+        vendor_id: vendorId,
+        price: item.price,
+      }).save()
+        .then(() => product.save('last_updated', new Date()));
+    });
 };
 
 var createProduct = function(item, vendorId) {

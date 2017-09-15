@@ -26,17 +26,13 @@ const normalizeAmazonData = function(amazonData) {
 
   amazonData = flattenXml(amazonData);
 
-  if (Array.isArray(amazonData)) {
-    amazonData = amazonData[0];
-  }
-
   if (amazonData.ItemAttributes) {
     var attributes = amazonData.ItemAttributes;
 
     if (attributes.Title) {
       item.name = attributes.Title;
     } else {
-      console.log('No name');
+      // console.log('No name!');
     }
 
     if (attributes.Feature) {
@@ -46,34 +42,34 @@ const normalizeAmazonData = function(amazonData) {
         item.description = attributes.Feature;
       }
     } else {
-      console.log('No description');
+      // console.log(`${item.name} has no description`);
     }
 
     if (attributes.UPC) {
       item.upc = attributes.UPC;
     } else {
-      console.log('No upc');
+      // console.log(`${item.name} has no upc`);
     }
 
     if (attributes.ListPrice) {
       item.price = parseInt(attributes.ListPrice.Amount);
     } else {
-      console.log('no list price');
+      // console.log(`${item.name} has no list price`);
     }
   } else {
-    console.log('No attributes');
+    // console.log('No attributes!');
   }
 
   if (amazonData.DetailPageURL) {
     item.itemURL = amazonData.DetailPageURL;
   } else {
-    console.log('No url');
+    // console.log(`${item.name} has no url`);
   }
 
   if (amazonData.LargeImage) {
     item.imageURL = amazonData.LargeImage.URL;
   } else {
-    console.log('No image url');
+    // console.log(`${item.name} has no image url`);
   }
 
   return item;

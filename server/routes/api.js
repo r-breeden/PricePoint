@@ -14,11 +14,12 @@ router.route('/')
 router.route('/search')
   .get((req, res) => {
     return amazon.search(req.query.q)
+      .then(products => Promise.all(products.map(product => product.serializeWithPrices())))
       .then(results => {
         res.send({results});
       })
       .catch(err => {
-        console.log(err.Error);
+        console.log(err.message);
         res.sendStatus(503);
       });
   });
