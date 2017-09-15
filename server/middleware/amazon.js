@@ -26,6 +26,10 @@ const normalizeAmazonData = function(amazonData) {
 
   amazonData = flattenXml(amazonData);
 
+  if (Array.isArray(amazonData)) {
+    amazonData = amazonData[0];
+  }
+
   if (amazonData.ItemAttributes) {
     var attributes = amazonData.ItemAttributes;
 
