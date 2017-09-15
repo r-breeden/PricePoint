@@ -125,7 +125,7 @@ passport.use('facebook', new FacebookStrategy({
   clientID: config.Facebook.clientID,
   clientSecret: config.Facebook.clientSecret,
   callbackURL: config.Facebook.callbackURL,
-  profileFields: ['id', 'emails', 'name']
+  profileFields: ['id', 'emails', 'name', 'photos']
 },
 (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('facebook', profile, done))
 );
@@ -135,11 +135,9 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
     withRelated: ['profile']
   })
     .then(oauthAccount => {
-
       if (oauthAccount) {
         throw oauthAccount;
       }
-
       if (!oauthProfile.emails || !oauthProfile.emails.length) {
         // FB users can register with a phone number, which is not exposed by Passport
         throw null;
@@ -153,8 +151,8 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
         display: oauthProfile.displayName || `${oauthProfile.name.givenName} ${oauthProfile.name.familyName}`,
         email: oauthProfile.emails[0].value,
       };
-      if (oauthProfile.photos[0] !== undefined) {
-        profileInfo[profile_path] = oauthProfile.photos[0]; 
+      if (oauthProfile.photos !== undefined) {
+        profileInfo.profile_path = oauthProfile.photos[0].value;
       }
       if (profile) {
         //update profile with info from oauth
