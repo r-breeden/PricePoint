@@ -13,7 +13,7 @@ const updateLeastRecent = function() {
 };
 
 const presentProduct = function(product) {
-  product = product.serialize({omitPivot: true});
+  product = product.serialize();
 
   var item = {
     name: product.name,
@@ -24,11 +24,11 @@ const presentProduct = function(product) {
 
   item.vendors = {};
 
-  for (let i = 0; i < product.vendors.length; i++) {
-    let vendor = product.vendors[i];
+  for (let i = 0; i < product.product_urls.length; i++) {
+    let product_url = product.product_urls[i];
 
-    item.vendors[vendor.name] = {
-      url: vendor.url,
+    item.vendors[product_url.vendor.name] = {
+      url: product_url.url,
       prices: [],
     };
   }
@@ -36,7 +36,7 @@ const presentProduct = function(product) {
   for (let i = 0; i < product.prices.length; i++) {
     let price = product.prices[i];
 
-    item.vendors[price.name].prices.push({
+    item.vendors[price.vendor.name].prices.push({
       price: price.price,
       timestamp: price.created_at
     });
@@ -75,15 +75,9 @@ var storeItem = function(item, vendorId) {
     .spread(product => {
       return product.fetch({
         withRelated: [
-          { 'prices': q => q.columns([
-            'price',
-            'created_at',
-            'vendors.name'
-          ]).orderBy('created_at', 'DESC')},
-          { 'vendors': q => q.columns([
-            'product_urls.url',
-            'vendors.name'
-          ])}
+          { 'prices': q => q.orderBy('created_at', 'DESC') },
+          'prices.vendor',
+          'product_urls.vendor'
         ]
       });
     })
