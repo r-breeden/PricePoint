@@ -7,50 +7,23 @@ const updateLeastRecent = function() {
   models.Product.forge().query(q => q.limit(5).orderBy('last_updated'))
     .fetchAll()
     .then(products => products.serialize())
-    .map(item => amazon.lookup(item))
-    .then(results => module.exports.storeFromVendor(results, 'Amazon'))
-    .catch(err => console.log(err.message));
-};
-
-const presentProduct = function(product) {
-  product = product.serialize();
-
-  var item = {
-    name: product.name,
-    description: product.description,
-    imageURL: product.image_url,
-    upc: product.upc,
-  };
-
-  item.vendors = {};
-
-  for (let i = 0; i < product.product_urls.length; i++) {
-    let product_url = product.product_urls[i];
-
-    item.vendors[product_url.vendor.name] = {
-      url: product_url.url,
-      prices: [],
-    };
-  }
-
-  for (let i = 0; i < product.prices.length; i++) {
-    let price = product.prices[i];
-
-    item.vendors[price.vendor.name].prices.push({
-      price: price.price,
-      timestamp: price.created_at
+    .then(products => {
+      return amazon.lookup(products.map(product => product.upc).join(','));
+    })
+    .then(results => storeFromVendor(results, 'Amazon'))
+    .catch(err => {
+      console.log(err.message);
     });
-  }
-
-  return item;
 };
 
-module.exports.storeFromVendor = function(items, vendorName) {
+const storeFromVendor = function(items, vendorName) {
   return models.Vendor.findOrCreate(vendorName)
     .then(({id: vendorId}) => {
       return Promise.map(items, item => storeItem(item, vendorId));
     })
-    .catch(err => console.log(err.message));
+    .catch(err => {
+      console.log(err.message);
+    });
 };
 
 var storeItem = function(item, vendorId) {
@@ -90,3 +63,7 @@ var createProduct = function(item, vendorId) {
     });
 };
 
+module.exports = {
+  updateLeastRecent,
+  storeFromVendor,
+};

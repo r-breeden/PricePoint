@@ -92,13 +92,13 @@ module.exports.search = function(query) {
     });
 };
 
-module.exports.lookup = function(item) {
+module.exports.lookup = function(upcCodes) {
   var query = {
     idType: 'UPC',
-    itemId: item.upc,
+    itemId: upcCodes,
     responseGroup: 'ItemAttributes,Images',
   };
 
   return client.itemLookup(query)
-    .then(normalizeAmazonData);
+    .then(results => results.map(normalizeAmazonData).filter(filterItems));
 };
