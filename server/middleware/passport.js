@@ -147,14 +147,15 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
       return models.Profile.where({ email: oauthProfile.emails[0].value }).fetch();
     })
     .then(profile => {
-
       let profileInfo = {
         first: oauthProfile.name.givenName,
         last: oauthProfile.name.familyName,
         display: oauthProfile.displayName || `${oauthProfile.name.givenName} ${oauthProfile.name.familyName}`,
-        email: oauthProfile.emails[0].value
+        email: oauthProfile.emails[0].value,
       };
-
+      if (oauthProfile.photos[0] !== undefined) {
+        profileInfo[profile_path] = oauthProfile.photos[0]; 
+      }
       if (profile) {
         //update profile with info from oauth
         return profile.save(profileInfo, { method: 'update' });
