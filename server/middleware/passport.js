@@ -150,10 +150,8 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
         last: oauthProfile.name.familyName,
         display: oauthProfile.displayName || `${oauthProfile.name.givenName} ${oauthProfile.name.familyName}`,
         email: oauthProfile.emails[0].value,
+        photo_path: oauthProfile.photos[0].value
       };
-      if (oauthProfile.photos !== undefined) {
-        profileInfo.profile_path = oauthProfile.photos[0].value;
-      }
       if (profile) {
         //update profile with info from oauth
         return profile.save(profileInfo, { method: 'update' });
