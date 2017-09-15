@@ -8,8 +8,11 @@ const Product = db.Model.extend({
   },
 
   prices: function() {
-    return this.belongsToMany('Vendor')
-      .through('Price');
+    return this.hasMany('Price');
+  },
+
+  product_urls: function() {
+    return this.hasMany('ProductUrl');
   },
 
   vendors: function() {

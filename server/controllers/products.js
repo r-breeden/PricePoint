@@ -7,15 +7,9 @@ const updateLeastRecent = function() {
   models.Product.forge().query(q => q.limit(5).orderBy('last_updated'))
     .fetchAll()
     .then(products => products.serialize())
-    .map(item => {
-      return amazon.lookup(item);
-    })
-    .then(results => {
-      return module.exports.storeFromVendor(results, 'Amazon');
-    })
-    .catch(err => {
-      console.log(err.message);
-    });
+    .map(item => amazon.lookup(item))
+    .then(results => module.exports.storeFromVendor(results, 'Amazon'))
+    .catch(err => console.log(err.message));
 };
 
 const presentProduct = function(product) {
