@@ -52,8 +52,9 @@ router.route('/signup')
 
 router.route('/logout')
   .get((req, res) => {
-    req.logout();
-    res.redirect('/');
+    req.session.destroy(err => {
+      res.redirect('/');
+    });
   });
 
 router.get('/auth/google', middleware.passport.authenticate('google', {
