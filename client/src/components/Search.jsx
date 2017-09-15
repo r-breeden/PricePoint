@@ -7,41 +7,24 @@ import '../styles/main.scss';
 import actions from '../store/actions/searchActions.js';
 import store from '../store';
 
-class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: ''
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-    console.log(this.state.value);
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    var query = this.state.value;
-    store.dispatch(actions.searchAmazon(this.state.value));
-    console.log('A name was submitted: ' + this.state.value);
-  }
-  submit(values) {
-    console.log('we worked!');
-  }
-  render() {
+const Search = () => {
+  let input;
     return (
       <Row>
         <Col md={12}>
-          <Form onSubmit={this.handleSubmit}>
+          <Form
+            onSubmit={e => {
+              e.preventDefault();
+              store.dispatch(actions.searchAmazon(input.value));
+            }}
+          >
             <FormGroup>
               <FormControl
                 type="text"
                 className="searchBar"
-                value={this.state.value}
-                onChange={this.handleChange}
+                inputRef={ ref => {
+                  input = ref;
+                }}
                 placeholder="Search for an item"
               />
             </FormGroup>
@@ -49,7 +32,6 @@ class Search extends React.Component {
         </Col>
       </Row>
     );
-  }
 }
 
 export default Search;
