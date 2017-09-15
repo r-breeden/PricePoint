@@ -19,6 +19,57 @@ const Product = db.Model.extend({
     return this.belongsToMany('Vendor')
       .through('ProductUrl');
   },
+
+  serializeWithPrices: function() {
+    return this.fetch({
+      withRelated: [
+        { 'prices': q => q.orderBy('created_at', 'DESC') },
+        'prices.vendor',
+        'product_urls.vendor'
+      ]
+    })
+      .then(product => {
+        if (!product) {
+          throw new Error(`${this.get('name')} failed to get related items!`);
+        }
+
+        return product.serialize();
+      })
+      .then(product => {
+        var item = {
+          name: product.name,
+          description: product.description,
+          imageURL: product.image_url,
+          upc: product.upc,
+        };
+
+        item.vendors = {};
+
+        for (let i = 0; i < product.product_urls.length; i++) {
+          let product_url = product.product_urls[i];
+
+          item.vendors[product_url.vendor.name] = {
+            url: product_url.url,
+            prices: [],
+          };
+        }
+
+        for (let i = 0; i < product.prices.length; i++) {
+          let price = product.prices[i];
+
+          item.vendors[price.vendor.name].prices.push({
+            price: price.price,
+            timestamp: price.created_at
+          });
+        }
+
+        return item;
+      })
+      .catch(err => {
+        console.log(err.message);
+        return this.serialize();
+      });
+  }
 });
 
 module.exports = db.model('Product', Product);
