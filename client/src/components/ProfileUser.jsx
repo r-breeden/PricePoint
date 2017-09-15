@@ -7,17 +7,10 @@ import { connect } from 'react-redux';
 import '../styles/main.scss';
 
 const ProfileUser = (props) => {
-  const noavatar = (
-    <Thumbnail className="profileavi" href="#" alt="171x180" src="http://www.wilwia.com/images/default-user.png" />
-  );
-  const avatar = (
-    <Thumbnail className="profileavi" href="#" alt="171x180" src={`${props.user.userphoto}`} />
-  );
-
   return (
     <Row>
       <Col xs={6} md={3}>
-        {props.user.userphoto === undefined ? noavatar : avatar}
+        <Thumbnail className="profileavi" href="#" alt="171x180" src={`${props.user.photo_path}`} />
       </Col>
       <Col xs={6} md={9}>
         <h2>{props.user.email}</h2>
