@@ -1,5 +1,22 @@
-const models = require('../../db/models');
 const Promise = require('bluebird');
+const models = require('../../db/models');
+
+const amazon = require('../middleware/amazon');
+
+const updateLeastRecent = function() {
+  models.Product.forge().query(q => q.limit(5).orderBy('last_updated'))
+    .fetchAll()
+    .then(products => products.serialize())
+    .map(item => {
+      return amazon.lookup(item);
+    })
+    .then(results => {
+      return module.exports.storeFromVendor(results, 'Amazon');
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+};
 
 const presentProduct = function(product) {
   product = product.serialize({omitPivot: true});
@@ -52,28 +69,31 @@ var storeItem = function(item, vendorId) {
       }
     })
     .then(product => {
-      return models.Price.forge({
-        product_id: product.get('id'),
-        vendor_id: vendorId,
-        price: item.price,
-      }).save()
-        .then(() => {
-          return product.fetch({
-            withRelated: [
-              { 'prices': q => q.columns([
-                'price',
-                'created_at',
-                'vendors.name'
-              ]).orderBy('created_at', 'DESC')},
-              { 'vendors': q => q.columns([
-                'product_urls.url',
-                'vendors.name'
-              ])}
-            ]
-          });
-        })
-        .then(presentProduct);
-    });
+      return Promise.all([
+        product.save('last_updated', new Date()),
+        models.Price.forge({
+          product_id: product.get('id'),
+          vendor_id: vendorId,
+          price: item.price,
+        }).save()
+      ]);
+    })
+    .spread(product => {
+      return product.fetch({
+        withRelated: [
+          { 'prices': q => q.columns([
+            'price',
+            'created_at',
+            'vendors.name'
+          ]).orderBy('created_at', 'DESC')},
+          { 'vendors': q => q.columns([
+            'product_urls.url',
+            'vendors.name'
+          ])}
+        ]
+      });
+    })
+    .then(presentProduct);
 };
 
 var createProduct = function(item, vendorId) {
