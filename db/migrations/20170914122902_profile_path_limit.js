@@ -3,3 +3,6 @@ exports.up = function(knex, Promise) {
     table.string('photo_path').alter();
   });
 };
+
+exports.down = function(knex, Promise) {
+};
