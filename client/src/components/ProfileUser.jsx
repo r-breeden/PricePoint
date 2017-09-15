@@ -23,7 +23,6 @@ const ProfileUser = (props) => {
 const mapStateToProps = (state) => {
   return {
     'user': state.user,
-    'table': state.table,
   };
 };
 
