@@ -2,6 +2,7 @@ const express = require('express');
 const middleware = require('../middleware');
 const dummyData = require('../../db/seeds/data/2017-09-04_amazon_data.json');
 const models = require('../../db/models');
+const Promise = require('bluebird');
 const router = express.Router();
 
 router.route(['/', '/profile'])
@@ -11,7 +12,18 @@ router.route(['/', '/profile'])
         qb.orderBy('id', 'desc').limit(10);
       }).fetchAll()
       .then(res => {
-        return res.serialize();
+        //map through res & serializeWithPrices()
+        var result = [];
+        res.serialize().map(el => {
+          result.push({
+            id: el.id,
+            title: el.name,
+            upc: el.upc,
+            description: el.description,
+            imageURL: el.image_url
+          });
+        });
+        return result;
       })
       .then(results => {
         var state = {
@@ -21,11 +33,7 @@ router.route(['/', '/profile'])
         };
         res.render('index.ejs', { state });
       });
-
-
   });
-
-
 
 router.route('/login')
   .get((req, res) => {
