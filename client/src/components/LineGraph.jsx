@@ -99,7 +99,7 @@ class LineGraph extends React.Component {
     this.vendors = [];
     this.colors = ['blue', 'red', 'yellow', 'black'];
     this.onDateChange = this.onDateChange.bind(this);
-    for(let vendor in this.state.vendors) {
+    for (let vendor in this.state.vendors) {
       var obj = normalizeData(vendor, this.state.vendors[vendor]);
       obj.color = this.colors.pop();
       this.vendors.push(obj);
@@ -133,7 +133,7 @@ class LineGraph extends React.Component {
         <LineChart
           xType={'time'}
           axes
-          xDomainRange={[this.state.dateRange,'2017-09-16T18:51:25']}
+          xDomainRange={[this.state.dateRange, this.state.today]}
           axisLabels={{x: 'Date', y: 'Price' }}
           grid
           datePattern={'%Y-%m-%dT%H:%M:%S'}
