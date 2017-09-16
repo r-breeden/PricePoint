@@ -21,6 +21,22 @@ const normalizeData = (name, vendorObj) => {
   return obj;
 };
 
+const setDateRange = (range) => {
+  var today = new Date;
+  let currentMonth = today.getMonth();
+  let currentYear = today.getYear();
+  var modifiedDate = today;
+  switch (range) {
+  case '30 Days':
+    modifiedDate = currentMonth > 0 ? today.setMonth(currentMonth - 1) : today.setFullYear(currentYear - 1, 11);
+    break;
+  default:
+    modifiedDate = today;
+
+  }
+  return modifiedDate.toString().slice(0, 19);
+};
+
 class LineGraph extends React.Component {
   constructor(props) {
     super(props);
@@ -60,6 +76,7 @@ class LineGraph extends React.Component {
     };
     this.vendors = [];
     this.colors = ['blue', 'red', 'yellow', 'black'];
+    this.onDateChange = this.onDateChange.bind(this);
     for(let vendor in this.state.vendors) {
       var obj = normalizeData(vendor, this.state.vendors[vendor]);
       obj.color = this.colors.pop();
@@ -74,8 +91,8 @@ class LineGraph extends React.Component {
     });
   }
 
-  onDateChange(newDate) {
-    console.log(newDate);
+  onDateChange(e) {
+    console.log(e);
     this.setState({
       dateRange: newDate
     });

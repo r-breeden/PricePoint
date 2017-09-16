@@ -29,7 +29,7 @@ const Product = (props) => {
           <Thumbnail className="productImage" href="#" src={productItem[0].imageURL} />
         </Col>
         <Col xs={6} md={9}>
-          <h2 className="title">{productItem[0].name}</h2>
+          <h2 className="title">{productItem[0].title}</h2>
           <b className="descriptionTitle">DESCRIPTION: </b>
           <b className="description">{productItem[0].description}</b>
         </Col>
