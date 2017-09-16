@@ -13,6 +13,5 @@ new CronJob({
 
 db.knex.migrate.latest()
   .then(() => app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}!`);
+    console.log(`Listening on port ${PORT}!`);
   }));
-
