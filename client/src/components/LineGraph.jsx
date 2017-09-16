@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Grid, Row, Col } from 'react-bootstrap';
-import { Thumbnail, Table, Button, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Button, ButtonGroup } from 'react-bootstrap';
 import Header from './Header.jsx';
 import { connect } from 'react-redux';
 import {LineChart} from 'react-easy-chart';
@@ -136,7 +135,7 @@ class LineGraph extends React.Component {
           axisLabels={{x: 'Date', y: 'Price' }}
           grid
           datePattern={'%Y-%m-%dT%H:%M:%S'}
-          verticalGrid
+          vertical
           interpolate={'cardinal'}
           lineColors={this.vendors.map(vendor => {
             return vendor.color;
