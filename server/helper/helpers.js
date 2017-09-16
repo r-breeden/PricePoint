@@ -13,8 +13,8 @@ var ignoreTypeError = function (cb) {
 var normalizeAmazon = function (obj) {
   var normalized = {};
 
-  normalized.title = '';
-  ignoreTypeError( () => { normalized.title = obj.ItemAttributes[0].Title[0]; } );
+  normalized.name = '';
+  ignoreTypeError( () => { normalized.name = obj.ItemAttributes[0].Title[0]; } );
 
   normalized.itemURL = '';
   ignoreTypeError( () => { normalized.itemURL = obj.DetailPageURL[0]; });
