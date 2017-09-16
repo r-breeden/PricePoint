@@ -119,7 +119,6 @@ class LineGraph extends React.Component {
     });
   }
 
-
   render() {
     return (
       <div>
