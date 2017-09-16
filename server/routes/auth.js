@@ -17,7 +17,7 @@ router.route(['/', '/profile'])
         res.serialize().map(el => {
           result.push({
             id: el.id,
-            title: el.name,
+            name: el.name,
             upc: el.upc,
             description: el.description,
             imageURL: el.image_url
