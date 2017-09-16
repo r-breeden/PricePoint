@@ -10,20 +10,12 @@ router.route(['/', '/profile'])
     models.Product.forge()
       .query(qb => {
         qb.orderBy('id', 'desc').limit(10);
-      }).fetchAll()
-      .then(res => {
-        //map through res & serializeWithPrices()
-        var result = [];
-        res.serialize().map(el => {
-          result.push({
-            id: el.id,
-            title: el.name,
-            upc: el.upc,
-            description: el.description,
-            imageURL: el.image_url
-          });
-        });
-        return result;
+      }).fetchAll({
+        withRelated: [
+          { 'prices': q => q.orderBy('created_at', 'DESC') },
+          'prices.vendor',
+          'product_urls.vendor'
+        ]
       })
       .then(results => {
         var state = {
