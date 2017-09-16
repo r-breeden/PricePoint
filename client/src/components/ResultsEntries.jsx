@@ -13,7 +13,7 @@ const ResultsEntries = (props) => (
         <Col xs={12} md={6} lg={4}>
           <Thumbnail className="results-thumb" src={`${el.imageURL}`}>
             <Link to={`/product/${el.upc}`}>
-              <h3>{el.title}</h3>
+              <h3>{el.name}</h3>
             </Link>
             <p>{el.description}</p>
             <p>
