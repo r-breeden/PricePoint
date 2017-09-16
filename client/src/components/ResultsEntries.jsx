@@ -11,7 +11,7 @@ const ResultsEntries = (props) => (
   <Row>
     {props.results.map((el) => {
       var description = el.description;
-      if (description.length > 650) {
+      if (description.length > 390) {
         description = description.slice(0, 390) + '...';
       }
 
