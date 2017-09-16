@@ -61,5 +61,4 @@ describe('Profile model tests', function () {
         expect(result).toBeNull();
       });
   });
-
 });

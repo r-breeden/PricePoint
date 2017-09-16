@@ -3,10 +3,6 @@ const db = require('../');
 const Product = db.Model.extend({
   tableName: 'products',
 
-  followers: function() {
-    return this.belongsToMany('Profile');
-  },
-
   prices: function() {
     return this.hasMany('Price');
   },
@@ -31,21 +27,21 @@ const Product = db.Model.extend({
 
     if (product.product_urls) {
       item.vendors = {};
-      
+
       for (let i = 0; i < product.product_urls.length; i++) {
         let product_url = product.product_urls[i];
-        
+
         item.vendors[product_url.vendor.name] = {
           url: product_url.url,
           prices: [],
         };
       }
     }
-      
+
     if (product.prices) {
       for (let i = 0; i < product.prices.length; i++) {
         let price = product.prices[i];
-        
+
         item.vendors[price.vendor.name].prices.push({
           price: price.price,
           timestamp: price.created_at
