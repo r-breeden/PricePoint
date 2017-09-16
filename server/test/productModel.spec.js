@@ -22,21 +22,15 @@ describe('Product model', () => {
 
   it('should be able to retrieve associated vendors and urls', () => {
     return Product.where({name: 'Test Product'}).fetch({
-      withRelated: [{
-        'vendors': q => q.columns([
-          'vendors.id',
-          'vendors.name',
-          'product_urls.url as product_url'
-        ])
-      }]
+      withRelated: [
+        'product_urls.vendor'
+      ]
     })
       .then(product => {
-        expect(product.related('vendors').length).toBe(1);
+        expect(product.related('product_urls').length).toBe(1);
 
-        var vendor = product.related('vendors').at(0);
-        expect(vendor.get('id')).toBe(1);
-        expect(vendor.get('name')).toBe('Amazon');
-        expect(vendor.get('product_url')).toBe('https://www.amazon.com/foo');
+        var product_url = product.related('product_urls').at(0);
+        expect(product_url.get('url')).toBe('https://www.amazon.com/foo');
       });
   });
 
@@ -44,14 +38,10 @@ describe('Product model', () => {
     return Product.where({
       name: 'Test Product'
     }).fetch({
-      withRelated: [{
-        'prices': q => q.columns([
-          'vendors.name',
-          'prices.price',
-          'prices.created_at as timestamp'
-        ])
-          .orderBy('timestamp', 'DESC')
-      }]
+      withRelated: [
+        { 'prices': q => q.orderBy('created_at', 'DESC') },
+        'prices.vendor'
+      ]
     })
       .then(product => {
         expect(product.related('prices').length).toBe(2);
@@ -59,14 +49,14 @@ describe('Product model', () => {
         var price1 = product.related('prices').at(0);
         var price2 = product.related('prices').at(1);
 
-        expect(price1.get('name')).toBe('Amazon');
+        expect(price1.related('vendor').get('name')).toBe('Amazon');
         expect(price1.get('price')).toBe(123456);
 
-        expect(price2.get('name')).toBe('Amazon');
+        expect(price2.related('vendor').get('name')).toBe('Amazon');
         expect(price2.get('price')).toBe(999999);
 
-        expect(price1.get('timestamp').getTime())
-          .toBeGreaterThan(price2.get('timestamp').getTime());
+        expect(price1.get('created_at').getTime())
+          .toBeGreaterThan(price2.get('created_at').getTime());
       });
   });
 
