@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const middleware = require('./middleware');
 const routes = require('./routes');
+const models = require('../db/models');
+
 
 const app = express();
 
@@ -26,5 +28,32 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/', routes.auth);
 app.use('/api', routes.api);
 app.use('/api/profiles', routes.profiles);
+app.use('/product/:upc', (req, res) => {
+  var state = {};
+  models.Product.where({ upc: req.params.upc }).fetch({
+    withRelated: [
+      { 'prices': q => q.orderBy('created_at', 'DESC') },
+      'prices.vendor',
+      'product_urls.vendor'
+    ]
+  })
+    .then(product => {
+      state.results = [product];
+      state.user = req.user;
+      state.tables = {
+        default: []
+      };
+
+      res.render('index', {state});
+    })
+    .error(err => {
+      console.log(err);
+      res.status(500).send(err);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+});
+
 
 module.exports = app;
