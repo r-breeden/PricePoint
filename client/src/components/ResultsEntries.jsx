@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Row, Col } from 'react-bootstrap';
-import { Thumbnail, Button, Glyphicon} from 'react-bootstrap';
+import { Thumbnail, Button, Glyphicon } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../styles/main.scss';
