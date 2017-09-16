@@ -8,7 +8,7 @@ const Profile = db.Model.extend({
   },
 
   followedProducts: function() {
-    return this.belongsToMany('Product', 'followed_products');
+    return this.belongsToMany('Product');
   },
 });
 
