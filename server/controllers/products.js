@@ -6,9 +6,8 @@ const amazon = require('../middleware/amazon');
 const updateLeastRecent = function() {
   models.Product.forge().query(q => q.limit(5).orderBy('last_updated'))
     .fetchAll()
-    .then(products => products.serialize())
     .then(products => {
-      return amazon.lookup(products.map(product => product.upc).join(','));
+      return amazon.lookup(products.map(product => product.get('upc')).join(','));
     })
     .then(results => storeFromVendor(results, 'Amazon'))
     .catch(err => {
