@@ -5,6 +5,7 @@ import { Thumbnail, Button, Glyphicon } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../styles/main.scss';
+import Track from './Track.jsx';
 
 const ResultsEntries = (props) => (
   <Row>
@@ -17,8 +18,8 @@ const ResultsEntries = (props) => (
             </Link>
             <p>{el.description}</p>
             <p>
-              <Button bsStyle="primary"><Glyphicon glyph="eye-open"/> Track</Button>&nbsp;
-              <a target="_blank" href={`${el.link}`}><Button bsStyle="default"> ${el.price / 100}</Button>
+              <Track />&nbsp;
+              <a target="_blank" href={`${el.itemURL}`}><Button bsStyle="default"> ${el.price / 100}</Button>
               </a>
             </p>
           </Thumbnail>
@@ -34,5 +35,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-export const UnwrappedSearch = ResultsEntries;
+export const UnwrappedResultsEntries = ResultsEntries;
 export default connect(mapStateToProps)(ResultsEntries);
