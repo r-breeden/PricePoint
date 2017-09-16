@@ -62,16 +62,4 @@ describe('Profile model tests', function () {
       });
   });
 
-
-  it('should be able to follow a product', () => {
-    return Profile.where({ id: 1 }).fetch()
-      .then(profile => profile.followedProducts().attach(1))
-      .then(() => {
-        return Profile.where({ id: 1 }).fetch({ withRelated: ['followedProducts']});
-      })
-      .then(profile => {
-        expect(profile.related('followedProducts').length).toBe(1);
-      });
-  });
-
 });
