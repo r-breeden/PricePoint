@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { Thumbnail, Table, Button, ButtonToolbar } from 'react-bootstrap';
+import { Thumbnail, Table, Button, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import Header from './Header.jsx';
 import { connect } from 'react-redux';
 import {LineChart} from 'react-easy-chart';
+import TimeSpan from './TimeSpan.jsx';
 
 const normalizeData = (name, vendorObj) => {
   var obj = {};
@@ -24,7 +25,7 @@ class LineGraph extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showPricesAt: false,
+      dateRange: '2017-06-08T18:35:46',
       vendors: {
         Amazon: {
           url: "https://www.amazon.com/Nerf-N-Strike-Elite-Strongarm-Blaster/dp/B00DW1JT5G?psc=1&SubscriptionId=AKIAJJEAIGPROK3CRXGA&tag=pricepoint03-20&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B00DW1JT5G",
@@ -57,8 +58,6 @@ class LineGraph extends React.Component {
         }
       }
     };
-    this.mouseOverHandler = this.mouseOverHandler.bind(this);
-    this.mouseOutHandler = this.mouseOutHandler.bind(this);
     this.vendors = [];
     this.colors = ['blue', 'red', 'yellow', 'black'];
     for(let vendor in this.state.vendors) {
@@ -75,36 +74,32 @@ class LineGraph extends React.Component {
     });
   }
 
-  mouseOverHandler(coordinates, e) {
+  onDateChange(newDate) {
+    console.log(newDate);
     this.setState({
-      showPricesAt: true
+      dateRange: newDate
     });
   }
 
-  mouseOutHandler(e) {
-    this.setState({
-      showPricesAt: false
-    });
-  }
 
   render() {
     return (
       <div>
         <div>
-          <ButtonToolbar>
+          <ButtonGroup >
             {this.displayButtons}
-          </ButtonToolbar>
+            <TimeSpan changeRange={this.onDateChange}/>
+          </ButtonGroup>
         </div>
 
         <LineChart
           xType={'time'}
           axes
+          xDomainRange={[this.dateRange,new Date.toString().slice(0,19)]}
           axisLabels={{x: 'Date', y: 'Price' }}
           grid
           datePattern={'%Y-%m-%dT%H:%M:%S'}
           verticalGrid
-          mouseOverHandler={this.mouseOverHanderler}
-          mouseOutHandler={this.mouseOutHandler}
           interpolate={'cardinal'}
           lineColors={this.vendors.map(vendor => {
             return vendor.color;
