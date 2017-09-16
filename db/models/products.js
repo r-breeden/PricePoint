@@ -4,7 +4,7 @@ const Product = db.Model.extend({
   tableName: 'products',
 
   followers: function() {
-    return this.belongsToMany('Profile', 'followed_products');
+    return this.belongsToMany('Profile');
   },
 
   prices: function() {
