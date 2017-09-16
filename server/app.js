@@ -30,21 +30,21 @@ app.use('/api', routes.api);
 app.use('/api/profiles', routes.profiles);
 app.use('/product/:upc', (req, res) => {
   var state = {};
-  models.Product.where({ upc: req.params.upc }).fetch()
+  models.Product.where({ upc: req.params.upc }).fetch({
+    withRelated: [
+      { 'prices': q => q.orderBy('created_at', 'DESC') },
+      'prices.vendor',
+      'product_urls.vendor'
+    ]
+  })
     .then(product => {
-      if (!product) {
-        throw product;
-      }
-      return product.serializeWithPrices()
-        .then(productWithPrices => {
-          state.results = [productWithPrices];
-        })
-        .then( ()=> {
-          state.user = req.user;
-          state.tables = {
-            default: []};
-          res.render('index', {state});
-        });
+      state.results = [product];
+      state.user = req.user;
+      state.tables = {
+        default: []
+      };
+
+      res.render('index', {state});
     })
     .error(err => {
       console.log(err);

@@ -1,6 +1,7 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
+const Promise = require('bluebird');
 const amazon = require('../middleware/amazon');
 
 router.route('/')
@@ -14,7 +15,15 @@ router.route('/')
 router.route('/search')
   .get((req, res) => {
     return amazon.search(req.query.q)
-      .then(products => Promise.all(products.map(product => product.serializeWithPrices())))
+      .then(products => {
+        return Promise.map(products, product => product.fetch({
+          withRelated: [
+            { 'prices': q => q.orderBy('created_at', 'DESC') },
+            'prices.vendor',
+            'product_urls.vendor'
+          ]
+        }));
+      })
       .then(results => {
         res.send({results});
       })
