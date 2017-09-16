@@ -11,14 +11,14 @@ const ResultsEntries = (props) => (
     {props.results.map((el) => {
       return (
         <Col xs={12} md={6} lg={4}>
-          <Thumbnail className="results-thumb" src={`${el.imageURL}`}>
+          <Thumbnail className="results-thumb" src={`${el.image_url}`}>
             <Link to={`/product/${el.upc}`}>
-              <h3>{el.title}</h3>
+              <h3>{el.name}</h3>
             </Link>
             <p>{el.description}</p>
             <p>
               <Button bsStyle="primary"><Glyphicon glyph="eye-open"/> Track</Button>&nbsp;
-              <a target="_blank" href={`${el.itemURL}`}><Button bsStyle="default"> ${el.price / 100}</Button>
+              <a target="_blank" href={`${el.link}`}><Button bsStyle="default"> ${el.price / 100}</Button>
               </a>
             </p>
           </Thumbnail>

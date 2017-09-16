@@ -3,6 +3,18 @@ const db = require('../');
 const Vendor = db.Model.extend({
   tableName: 'vendors',
 
+  prices: function() {
+    return this.hasMany('Price');
+  },
+
+  product_urls: function() {
+    return this.hasMany('ProductUrl');
+  },
+
+  products: function() {
+    return this.belongsToMany('Product')
+      .through('ProductUrl');
+  },
 }, {
   findOrCreate: function(name) {
     return this.where({ name }).fetch()
