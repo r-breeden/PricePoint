@@ -10,13 +10,18 @@ import Track from './Track.jsx';
 const ResultsEntries = (props) => (
   <Row>
     {props.results.map((el) => {
+      var description = el.description;
+      if (description.length > 390) {
+        description = description.slice(0, 390) + '...';
+      }
+
       return (
         <Col xs={12} md={6} lg={4}>
           <Thumbnail className="results-thumb" src={`${el.imageURL}`}>
             <Link to={`/product/${el.upc}`}>
               <h3>{el.name}</h3>
             </Link>
-            <p>{el.description}</p>
+            <p>{description}</p>
             <p>
               <Track />&nbsp;
               <a target="_blank" href={`${el.itemURL}`}><Button bsStyle="default"> ${el.price / 100}</Button>
