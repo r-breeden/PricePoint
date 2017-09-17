@@ -45,7 +45,7 @@ describe('Product model', () => {
     })
       .then(product => {
         expect(product.related('prices').length).toBe(2);
-        
+
         var price1 = product.related('prices').at(0);
         var price2 = product.related('prices').at(1);
 
@@ -57,27 +57,6 @@ describe('Product model', () => {
 
         expect(price1.get('created_at').getTime())
           .toBeGreaterThan(price2.get('created_at').getTime());
-      });
-  });
-
-  it('allows users to follow products', () => {
-    return Product.where({
-      name: 'Test Product'
-    }).fetch()
-      .then(product => {
-        return product.followers().attach(1);
-      })
-      .then(() => {
-        return Product.where({
-          name: 'Test Product'
-        }).fetch({
-          withRelated: [
-            'followers'
-          ]
-        });
-      })
-      .then(product => {
-        expect(product.related('followers').length).toBe(1);
       });
   });
 });

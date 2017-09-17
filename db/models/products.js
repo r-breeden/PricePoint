@@ -3,10 +3,6 @@ const db = require('../');
 const Product = db.Model.extend({
   tableName: 'products',
 
-  followers: function() {
-    return this.belongsToMany('Profile', 'followed_products');
-  },
-
   prices: function() {
     return this.hasMany('Price');
   },
@@ -20,55 +16,40 @@ const Product = db.Model.extend({
       .through('ProductUrl');
   },
 
-  serializeWithPrices: function() {
-    return this.fetch({
-      withRelated: [
-        { 'prices': q => q.orderBy('created_at', 'DESC') },
-        'prices.vendor',
-        'product_urls.vendor'
-      ]
-    })
-      .then(product => {
-        if (!product) {
-          throw new Error(`${this.get('name')} failed to get related items!`);
-        }
+  toJSON: function() {
+    var product = this.serialize();
+    var item = {
+      name: product.name,
+      description: product.description,
+      imageURL: product.image_url,
+      upc: product.upc,
+    };
 
-        return product.serialize();
-      })
-      .then(product => {
-        var item = {
-          name: product.name,
-          description: product.description,
-          imageURL: product.image_url,
-          upc: product.upc,
+    if (product.product_urls) {
+      item.vendors = {};
+
+      for (let i = 0; i < product.product_urls.length; i++) {
+        let product_url = product.product_urls[i];
+
+        item.vendors[product_url.vendor.name] = {
+          url: product_url.url,
+          prices: [],
         };
+      }
+    }
 
-        item.vendors = {};
+    if (product.prices) {
+      for (let i = 0; i < product.prices.length; i++) {
+        let price = product.prices[i];
 
-        for (let i = 0; i < product.product_urls.length; i++) {
-          let product_url = product.product_urls[i];
+        item.vendors[price.vendor.name].prices.push({
+          price: price.price,
+          timestamp: price.created_at
+        });
+      }
+    }
 
-          item.vendors[product_url.vendor.name] = {
-            url: product_url.url,
-            prices: [],
-          };
-        }
-
-        for (let i = 0; i < product.prices.length; i++) {
-          let price = product.prices[i];
-
-          item.vendors[price.vendor.name].prices.push({
-            price: price.price,
-            timestamp: price.created_at
-          });
-        }
-
-        return item;
-      })
-      .catch(err => {
-        console.log(err.message);
-        return this.serialize();
-      });
+    return item;
   }
 });
 
