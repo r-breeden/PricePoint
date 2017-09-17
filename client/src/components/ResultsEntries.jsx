@@ -12,7 +12,7 @@ const ResultsEntries = (props) => (
     {props.results.map((el) => {
       //reduce length to eliminate spill over
       var name = el.name;
-      if (name.length > 84){
+      if (name.length > 84) {
         name = name.slice(0, 84) + '...';
       }
       //reduce length to eliminate spill over  
@@ -22,14 +22,13 @@ const ResultsEntries = (props) => (
       }
       
       var init = false;
-      var lowestPriceURL;
-      var lowestPriceValue;
+      var lowestPriceURL, lowestPriceValue;
       //for each vendor a product has
-      for(var vendor in el.vendors) {
+      for (var vendor in el.vendors) {
         //go through all of their prices
         el.vendors[vendor].prices.forEach( (item) => {
           //set first price found as lowestprice 
-          if( init === false ) {
+          if (init === false) {
             lowestPriceURL = el.vendors[vendor].url;
             lowestPriceValue = el.vendors[vendor].prices[0].price;
             init = true;
@@ -42,9 +41,9 @@ const ResultsEntries = (props) => (
             //also update the lowest price url to this vendor
             lowestPriceURL = el.vendors[vendor].url;
           }
-        })
+        });
       }
-      
+
       return (
         <Col xs={12} md={6} lg={4}>
           <Thumbnail className="results-thumb" src={`${el.imageURL}`}>
