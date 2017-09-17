@@ -10,6 +10,12 @@ import Track from './Track.jsx';
 const ResultsEntries = (props) => (
   <Row>
     {props.results.map((el) => {
+      //reduce length to eliminate spill over
+      var name = el.name;
+      if (name.length > 84){
+        name = name.slice(0, 84) + '...';
+      }
+      //reduce length to eliminate spill over  
       var description = el.description;
       if (description.length > 390) {
         description = description.slice(0, 390) + '...';
@@ -19,7 +25,7 @@ const ResultsEntries = (props) => (
         <Col xs={12} md={6} lg={4}>
           <Thumbnail className="results-thumb" src={`${el.imageURL}`}>
             <Link to={`/product/${el.upc}`}>
-              <h3>{el.name}</h3>
+              <h3>{name}</h3>
             </Link>
             <p>{description}</p>
             <p>
