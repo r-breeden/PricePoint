@@ -21,27 +21,24 @@ const ResultsEntries = (props) => (
         description = description.slice(0, 390) + '...';
       }
       
-      var init = false;
+      
       var lowestPriceURL, lowestPriceValue;
       //for each vendor a product has
       for (var vendor in el.vendors) {
-        //go through all of their prices
-        el.vendors[vendor].prices.forEach( (item) => {
-          //set first price found as lowestprice 
-          if (init === false) {
-            lowestPriceURL = el.vendors[vendor].url;
-            lowestPriceValue = el.vendors[vendor].prices[0].price;
-            init = true;
-            return;
-          }
-          //if a lower price is found than the current lowest
-          if ( item.price < lowestPriceValue ) {
-            //set that price to the lowest
-            lowestPriceValue = item.price;
-            //also update the lowest price url to this vendor
-            lowestPriceURL = el.vendors[vendor].url;
-          }
-        });
+        //initialize variables with first url/price found
+        if ( lowestPriceURL === undefined ) {
+          lowestPriceURL = el.vendors[vendor].url;
+          lowestPriceValue = el.vendors[vendor].prices[0].price;
+          console.log('lowestPriceURL: ', lowestPriceURL);
+          console.log('lowestPriceValue: ', lowestPriceValue);
+          continue;
+        }
+        //check if the most recent price (first in array)
+        //is less than the current lowestPriceValue
+        if( lowestPriceValue < el.vendors[vendor].prices[0].price ) {
+          lowestPriceURL = el.vendors[vendor].url;
+          lowestPriceValue = el.vendors[vendor].prices[0].price;
+        }
       }
 
       return (
