@@ -29,8 +29,6 @@ const ResultsEntries = (props) => (
         if ( lowestPriceURL === undefined ) {
           lowestPriceURL = el.vendors[vendor].url;
           lowestPriceValue = el.vendors[vendor].prices[0].price;
-          console.log('lowestPriceURL: ', lowestPriceURL);
-          console.log('lowestPriceValue: ', lowestPriceValue);
           continue;
         }
         //check if the most recent price (first in array)
