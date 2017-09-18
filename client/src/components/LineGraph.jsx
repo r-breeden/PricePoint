@@ -26,33 +26,8 @@ const todayIs = () => {
 };
 
 const setDateRange = (range) => {
-  var today = new Date;
-  let currentMonth = today.getMonth();
-  let currentYear = today.getYear();
-  var modifiedDate = today;
-  switch (range) {
-  case '1M':
-    modifiedDate = currentMonth > 0 ? today.setMonth(currentMonth - 1)
-      : today.setFullYear(currentYear - 1 + 1900, currentMonth + 11);
-    break;
-  case '3M':
-    modifiedDate = currentMonth > 2 ? today.setMonth(currentMonth - 3)
-      : today.setFullYear(currentYear - 1 + 1900, currentMonth + 9);
-    break;
-  case '6M':
-    modifiedDate = currentMonth > 5 ? today.setMonth(currentMonth - 6)
-      : today.setFullYear(currentYear - 1 + 1900, currentMonth + 6);
-    break;
-  case '1Y':
-    modifiedDate = today.setFullYear(currentYear - 1 + 1900);
-    break;
-  case '2Y':
-    modifiedDate = today.setFullYear(currentYear - 2 + 1900);
-    break;
-  default:
-    modifiedDate = modifiedDate = currentMonth > 0 ? today.setMonth(currentMonth - 1)
-      : today.setFullYear(currentYear - 1 + 1900, currentMonth + 11);
-  }
+  var modifiedDate = new Date;
+  modifiedDate -= (range * 86400000);
   var formatedDate = new Date(modifiedDate).toISOString().slice(0, 19);
   return formatedDate;
 };
@@ -61,7 +36,7 @@ class LineGraph extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dateRange: setDateRange('1M'),
+      dateRange: setDateRange('7'),
       today: todayIs(),
       vendors: {
         Amazon: {
@@ -89,14 +64,14 @@ class LineGraph extends React.Component {
             },
             {
               price: 13.99,
-              timestamp: '2017-09-16T18:51:25.962Z'
+              timestamp: '2017-09-18T18:51:25.962Z'
             }
           ]
         }
       }
     };
     this.vendors = [];
-    this.colors = ['blue', 'red', 'yellow', 'black'];
+    this.colors = ['blue', 'red', 'yellow', 'purple'];
     this.onDateChange = this.onDateChange.bind(this);
     for (let vendor in this.state.vendors) {
       var obj = normalizeData(vendor, this.state.vendors[vendor]);
@@ -127,10 +102,10 @@ class LineGraph extends React.Component {
             <TimeSpan changeRange={this.onDateChange}/>
           </ButtonGroup>
         </div>
-
         <LineChart
           xType={'time'}
           axes
+          yAxisOrientRight
           xDomainRange={[this.state.dateRange, this.state.today]}
           axisLabels={{x: 'Date', y: 'Price' }}
           grid

@@ -9,11 +9,13 @@ const TimeSpan = (props) => {
     <DropdownButton title='History' id='time-period'
       onSelect={props.changeRange}
     >
-      <MenuItem eventKey='1M'>30 Days</MenuItem>
-      <MenuItem eventKey='3M'>3 Months</MenuItem>
-      <MenuItem eventKey='6M'>6 Months</MenuItem>
-      <MenuItem eventKey='1Y'>1 Year</MenuItem>
-      <MenuItem eventKey='2Y'>2 Years</MenuItem>
+      <MenuItem eventKey='1'>1 Day</MenuItem>
+      <MenuItem eventKey='2'>2 Days</MenuItem>
+      <MenuItem eventKey='7'>1 Week</MenuItem>
+      <MenuItem eventKey='30'>1 Month</MenuItem>
+      <MenuItem eventKey='90'>3 Months</MenuItem>
+      <MenuItem eventKey='183'>6 Months</MenuItem>
+      <MenuItem eventKey='365'>1 Year</MenuItem>
     </DropdownButton>
   );
 };
