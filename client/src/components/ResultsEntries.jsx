@@ -14,7 +14,7 @@ const ResultsEntries = (props) => (
       var name = el.name;
       if ( name ) {
         if (name.length > 84) {
-        name = name.slice(0, 84) + '...';
+          name = name.slice(0, 84) + '...';
         }
       }
      

@@ -10,10 +10,10 @@ const ProductTable = (props) => {
   var UPC = window.location.href.slice(30);
   var product;
   props.results.forEach ( (item) => {
-      if ( item.upc === UPC ) {
-        product = item;
-      }
-    });
+    if ( item.upc === UPC ) {
+      product = item;
+    }
+  });
    
   //build vendor list for headers
   var vendors = []; 
@@ -22,8 +22,8 @@ const ProductTable = (props) => {
   }
 
   var priceHeader = <td>{"Today's Price"}</td>;
-  if (vendors.length > 1){
-    priceHeader = <td>{"Today's Prices"}</td>
+  if (vendors.length > 1) {
+    priceHeader = <td>{"Today's Prices"}</td>;
   }
 
   //grab the most recent price for each vendor
@@ -32,17 +32,19 @@ const ProductTable = (props) => {
     //grab current price (last item in array)
     prices.push(product.vendors[vendor].prices[product.vendors[vendor].prices.length - 1]);
   }
+
   //find today's lowest price
-  var lowestPrice = 0
+  var lowestPrice = 0;
   for (var i = 1; i < prices.length; i++) {
-    if(prices[lowestPrice] > prices[i]) {
+    if (prices[lowestPrice] > prices[i]) {
       lowestPrice = i;
     }
   }
+  
   //build jsx elements
   for (var x = 0; x < prices.length; x++) {
     var temp = prices[x].price / 100;
-    if(x === lowestPrice || prices.length === 1) {
+    if (x === lowestPrice || prices.length === 1) {
       prices[x] = <td className="lower">{'$' + temp + ' '}<Glyphicon glyph="star" className="starGlyph"/></td>;
       continue;
     }
