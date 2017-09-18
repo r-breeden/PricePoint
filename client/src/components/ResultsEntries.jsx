@@ -17,10 +17,11 @@ const ResultsEntries = (props) => (
       }
       //reduce length to eliminate spill over  
       var description = el.description;
-      if (description.length > 390) {
-        description = description.slice(0, 390) + '...';
+      if (description) {
+        if (description.length > 390) {
+          description = description.slice(0, 390) + '...';
+        }
       }
-      
       
       var lowestPriceURL, lowestPriceValue;
       //for each vendor a product has
