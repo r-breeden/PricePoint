@@ -17,21 +17,15 @@ const ProductTable = (props) => {
    
   //build vendor list for headers
   var vendors = []; 
-  for (var vendor in product.vendors) {
-    vendors.push(<th><a href='#'>{vendor}</a></th>);
-  }
-
-  var priceHeader = <td>{"Today's Price"}</td>;
-  if (vendors.length > 1) {
-    priceHeader = <td>{"Today's Prices"}</td>;
-  }
-
   //grab the most recent price for each vendor
   var prices = [];
   for (var vendor in product.vendors) {
+    vendors.push(<th><a href='#'>{vendor}</a></th>);
     //grab current price (last item in array)
     prices.push(product.vendors[vendor].prices[product.vendors[vendor].prices.length - 1]);
   }
+
+  var priceHeader = vendors.length > 1 ? <td>{"Today's Prices"}</td> : <td>{"Today's Price"}</td> ;
 
   //find today's lowest price
   var lowestPrice = 0;
@@ -40,7 +34,7 @@ const ProductTable = (props) => {
       lowestPrice = i;
     }
   }
-  
+
   //build jsx elements
   for (var x = 0; x < prices.length; x++) {
     var temp = prices[x].price / 100;
