@@ -25,7 +25,6 @@ const ResultsEntries = (props) => (
           description = description.slice(0, 390) + '...';
         }
       }
-
       var lowestPriceURL, lowestPriceValue;
       //for each vendor a product has
       for (var vendor in el.vendors) {
