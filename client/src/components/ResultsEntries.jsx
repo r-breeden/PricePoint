@@ -12,13 +12,31 @@ const ResultsEntries = (props) => (
     {props.results.map((el) => {
       //reduce length to eliminate spill over
       var name = el.name;
-      if (name.length > 84){
+      if (name.length > 84) {
         name = name.slice(0, 84) + '...';
       }
       //reduce length to eliminate spill over  
       var description = el.description;
       if (description.length > 390) {
         description = description.slice(0, 390) + '...';
+      }
+      
+      
+      var lowestPriceURL, lowestPriceValue;
+      //for each vendor a product has
+      for (var vendor in el.vendors) {
+        //initialize variables with first url/price found
+        if ( lowestPriceURL === undefined ) {
+          lowestPriceURL = el.vendors[vendor].url;
+          lowestPriceValue = el.vendors[vendor].prices[0].price;
+          continue;
+        }
+        //check if the most recent price (first in array)
+        //is less than the current lowestPriceValue
+        if( lowestPriceValue < el.vendors[vendor].prices[0].price ) {
+          lowestPriceURL = el.vendors[vendor].url;
+          lowestPriceValue = el.vendors[vendor].prices[0].price;
+        }
       }
 
       return (
@@ -30,7 +48,7 @@ const ResultsEntries = (props) => (
             <p>{description}</p>
             <p>
               <Track />&nbsp;
-              <a target="_blank" href={`${el.itemURL}`}><Button bsStyle="default"> ${el.price / 100}</Button>
+              <a target="_blank" href={lowestPriceURL}><Button bsStyle="default"> ${lowestPriceValue / 100}</Button>
               </a>
             </p>
           </Thumbnail>
