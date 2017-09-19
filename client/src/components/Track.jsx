@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../styles/main.scss';
 import store from '../store';
+import DropDownListEntry from './DropDownListEntry.jsx';
 
 const Track = (props) => {
 
@@ -18,7 +19,9 @@ const Track = (props) => {
 
   return (
     <DropdownButton bsStyle="primary" title={<span><Glyphicon glyph="eye-open"/> Title</span>}>
-      { mapList }
+      {userList.map( (item) => {
+        return <DropDownListEntry upc={props.upc} listItem={item} />
+      })}
     </DropdownButton>
   );
 };
