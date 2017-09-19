@@ -50,7 +50,7 @@ const ResultsEntries = (props) => (
             </Link>
             <p>{description}</p>
             <p>
-              <Track />&nbsp;
+              <Track upc={el.upc}/>&nbsp;
               <a target="_blank" href={lowestPriceURL}><Button bsStyle="default"> ${lowestPriceValue / 100}</Button>
               </a>
             </p>
