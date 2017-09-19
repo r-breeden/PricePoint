@@ -9,7 +9,7 @@ import Track from './Track.jsx';
 
 const ResultsEntries = (props) => (
   <Row>
-    {props.results.map((el) => {
+    {props.results.map((el, i) => {
       //reduce length to eliminate spill over
       var name = el.name;
       if ( name ) {
@@ -41,9 +41,9 @@ const ResultsEntries = (props) => (
           lowestPriceValue = el.vendors[vendor].prices[0].price;
         }
       }
-
+      //note: this is map's return
       return (
-        <Col xs={12} md={6} lg={4}>
+        <Col xs={12} md={6} lg={4} key={i}>
           <Thumbnail className="results-thumb" src={`${el.imageURL}`}>
             <Link to={`/product/${el.upc}`}>
               <h3>{name}</h3>

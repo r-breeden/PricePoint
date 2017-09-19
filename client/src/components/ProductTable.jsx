@@ -19,8 +19,10 @@ const ProductTable = (props) => {
   var vendors = []; 
   //grab the most recent price for each vendor
   var prices = [];
+  var i = 0;
   for (var vendor in product.vendors) {
-    vendors.push(<th><a href='#'>{vendor}</a></th>);
+    vendors.push(<th key={i}><a href='#'>{vendor}</a></th>);
+    i++;
     //grab current price (last item in array)
     prices.push(product.vendors[vendor].prices[product.vendors[vendor].prices.length - 1]);
   }
