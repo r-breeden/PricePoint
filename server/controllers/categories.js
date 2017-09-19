@@ -11,32 +11,26 @@ module.exports.addCategory = (user, table) => {
 module.exports.addItem = (user, table, upc) => {
   return models.Product.where({
     upc: upc
-  })
+  }).fetch()
     .then(product => {
-      let productId = product.serialize().id;
-      return models.Categories.forge({
+      productId = product.serialize().id;
+      console.log(productId);
+      return models.Categories.where({
         profile_id: user,
         name: table
-      }).products().attach(productId);
+      }).fetch()
+        .then(category => {
+          categoryId = category.serialize().id;
+          category.products().attach(product);
+        });
     });
 };
 
 module.exports.retrieveCategory = (user) => {
-  // given user id from profile, return each category with each item within category
   return models.Categories.where({
     profile_id: user
   }).fetch()
     .then(categories => {
       return categories.serialize();
     });
-};
-
-
-
-var retrieveProductID = () => {
-  //search item by upc, get product id
-};
-
-var retrieveCategoryID = () => {
-  //find category id is by user id and table name
 };

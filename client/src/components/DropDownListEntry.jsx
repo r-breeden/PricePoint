@@ -8,25 +8,24 @@ const DropDownListEntry = (props) => {
 
   var onClickHandler = () => {
     //add list entry for user to db
-    axios.get('categories/:name', props.user, props.listItem, props.upc)
+    axios.get(`/api/categories/${props.user}`, {params: {id: props.user, table: props.listItem.name, upc: props.upc}})
       .then( (response) => {
         console.log('DropDownListEntry sent data to db');
-      })  
-      .catch ( (error) => {
-        console.log('DropDownListEntry react component failed to reach db.')
       })
-  }
+      .catch ( (error) => {
+        console.log('DropDownListEntry react component failed to reach db.');
+      });
+  };
 
-  return(
+  return (
     <MenuItem eventKey={props.upc} onClick={onClickHandler}>{props.listName}</MenuItem>
   );
-}
+};
 
 const mapStateToProps = (state) => {
   return {
-    'user': state.user.id, 
+    'user': state.user.id,
   };
 };
 
 export default connect(mapStateToProps)(DropDownListEntry);
-
