@@ -8,19 +8,14 @@ import '../styles/main.scss';
 import { connect } from 'react-redux';
 
 
-const Profile = () => {
-  var dummyData = [
-    {name: 'tableOne', listItems: [{upc: '887276197470'}, {upc: '887276197470'}, {upc: '887276197470'}]},
-    {name: 'tableTwo', listItems: [{upc: '887276197470'}, {upc: '887276197470'}, {upc: '887276197470'}]},
-    {name: 'tableThree', listItems: [{upc: '887276197470'}, {upc: '887276197470'}, {upc: '887276197470'}]},
-  ]
- 
+const Profile = (props) => {
+
   return (
     <Grid>
       <ProfileUser></ProfileUser>
       <ProfileInput></ProfileInput>
-      {dummyData.map( (list, i) => {
-        return <ProfileTable key={i} name={list.name} items={list.listItems}></ProfileTable>
+      {props.tables.map( (item, i) => {
+        return <ProfileTable key={i} listName={item.name} list={item.list}></ProfileTable>
       })}
     </Grid>
   );
@@ -28,7 +23,7 @@ const Profile = () => {
 
 const mapStateToProps = state => {
   return {
-    'tables': state.tables,
+    'tables': state.tables
   };
 };
 

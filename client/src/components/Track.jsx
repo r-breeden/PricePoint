@@ -10,28 +10,20 @@ import DropDownListEntry from './DropDownListEntry.jsx';
 
 const Track = (props) => {
 
-  var userList = ['UserListItem1', 'UserListItem2', 'UserListItem3', 'UserListItem4'];
-
-  //after db set with 
-  const mapList = userList.map( (item, index) => { 
-    return <MenuItem eventKey={index}>{item}</MenuItem>; 
-  });
-
   return (
     <DropdownButton bsStyle="primary" title={<span><Glyphicon glyph="eye-open"/> Title</span>}>
-      {userList.map( (item) => {
-        return <DropDownListEntry upc={props.upc} listItem={item} />
+      {props.tables.map( (item) => {
+        return <DropDownListEntry upc={props.upc} listName={item.name} listItem={item} />
       })}
     </DropdownButton>
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     'user': state.user.list
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    'user': state.user.list,
+    'tables': state.tables
+  };
+};
 
-//connect(mapStateToProps)(Track);
-
-export default Track;
+export default connect(mapStateToProps)(Track);
