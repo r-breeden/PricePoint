@@ -7,6 +7,11 @@ const router = express.Router();
 
 router.route(['/', '/profile'])
   .get(middleware.auth.verify, (req, res) => {
+    var state = {
+      user: req.user,
+      results: [],
+      tables: []
+    };
     models.Product.forge()
       .query(qb => {
         qb.orderBy('id', 'desc').limit(10);
@@ -18,12 +23,18 @@ router.route(['/', '/profile'])
         ]
       })
       .then(results => {
-        var state = {
-          user: req.user, // get the user out of session and pass to template
-          results,
-          tables: {default: []},
-        };
-        res.render('index.ejs', { state });
+        state.results = results;
+        models.Categories.where({
+          profile_id: state.user.id
+        }).fetchAll()
+          .then(categories => {
+            categories.serialize().forEach(el => {
+              state.tables.push({name: el.name, list: []});
+            });
+          })
+          .then(() => {
+            res.render('index.ejs', { state });
+          });
       });
   });
 

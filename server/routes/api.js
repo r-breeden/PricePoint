@@ -44,5 +44,25 @@ router.route('/categories')
         console.log('error');
       });
   });
+router.route('/categories')
+  .get((req, res) => {
+    return CategoriesController.retrieveCategory(req.body.id)
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        console.log('error');
+      });
+  });
 
+router.route('/categories/:name')
+  .post((req, res) => {
+    return CategoriesController.addItem(req.body.id, req.body.table, req.body.upc)
+      .then(res => {
+        console.log('success');
+      })
+      .catch(err => {
+        console.log('error');
+      });
+  });
 module.exports = router;

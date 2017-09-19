@@ -9,29 +9,29 @@ import store from '../store';
 
 const Search = () => {
   let input;
-    return (
-      <Row>
-        <Col md={12}>
-          <Form
-            onSubmit={e => {
-              e.preventDefault();
-              store.dispatch(actions.searchAmazon(input.value));
-            }}
-          >
-            <FormGroup>
-              <FormControl
-                type="text"
-                className="searchBar"
-                inputRef={ ref => {
-                  input = ref;
-                }}
-                placeholder="Search for an item"
-              />
-            </FormGroup>
-          </Form>
-        </Col>
-      </Row>
-    );
-}
+  return (
+    <Row className="searchbar">
+      <Col md={12}>
+        <Form
+          onSubmit={e => {
+            e.preventDefault();
+            store.dispatch(actions.searchAmazon(input.value));
+          }}
+        >
+          <FormGroup>
+            <FormControl
+              type="text"
+              className="searchBar"
+              inputRef={ ref => {
+                input = ref;
+              }}
+              placeholder="Search for an item"
+            />
+          </FormGroup>
+        </Form>
+      </Col>
+    </Row>
+  );
+};
 
 export default Search;
