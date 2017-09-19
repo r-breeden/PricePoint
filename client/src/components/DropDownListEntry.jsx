@@ -5,13 +5,9 @@ import {MenuItem} from 'react-bootstrap';
 import axios from 'axios';
 
 const DropDownListEntry = (props) => {
+
   var onClickHandler = () => {
-    //user id, upc, list name
-    //send list item to db
-    /// categories/:name
-    console.log('id: ', props.user);
-    console.log('upc: ', props.upc);
-    console.log('list name: ', props.listItem)
+    //add list entry for user to db
     axios.get('categories/:name', props.user, props.listItem, props.upc)
       .then( (response) => {
         console.log('DropDownListEntry sent data to db');
@@ -22,13 +18,13 @@ const DropDownListEntry = (props) => {
   }
 
   return(
-    <MenuItem eventKey={props.item} onClick={onClickHandler}>{props.listItem}</MenuItem>
+    <MenuItem eventKey={props.upc} onClick={onClickHandler}>{props.listName}</MenuItem>
   );
 }
 
 const mapStateToProps = (state) => {
   return {
-    'user': state.user.id
+    'user': state.user.id, 
   };
 };
 
