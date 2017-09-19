@@ -1,6 +1,5 @@
 const express = require('express');
 const middleware = require('../middleware');
-const dummyData = require('../../db/seeds/data/2017-09-04_amazon_data.json');
 const models = require('../../db/models');
 const Promise = require('bluebird');
 const router = express.Router();
@@ -28,8 +27,12 @@ router.route(['/', '/profile'])
           profile_id: state.user.id
         }).fetchAll()
           .then(categories => {
+            //add a conditional checking for no table
             categories.serialize().forEach(el => {
-              state.tables.push({name: el.name, list: []});
+              state.tables.push({
+                name: el.name,
+                list: []
+              });
             });
           })
           .then(() => {
