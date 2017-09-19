@@ -55,14 +55,16 @@ router.route('/categories')
       });
   });
 
-router.route('/categories/:name')
-  .post((req, res) => {
-    return CategoriesController.addItem(req.body.id, req.body.table, req.body.upc)
+router.route('/categories/:id')
+  .get((req, res) => {
+    console.log(req.query);
+    return CategoriesController.addItem(req.query.id, req.query.table, req.query.upc)
       .then(res => {
         console.log('success');
       })
       .catch(err => {
         console.log('error');
       });
+    res.send('meow');
   });
 module.exports = router;
