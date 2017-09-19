@@ -17,18 +17,18 @@ const ProfileInput = (props) => {
         onSubmit={ e => {
           e.preventDefault();
           //createTable(input.value);
-          
+
           //send request to db to update user's table list
-          axios.post('./catergories', {id: props.id, table: input.value})
+          axios.post('api/categories', {id: props.id, table: input.value})
             .then( response => {
               console.log('successful: post request');
               //after we know the info made its way to the db
               //lets update the state here...
               //ask the db for the users tables
-              
+
             })
             .catch( error => {
-              console.log('failed: post request');
+              console.log('failed: post request', err);
             });
 
           //reset input feild
