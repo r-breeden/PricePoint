@@ -18,9 +18,9 @@ const ProfileTable = (props) => {
             return ( 
               <tr key={i}>
                 <td>
-                 <Link to={`/product/${listItem.upc}`}>{listItem.upc}</Link>
+                  <Link to={`/product/${listItem.upc}`}>{listItem.upc}</Link>
                 </td>
-              </tr>)
+              </tr>);
           })}
         </tbody>
       </Table>
