@@ -27,10 +27,20 @@ module.exports.addItem = (user, table, upc) => {
 };
 
 module.exports.retrieveCategory = (user) => {
-  return models.Categories.where({
-    profile_id: user
-  }).fetch()
+  var results = [];
+  models.Categories.where({
+    profile_id: state.user.id
+  }).fetchAll({withRelated: ['products']})
     .then(categories => {
-      return categories.serialize();
+      categories.serialize().forEach(el => {
+        res.push({
+          tableId: el.id,
+          name: el.name,
+          list: el.products
+        });
+      })
+        .then(() => {
+          res.send(results); 
+        });
     });
 };
