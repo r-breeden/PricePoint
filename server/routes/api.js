@@ -38,33 +38,55 @@ router.route('/categories')
   .post((req, res) => {
     return CategoriesController.addCategory(req.body.id, req.body.table)
       .then(res => {
-        console.log('success');
+        console.log('Successfully created a category table');
       })
       .catch(err => {
-        console.log('error');
+        console.log('Error creating a category table');
       });
   });
 router.route('/categories')
   .get((req, res) => {
     return CategoriesController.retrieveCategory(req.query.id)
       .then(data => {
+        console.log('Successfully retrieved category information');
         res.send(data);
       })
       .catch(err => {
-        console.log('error');
+        console.log('Error retrieving category information');
       });
   });
 
 router.route('/categories/:id')
   .get((req, res) => {
-    console.log(req.query);
     return CategoriesController.addItem(req.query.id, req.query.table, req.query.upc)
       .then(res => {
-        console.log('success');
+        console.log('Successly saved an item');
       })
       .catch(err => {
-        console.log('error');
+        console.log('Error saving an item');
       });
     res.send('meow');
   });
 module.exports = router;
+
+router.route('/removeItem')
+  .post((req, res) => {
+    return CategoriesController.removeItem(req.body.id, req.body.table, req.body.upc)
+      .then(res => {
+        console.log('Successfully removed item');
+      })
+      .catch(err => {
+        console.log('Error removing item');
+      });
+  });
+
+router.route('/removeCategories')
+  .post((req, res) => {
+    return CategoriesController.removeCategory(req.body.id, req.body.table)
+      .then(res => {
+        console.log('Successfully removed a category table');
+      })
+      .catch(err => {
+        console.log('Error removing a category table');
+      });
+  });

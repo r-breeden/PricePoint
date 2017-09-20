@@ -14,7 +14,6 @@ module.exports.addItem = (user, table, upc) => {
   }).fetch()
     .then(product => {
       productId = product.serialize().id;
-      console.log(productId);
       return models.Categories.where({
         profile_id: user,
         name: table
@@ -40,5 +39,29 @@ module.exports.retrieveCategory = (user) => {
         });
       });
       return results;
+    });
+};
+
+module.exports.removeItem = (user, table) => {
+  return models.Categories.where({
+    name: table,
+    profile_id: user,
+  }).destory();
+};
+
+module.exports.removeCategory = (user, table, upc) => {
+  return models.Product.where({
+    upc: upc
+  }).fetch()
+    .then(product => {
+      productId = product.serialize().id;
+      return models.Categories.where({
+        profile_id: user,
+        name: table
+      }).fetch()
+        .then(category => {
+          categoryId = category.serialize().id;
+          category.products().detach(product);
+        });
     });
 };
