@@ -8,7 +8,6 @@ import axios from 'axios';
 
 const EntryListItem = (props) => {
   var onEntryListClick = () => {
-    console.log('hi hi hi hi hi');
     axios.post('./api/removeItem', props.user, props.TableName, props.listItem.upc)
       .then( (res) => {
         console.log('entrylist item UPC code: ' + props.listItem.upc + ' removed.');
@@ -24,7 +23,7 @@ const EntryListItem = (props) => {
       <Link to={`/product/${props.listItem.upc}`}>{props.listItem.name}</Link>
     </td>
   );
-}
+};
 
 const mapStateToProps = state => {
   return {
