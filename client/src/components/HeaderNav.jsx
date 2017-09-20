@@ -21,7 +21,7 @@ const HeaderNav = (props) => {
       .catch( (error) => {
         console.log('HeaderNav react components onProfileClick function failed to get user tables from db');
       });
-  }
+  };
 
   const loggedIn = (
     <Nav pullRight>
@@ -52,7 +52,7 @@ const HeaderNav = (props) => {
       </NavItem>
     </Nav>
   );
-  
+
   return (
     <Navbar.Collapse>
       <Nav>
