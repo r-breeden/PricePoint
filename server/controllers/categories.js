@@ -45,7 +45,7 @@ module.exports.removeItem = (user, table) => {
   return models.Categories.where({
     name: table,
     profile_id: user,
-  }).destory();
+  }).destroy();
 };
 
 module.exports.removeCategory = (user, table, upc) => {
