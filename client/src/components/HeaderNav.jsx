@@ -10,7 +10,6 @@ const HeaderNav = (props) => {
   //on profile click update table state
   var onProfileClick = () => {
     //get user tables
-    console.log('DiScO');
     axios.get('/api/categories', {params: {id: props.user.id}})
       .then( (res) => {
         console.log('USERTABLE', res.data);
