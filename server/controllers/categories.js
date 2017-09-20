@@ -41,26 +41,27 @@ module.exports.retrieveCategory = (user) => {
     });
 };
 
-module.exports.removeItem = (user, table) => {
-  return models.Categories.where({
-    name: table,
-    profile_id: user,
-  }).destroy();
-};
-
-module.exports.removeCategory = (user, table, upc) => {
+module.exports.removeItem = (user, table, upc) => {
   return models.Product.where({
     upc: upc
   }).fetch()
     .then(product => {
-      productId = product.serialize().id;
       return models.Categories.where({
         profile_id: user,
         name: table
       }).fetch()
         .then(category => {
-          categoryId = category.serialize().id;
-          category.products().detach(product);
+          return category.products().detach(product);
         });
+    });
+};
+
+module.exports.removeCategory = (user, table, upc) => {
+  return models.Categories.where({
+    name: table,
+    profile_id: user,
+  }).destroy()
+    .then(model => {
+      return model.serialize();
     });
 };
