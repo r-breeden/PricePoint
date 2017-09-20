@@ -28,19 +28,17 @@ module.exports.addItem = (user, table, upc) => {
 
 module.exports.retrieveCategory = (user) => {
   var results = [];
-  models.Categories.where({
-    profile_id: state.user.id
+  return models.Categories.where({
+    profile_id: user
   }).fetchAll({withRelated: ['products']})
     .then(categories => {
       categories.serialize().forEach(el => {
-        res.push({
+        results.push({
           tableId: el.id,
           name: el.name,
           list: el.products
         });
-      })
-        .then(() => {
-          res.send(results); 
-        });
+      });
+      return results;
     });
 };
