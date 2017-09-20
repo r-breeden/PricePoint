@@ -4,8 +4,6 @@ const path = require('path');
 const middleware = require('./middleware');
 const routes = require('./routes');
 const models = require('../db/models');
-
-
 const app = express();
 
 if (process.env.NODE_ENV === 'development') {

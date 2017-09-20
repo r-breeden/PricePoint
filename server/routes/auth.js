@@ -1,12 +1,16 @@
 const express = require('express');
 const middleware = require('../middleware');
-const dummyData = require('../../db/seeds/data/2017-09-04_amazon_data.json');
 const models = require('../../db/models');
 const Promise = require('bluebird');
 const router = express.Router();
 
 router.route(['/', '/profile'])
   .get(middleware.auth.verify, (req, res) => {
+    var state = {
+      user: req.user,
+      results: [],
+      tables: []
+    };
     models.Product.forge()
       .query(qb => {
         qb.orderBy('id', 'desc').limit(10);
@@ -18,14 +22,23 @@ router.route(['/', '/profile'])
         ]
       })
       .then(results => {
-        var state = {
-          user: req.user, // get the user out of session and pass to template
-          results,
-          tables: {default: []},
-        };
-        res.render('index.ejs', { state });
+        state.results = results;
+        models.Categories.where({
+          profile_id: state.user.id
+        }).fetchAll({withRelated: ['products']})
+          .then(categories => {
+            categories.serialize().forEach(el => {
+              state.tables.push({
+                tableId: el.id,
+                name: el.name,
+                list: el.products
+              });
+            });
+            res.render('index.ejs', { state });
+          });
       });
   });
+
 
 router.route('/login')
   .get((req, res) => {

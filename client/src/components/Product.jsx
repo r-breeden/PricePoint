@@ -16,10 +16,29 @@ const Product = (props) => {
       }
     });
   };
-
   getProductDataFromState();
+  
+  //get lowest price url
+  var lowestPriceURL, lowestPriceValue;
+  var seen = false;
+  var obj = productItem[0].vendors;
+  for (var vendor in obj) {
+    //initialize variables with first url/price found
+    if ( lowestPriceURL === undefined ) {
+      lowestPriceURL = obj[vendor].url;
+      lowestPriceValue = obj[vendor].prices[0].price;
+      continue;
+    }
+    //check if the most recent price (first in array)
+    //is less than the current lowestPriceValue
+    if( lowestPriceValue < obj[vendor].prices[0].price ) {
+      lowestPriceURL = obj[vendor].url;
+      lowestPriceValue = obj[vendor].prices[0].price;
+    }
+  }
+
   let sendToProductPage = () => {
-    window.open(productItem[0].itemURL);
+    window.open(lowestPriceURL);
   };
 
   return (
@@ -40,7 +59,6 @@ const Product = (props) => {
     </div>
   );
 };
-
 
 const mapStateToProps = (state) => {
   return {
