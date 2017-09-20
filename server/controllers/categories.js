@@ -19,8 +19,7 @@ module.exports.addItem = (user, table, upc) => {
         name: table
       }).fetch()
         .then(category => {
-          categoryId = category.serialize().id;
-          category.products().attach(product);
+          return category.products().attach(product);
         });
     });
 };
