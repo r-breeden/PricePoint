@@ -19,6 +19,7 @@ const ProfileInput = (props) => {
           //send request to db to update user's table list
           axios.post('api/categories', {id: props.id, table: input.value})
             .then( response => {
+              props.createTable(response.data);
               console.log('successful: post request');
             })
             .catch( error => {
