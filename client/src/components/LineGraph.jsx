@@ -83,15 +83,6 @@ class LineGraph extends React.Component {
           maxDomain: vendors[0].maxDomain, minDomain: vendors[0].minDomain});
         return vendors;
       })
-      .then(vendors => {
-        this.displayButtons = this.state.vendors.map( vendor => {
-          return <Button
-            style={{backgroundSize: '100%', width: 72,
-              backgroundColor: vendor.color, color: 'white'}}
-            href={vendor.url}>
-            {vendor.name}</Button>;
-        });
-      })
       .catch(err => {
         console.log('The Error in the is', err );
       });
@@ -108,7 +99,13 @@ class LineGraph extends React.Component {
       <div>
         <div>
           <ButtonGroup >
-            {this.displayButtons}
+            {this.state.vendors.map(vendor => {
+              return <Button
+                style={{backgroundSize: '100%', width: 72,
+                  backgroundColor: vendor.color, color: 'white'}}
+                href={vendor.url}>
+                {vendor.name}</Button>;
+            })}
             <TimeSpan changeRange={this.onDateChange}/>
           </ButtonGroup>
         </div>
