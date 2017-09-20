@@ -80,8 +80,9 @@ module.exports = router;
 router.route('/removeItem')
   .post((req, res) => {
     return CategoriesController.removeItem(req.body.id, req.body.table, req.body.upc)
-      .then(res => {
+      .then(model => {
         console.log('Successfully removed item');
+        res.status(201).end();
       })
       .catch(err => {
         console.log('Error removing item');
