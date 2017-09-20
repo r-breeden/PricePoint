@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Row, Table, Glyphicon} from 'react-bootstrap';
+import { Row, Table, Glyphicon, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import EntryListItem from './EntryListItem.jsx';
 import '../styles/main.scss';
 import axios from 'axios';
 
@@ -24,16 +25,14 @@ const ProfileTable = (props) => {
     <Row>
       <Table>
         <th>
-          <button onClick={onClickRemoveList}>REMOVE TITLE</button>
+          <Button onClick={onClickRemoveList}>REMOVE LIST</Button>&nbsp;
           {props.listName}
         </th>
         <tbody>
           {props.list.map( (listItem, i) => {
             return ( 
               <tr key={i}>
-                <td>
-                  <Link to={`/product/${listItem.upc}`}>{listItem.name}</Link>
-                </td>
+                  <EntryListItem listItem={listItem} tableName={props.listName}/>
               </tr>);
           })}
         </tbody>
@@ -48,4 +47,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default ProfileTable;
+export default connect(mapStateToProps)(ProfileTable);
