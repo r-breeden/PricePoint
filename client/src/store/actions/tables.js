@@ -1,10 +1,16 @@
 import * as constants from '../constants/tables';
 
-export const createTable = (input) => ({
+export const createTable = (obj) => ({
   type: constants.CREATE_TABLE,
-  text: input,
+  payload: obj,
 });
 
 export const deleteTable = () => ({
   type: constants.DELETE_TABLE,
+});
+
+export const updateTable = (obj, index) => ({
+  type: constants.UPDATE_TABLE,
+  payload: obj,
+  index: index, 
 });

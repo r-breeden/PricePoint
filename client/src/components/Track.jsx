@@ -13,7 +13,7 @@ const Track = (props) => {
   return (
     <DropdownButton id="dropDownMenu" bsStyle="primary" title={<span><Glyphicon glyph="eye-open"/> Title</span>}>
       {props.tables.map( (item, i) => {
-        return <DropDownListEntry key={i} upc={props.upc} listName={item.name} listItem={item} />
+        return <DropDownListEntry controlId={i} key={i} upc={props.upc} listName={item.name} listItem={item} />;
       })}
     </DropdownButton>
   );
