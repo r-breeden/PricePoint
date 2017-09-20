@@ -18,7 +18,6 @@ router.route('/itemPrices')
           return profile;
         } else {
           console.log('WARNING: item not in database.');
-          res.sendStatus(404);
         }
       })
       .error(err => {
@@ -28,9 +27,9 @@ router.route('/itemPrices')
       .then((profile) => {
         res.send(profile);
       })
-      .catch(() => {
-        console.log('WARNING: item not in database.');
-        res.sendStatus(404);
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
       });
   });
 

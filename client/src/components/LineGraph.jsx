@@ -5,7 +5,6 @@ import Header from './Header.jsx';
 import { connect } from 'react-redux';
 import {LineChart} from 'react-easy-chart';
 import axios from 'axios';
-import Promise from 'bluebird';
 import TimeSpan from './TimeSpan.jsx';
 
 const normalizeData = (name, vendorObj) => {
@@ -13,16 +12,15 @@ const normalizeData = (name, vendorObj) => {
   obj.name = name;
   obj.url = vendorObj.url;
   obj.data = [];
-  obj.maxDomain = null;
-  obj.minDomain = null;
+  obj.maxDomain = -Infinity;
+  obj.minDomain = Infinity;
   for (var i = 0; i < vendorObj.prices.length; i++) {
     let dataPoint = {};
-    obj.maxDomain = obj.maxDomain < vendorObj.prices[i].price / 100
-      || obj.maxDomain === null ? vendorObj.prices[i].price / 100 : obj.maxDomain;
-    obj.minDomain = obj.minDomain > vendorObj.prices[i].price / 100
-      || obj.minDomain === null ? vendorObj.prices[i].price / 100 : obj.minDomain;
+    let price = vendorObj.prices[i].price / 100;
+    obj.maxDomain = obj.maxDomain < price ? price : obj.maxDomain;
+    obj.minDomain = obj.minDomain > price ? price : obj.minDomain;
     dataPoint.x = vendorObj.prices[i].timestamp.slice(0, 19);
-    dataPoint.y = vendorObj.prices[i].price / 100;
+    dataPoint.y = price;
     obj.data.push(dataPoint);
   }
   obj.maxDomain *= 1.2;
@@ -32,7 +30,7 @@ const normalizeData = (name, vendorObj) => {
 
 const todayIs = () => {
   var today = new Date;
-  today = new Date(today + 40000000);
+  today = new Date(today);
   return today.toISOString().slice(0, 19);
 };
 
