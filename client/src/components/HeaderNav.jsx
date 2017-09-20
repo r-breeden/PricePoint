@@ -3,12 +3,27 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 const HeaderNav = (props) => {
+
+  //on profile click update table state
+  var onProfileClick = () => {
+    //get user tables
+    console.log('DiScO');
+    axios.get('/api/categories', {params: { id: props.user.id}})
+      .then( (userTables) => {
+        //update state with userTables
+        store.dispatch(createTable(userTables));
+      })
+      .catch( (error) => {
+        console.log('HeaderNav react components onProfileClick function failed to get user tables from db');
+      });
+  };
   const loggedIn = (
     <Nav pullRight>
       <NavItem className="menu-items" eventKey={1}>
-        <Link to="/profile">
+        <Link to="/profile" onClick={onProfileClick}>
           <Glyphicon glyph="user"/> Profile
         </Link>
       </NavItem>
