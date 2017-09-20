@@ -25,21 +25,20 @@ router.route(['/', '/profile'])
         state.results = results;
         models.Categories.where({
           profile_id: state.user.id
-        }).fetchAll()
+        }).fetchAll({withRelated: ['products']})
           .then(categories => {
-            //add a conditional checking for no table
             categories.serialize().forEach(el => {
               state.tables.push({
+                tableId: el.id,
                 name: el.name,
-                list: []
+                list: el.products
               });
             });
-          })
-          .then(() => {
             res.render('index.ejs', { state });
           });
       });
   });
+
 
 router.route('/login')
   .get((req, res) => {
