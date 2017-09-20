@@ -66,13 +66,14 @@ router.route('/categories')
 router.route('/categories/:id')
   .get((req, res) => {
     return CategoriesController.addItem(req.query.id, req.query.table, req.query.upc)
-      .then(res => {
-        console.log('Successly saved an item');
+      .then(model => {
+        var data = model.serialize();
+        console.log('Successfully saved an item');
+        res.status(201).send(data);
       })
       .catch(err => {
         console.log('Error saving an item');
       });
-    res.send('meow');
   });
 module.exports = router;
 

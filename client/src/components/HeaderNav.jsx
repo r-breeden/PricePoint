@@ -6,23 +6,10 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 const HeaderNav = (props) => {
-
-  //on profile click update table state
-  var onProfileClick = () => {
-    //get user tables
-    axios.get('/api/categories', {params: {id: props.user.id}})
-      .then( (res) => {
-        console.log('USERTABLE', res.data);
-        // store.dispatch(createTable(userTables));
-      })
-      .catch( (error) => {
-        console.log('HeaderNav react components onProfileClick function failed to get user tables from db');
-      });
-  };
   const loggedIn = (
     <Nav pullRight>
       <NavItem className="menu-items" eventKey={1}>
-        <Link to="/profile" onClick={onProfileClick}>
+        <Link to="/profile">
           <Glyphicon glyph="user"/> Profile
         </Link>
       </NavItem>

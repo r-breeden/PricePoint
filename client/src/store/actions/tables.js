@@ -9,7 +9,8 @@ export const deleteTable = () => ({
   type: constants.DELETE_TABLE,
 });
 
-export const updateTable = () => ({
+export const updateTable = (obj, index) => ({
   type: constants.UPDATE_TABLE,
-  text: input,
+  payload: obj,
+  index: index, 
 });
