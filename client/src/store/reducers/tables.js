@@ -5,13 +5,14 @@ export default (state = [], action) => {
   case constants.CREATE_TABLE:
     return [...state, action.payload];
   case constants.UPDATE_TABLE:
-    console.log(state);
-    console.log('index', action.index);
-    console.log('payload', action.payload);
     state[action.index].list.push(action.payload);
-    return [
-      ...state
-    ];
+    return [...state];
+  case constants.DELETE_TABLE:
+    return [...state];
+  case constants.DELETE_ITEM:
+    console.log(state);
+    console.log(action.tableIndex);
+    console.log(action.itemIndex);
   default:
     return state;
   }
