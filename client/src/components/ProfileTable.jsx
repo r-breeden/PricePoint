@@ -30,9 +30,9 @@ const ProfileTable = (props) => {
         </th>
         <tbody>
           {props.list.map( (listItem, i) => {
-            return ( 
+            return (
               <tr key={i}>
-                <EntryListItem listItem={listItem} tableName={props.listName}/>
+                <EntryListItem controlId={i} listItem={listItem} tableName={props.listName}/>
               </tr>);
           })}
         </tbody>
