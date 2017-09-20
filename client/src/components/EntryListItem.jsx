@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const EntryListItem = (props) => {
   var onEntryListClick = () => {
-    axios.post('./api/removeItem', props.user, props.TableName, props.listItem.upc)
+    axios.post('./api/removeItem', props.user, props.tableName, props.listItem.upc)
       .then( (res) => {
         console.log('entrylist item UPC code: ' + props.listItem.upc + ' removed.');
       })
@@ -19,8 +19,8 @@ const EntryListItem = (props) => {
 
   return (
     <td>
-      <Button onClick={onEntryListClick}>remove product from list </Button>&nbsp;
-      <Link to={`/product/${props.listItem.upc}`}>{props.listItem.name}</Link>
+      <Link to={`/product/${props.listItem.upc}`}>{props.listItem.name}</Link> &nbsp;
+      <Button bsStyle="danger" className="btn-round btn-xs" onClick={onEntryListClick}><span className="glyphicon glyphicon-remove"></span></Button>
     </td>
   );
 };
