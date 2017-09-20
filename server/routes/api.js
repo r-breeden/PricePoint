@@ -37,11 +37,18 @@ router.route('/search')
 router.route('/categories')
   .post((req, res) => {
     return CategoriesController.addCategory(req.body.id, req.body.table)
-      .then(res => {
+      .then(model => {
+        let data = model.serialize();
         console.log('Successfully created a category table');
+        res.status(201).send({
+          tableId: data.id,
+          name: data.name,
+          list: []
+        });
       })
       .catch(err => {
         console.log('Error creating a category table');
+        res.status(500).send(err);
       });
   });
 router.route('/categories')
