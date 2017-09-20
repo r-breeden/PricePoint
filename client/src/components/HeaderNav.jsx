@@ -11,10 +11,10 @@ const HeaderNav = (props) => {
   var onProfileClick = () => {
     //get user tables
     console.log('DiScO');
-    axios.get('/api/categories', {params: { id: props.user.id}})
-      .then( (userTables) => {
-        //update state with userTables
-        store.dispatch(createTable(userTables));
+    axios.get('/api/categories', {params: {id: props.user.id}})
+      .then( (res) => {
+        console.log('USERTABLE', res.data);
+        // store.dispatch(createTable(userTables));
       })
       .catch( (error) => {
         console.log('HeaderNav react components onProfileClick function failed to get user tables from db');
