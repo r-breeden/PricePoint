@@ -46,7 +46,7 @@ router.route('/categories')
   });
 router.route('/categories')
   .get((req, res) => {
-    return CategoriesController.retrieveCategory(req.body.id)
+    return CategoriesController.retrieveCategory(req.query.id)
       .then(data => {
         res.send(data);
       })
