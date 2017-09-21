@@ -3,14 +3,21 @@ import ReactDOM from 'react-dom';
 import { Row, Table, Button, Glyphicon} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { deleteTable, deleteItem } from '../store/actions/tables';
+import { bindActionCreators } from 'redux';
 import '../styles/main.scss';
 import axios from 'axios';
 
+
+
 const EntryListItem = (props) => {
   var onEntryListClick = () => {
-    axios.post('./api/removeItem', props.user, props.tableName, props.listItem.upc)
+    axios.post('./api/removeItem', {
+      id: props.user,
+      table: props.tableName,
+      upc: props.listItem.upc})
       .then( (res) => {
-        console.log('entrylist item UPC code: ' + props.listItem.upc + ' removed.');
+        props.deleteItem(props.listId, props.controlId);
       })
       .catch( (err) => {
         console.log(err);
@@ -25,11 +32,16 @@ const EntryListItem = (props) => {
   );
 };
 
+const mapDispatchToProps = dispatch => bindActionCreators({
+  deleteTable: deleteTable,
+  deleteItem: deleteItem,
+}, dispatch);
+
 const mapStateToProps = state => {
   return {
-    'user': state.user.id
+    'user': state.user.id,
+    'tables': state.tables
   };
 };
 
-export default connect(mapStateToProps)(EntryListItem);
-
+export default connect(mapStateToProps, mapDispatchToProps)(EntryListItem);

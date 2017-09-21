@@ -5,13 +5,19 @@ export default (state = [], action) => {
   case constants.CREATE_TABLE:
     return [...state, action.payload];
   case constants.UPDATE_TABLE:
-    console.log(state);
-    console.log('index', action.index);
-    console.log('payload', action.payload);
     state[action.index].list.push(action.payload);
-    return [
-      ...state
-    ];
+    return [...state];
+  case constants.DELETE_TABLE:
+    return [...state];
+  case constants.DELETE_ITEM:
+    // console.log('Table', action.tableIndex);
+    // console.log('Item', action.itemIndex);
+    var removeItem = (array, action) => {
+      var newState = array.slice();
+      newState[action.tableIndex].list.splice(action.itemIndex, 1);
+      return newState;
+    };
+    return (removeItem(state, action));
   default:
     return state;
   }

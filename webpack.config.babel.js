@@ -23,7 +23,7 @@ const config = {
       {
         test: /\.scss$/,
         include: path.join(__dirname, 'client/src'),
-        loaders: ["style-loader", "css-loader", "sass-loader"]
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   }
