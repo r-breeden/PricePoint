@@ -20,7 +20,7 @@ const EntryListItem = (props) => {
   return (
     <td>
       <Link to={`/product/${props.listItem.upc}`}>{props.listItem.name}</Link> &nbsp;
-      <Button bsStyle="danger" className="btn-round btn-xs" onClick={onEntryListClick}><span className="glyphicon glyphicon-remove"></span></Button>
+      <Button className="btn-round btn-xs" onClick={onEntryListClick}><span className="glyphicon glyphicon-remove glyph-color glyphicon-center"></span></Button>
     </td>
   );
 };
