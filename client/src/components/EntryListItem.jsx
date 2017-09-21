@@ -17,6 +17,7 @@ const EntryListItem = (props) => {
       table: props.tableName,
       upc: props.listItem.upc})
       .then( (res) => {
+        console.log('entrylist response')
         props.deleteItem(props.listId, props.controlId);
       })
       .catch( (err) => {

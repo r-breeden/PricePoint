@@ -5,9 +5,9 @@ export const createTable = (obj) => ({
   payload: obj,
 });
 
-export const deleteTable = (obj) => ({
+export const deleteTable = (tableIndex) => ({
   type: constants.DELETE_TABLE,
-  payload: obj,
+  tableIndex,
 });
 
 export const deleteItem = (tableIndex, itemIndex) => ({

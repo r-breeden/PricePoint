@@ -91,11 +91,15 @@ router.route('/removeItem')
 
 router.route('/removeCategories')
   .post((req, res) => {
+    console.log('id: ', req.body.id);
+    console.log('table: ', req.body.table);
     return CategoriesController.removeCategory(req.body.id, req.body.table)
-      .then(res => {
+      .then(() => {
         console.log('Successfully removed a category table');
+        res.status(201).end();
       })
       .catch(err => {
         console.log('Error removing a category table');
+        console.log(err);
       });
   });
