@@ -11,20 +11,13 @@ import axios from 'axios';
 
 
 const EntryListItem = (props) => {
-  // var tableIndex = (name) => {
-  //   for (var x = 0; x < state.tables.length; x += 1) {
-  //     if ()
-  //   }
-  // }
-
   var onEntryListClick = () => {
     axios.post('./api/removeItem', {
       id: props.user,
       table: props.tableName,
       upc: props.listItem.upc})
       .then( (res) => {
-        console.log('indexOfTable', props);
-        console.log('indexOfItem', props.controlId );
+        props.deleteItem(props.listId, props.controlId);
       })
       .catch( (err) => {
         console.log(err);
@@ -33,8 +26,8 @@ const EntryListItem = (props) => {
 
   return (
     <td>
-      <Button onClick={onEntryListClick}>remove product from list </Button>&nbsp;
-      <Link to={`/product/${props.listItem.upc}`}>{props.listItem.name}</Link>
+      <Link to={`/product/${props.listItem.upc}`}>{props.listItem.name}</Link> &nbsp;
+      <Button bsStyle="danger" className="btn-round btn-xs" onClick={onEntryListClick}><span className="glyphicon glyphicon-remove"></span></Button>
     </td>
   );
 };

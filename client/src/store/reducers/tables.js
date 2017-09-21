@@ -10,9 +10,14 @@ export default (state = [], action) => {
   case constants.DELETE_TABLE:
     return [...state];
   case constants.DELETE_ITEM:
-    console.log(state);
-    console.log(action.tableIndex);
-    console.log(action.itemIndex);
+    // console.log('Table', action.tableIndex);
+    // console.log('Item', action.itemIndex);
+    var removeItem = (array, action) => {
+      var newState = array.slice();
+      newState[action.tableIndex].list.splice(action.itemIndex, 1);
+      return newState;
+    };
+    return (removeItem(state, action));
   default:
     return state;
   }

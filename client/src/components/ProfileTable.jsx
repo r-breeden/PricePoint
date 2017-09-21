@@ -25,14 +25,19 @@ const ProfileTable = (props) => {
     <Row>
       <Table>
         <th>
-          <Button onClick={onClickRemoveList}>REMOVE LIST</Button>&nbsp;
-          {props.listName}
+          <span key={props.listId}>{props.listName}</span> &nbsp;
+          <Button bsStyle="danger" className="btn-round btn-xs" onClick={onClickRemoveList}><span className="glyphicon glyphicon-remove"></span></Button>
         </th>
         <tbody>
           {props.list.map( (listItem, i) => {
             return (
               <tr key={i}>
-                <EntryListItem controlId={i} listItem={listItem} tableName={props.listName}/>
+                <EntryListItem
+                  controlId={i}
+                  listItem={listItem}
+                  tableName={props.listName}
+                  listId={props.listId}
+                />
               </tr>);
           })}
         </tbody>
