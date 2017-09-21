@@ -11,7 +11,7 @@ import DropDownListEntry from './DropDownListEntry.jsx';
 const Track = (props) => {
 
   return (
-    <DropdownButton id="dropDownMenu" bsStyle="primary" title={<span><Glyphicon glyph="eye-open"/> Title</span>}>
+    <DropdownButton id="dropDownMenu" bsStyle="primary" title={<span><Glyphicon glyph="eye-open"/> Track</span>}>
       {props.tables.map( (item, i) => {
         return <DropDownListEntry controlId={i} key={i} upc={props.upc} listName={item.name} listItem={item} />;
       })}
