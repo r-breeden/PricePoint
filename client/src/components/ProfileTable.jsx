@@ -26,7 +26,7 @@ const ProfileTable = (props) => {
       <Table>
         <th>
           <span key={props.listId}>{props.listName}</span> &nbsp;
-          <Button bsStyle="danger" className="btn-round btn-xs" onClick={onClickRemoveList}><span className="glyphicon glyphicon-remove"></span></Button>
+          <Button className="btn-round btn-xs" onClick={onClickRemoveList}><span className="glyphicon glyphicon-remove glyph-color glyphicon-center"></span></Button>
         </th>
         <tbody>
           {props.list.map( (listItem, i) => {
