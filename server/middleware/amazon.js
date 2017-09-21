@@ -52,7 +52,7 @@ const normalizeAmazonData = function(amazonData) {
     }
 
     if (attributes.ListPrice) {
-      item.price = amazonData.OfferSummary
+      item.price = amazonData.OfferSummary && amazonData.OfferSummary.LowestNewPrice
         ? amazonData.OfferSummary.LowestNewPrice.Amount
         : parseInt(attributes.ListPrice.Amount);
     } else {
